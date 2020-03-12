@@ -50,3 +50,8 @@ Recuerden no trabajar el problema como un todo si no ir avanzando de a poco.
 Mucha suerte y no olviden consultarnos cualquier duda.
 
 
+------------
+- favoritos o bookmarks
+- hacer backend
+- ver backend integrador 
+
