@@ -64,7 +64,7 @@ Recuerden no trabajar el problema como un todo si no ir avanzando de a poco.
 Mucha suerte y no olviden consultarnos cualquier duda.
 
 ## Bonus Track
-- Que tenga test
+- Que tenga tests, tanto en el front como en el back.
 - Que sea responsive
 - Que este dockerizado
 
