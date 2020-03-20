@@ -45,7 +45,7 @@ Modelo Categoria {
 Queremos una lista simple de propiedades con un sidebar a la izquierda para los filtros.
 
 ### Interaccion con las propiedades
-Al hacer click en un item aparesca un modal con sus datos cargados como input, el modal tiene que tener dos botones, unos para guardar ediciones a la información, otro para borrar el inmueble.
+Al hacer click en un item aparezca un modal con sus datos cargados como input, el modal tiene que tener dos botones, unos para guardar ediciones a la información, otro para borrar el inmueble.
 Si queremos agregar una propiedad deberia haber un boton de agregar que abra el mismo modal de edicion pero con los campos vacios.
 
 ### Filtros
