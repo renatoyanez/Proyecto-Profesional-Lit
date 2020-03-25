@@ -30,16 +30,16 @@ router.get('/all', (req, res, next) => {
         .catch(next)
 })
 
-// router.get("/:id", (req, res) => {
-//     const id = req.params.id;
-//     Propiedades.findAll({
-//         where: {
-//             id
-//         }
-//     })
-//         .then((property) => {
-//             res.status(200).send(property)
-//         })
-// })
+router.get("/:id", (req, res) => {
+    const id = req.params.id;
+    Propiedades.findAll({
+        where: {
+            id
+        }
+    })
+        .then((property) => {
+            res.status(200).send(property)
+        })
+})
 
 module.exports = router

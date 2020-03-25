@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(morgan("tiny"));
 //...this code
 
-// app.use("/api/propiedades", propiedadesRoutes)
+app.use("/api/propiedades", propiedadesRoutes)
 
 app.get('/*', (req, res) => {
     res.sendFile(__dirname + '/public/' + 'index.html')
