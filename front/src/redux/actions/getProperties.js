@@ -1,4 +1,4 @@
-import { FETCH_PROPERTIES } from "../../utils/constants"
+import { FETCH_PROPERTIES } from "../utils/constants"
 import axios from "axios";
 
 
@@ -7,9 +7,12 @@ export const fetchProperties = (propiedades) => ({
     propiedades
 })
 
-export const fetchProducts = () => {
+export const fetchProducts = () => 
     (dispatch) => {
         axios.get(`/api/propiedades/all`)
-            .then(propiedades => dispatch(fetchProperties(propiedades.data)))
+        .then(propiedades => {
+            dispatch(fetchProperties(propiedades.data))
+            console.log(propiedades, 'propiedadeeees');
+            
+            })  
     }
-}
