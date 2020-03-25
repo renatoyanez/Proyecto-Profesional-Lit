@@ -27,7 +27,6 @@ Las propiedades van a contar con:
 - **disponible**: booleano, por default: true
 
 Tambien tiene que tener un getter **truncarDescripcion** que devuelva la descripción truncada a solo 20 caracteres y termine con '…'
-Agregar un hook antes de ser creado que se fije en la propiedad 'disponible' en caso de ser false, agregar en el titulo del producto un "NO DISPONIBLE", por ejemplo, si el producto 
 
 Agregar un hook antes de ser creado que se fije en la propiedad 'disponible' en caso de ser false, agregar en el titulo de la propiedad un "NO DISPONIBLE", por ejemplo, si la propiedad "CASA QUINTA 7" no esta disponible quedaría: "CASA QUINTA 7 NO DISPONIBLE"
 Optativo: por un setter en "disponibilidad" de forma tal que cada vez que cambia la disponibilidad del producto, el titulo cambie dinámicamente, poniendo y sacando el "NO DISPONIBLE", ya que con el hook solo se haría en la creación!!
