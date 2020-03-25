@@ -5,7 +5,6 @@ const Categoria = require('./Categorias');
 
 Favoritos.belongsTo(Users);
 Favoritos.belongsTo(Propiedades);
-
 Propiedades.belongsToMany(Categoria, { through: 'producto_categoria' });
 Categoria.belongsToMany(Propiedades, { through: "producto_categoria" });
 
