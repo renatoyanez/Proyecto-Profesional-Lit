@@ -30,15 +30,12 @@ router.get('/all', (req, res, next) => {
         .catch(next)
 })
 
-router.get("/:id", (req, res) => {
-    const id = req.params.id;
-    Propiedades.findAll({
-        where: {
-            id
-        }
-    })
-        .then((property) => {
-            res.status(200).send(property)
+router.get("/:id", (req, res, next) => {
+    console.log(req.params.id, "req.params.iddddddddddd");
+    
+    Propiedades.findByPk(req.params.id)
+        .then((data) => {
+            res.json(data)
         })
 })
 
