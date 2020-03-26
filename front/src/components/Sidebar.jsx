@@ -1,139 +1,60 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
-import Hidden from '@material-ui/core/Hidden';
-import IconButton from '@material-ui/core/IconButton';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom'
-const drawerWidth = 240;
-const useStyles = makeStyles(theme => ({
-    root: {
-        display: 'flex',
-    },
-    drawer: {
-        [theme.breakpoints.up('sm')]: {
-            width: drawerWidth,
-            flexShrink: 0,
-        },
-    },
-    appBar: {
-        [theme.breakpoints.up('sm')]: {
-            width: `calc(100% - ${drawerWidth}px)`,
-            marginLeft: drawerWidth,
-        },
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
-        [theme.breakpoints.up('sm')]: {
-            display: 'none',
-        },
-    },
-    toolbar: theme.mixins.toolbar,
-    drawerPaper: {
-        width: drawerWidth,
-    },
-    content: {
-        flexGrow: 1,
-        padding: theme.spacing(3),
-    },
-}));
-function ResponsiveDrawer(props) {
-    const { container } = props;
-    const classes = useStyles();
-    const theme = useTheme();
-    const [mobileOpen, setMobileOpen] = React.useState(false);
-    const handleDrawerToggle = () => {
-        setMobileOpen(!mobileOpen);
-    };
-    const drawer = (
-        <div>
-            <div className={classes.toolbar} />
-            <Divider />
+import React from "react";
 
+import { Link } from "react-router-dom";
 
-            <List>
-                <Link to='propiedades'>
-                    <ListItem >
-                        <ListItemText primary={'Propiedades'} />
-                    </ListItem>
-                </Link>
-            </List>
+export default () => {
+  return (
+    <div>
+      <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
+          LIT
+        </a>
+        <input
+          class="form-control form-control-dark w-100"
+          type="text"
+          placeholder="Search"
+        />
+        <ul class="navbar-nav px-3">
+          <li class="nav-item text-nowrap">
+            <a class="nav-link" href="#">
+              Sign out
+            </a>
+          </li>
+        </ul>
+      </nav>
 
-            <Divider />
-            <List>
-                <ListItem>
-                    <ListItemText primary={'Más filtros'} />
-                </ListItem>
-            </List>
+      <div class="container-fluid">
+        <div class="row">
+          <nav class="col-md-2 d-none d-md-block bg-light sidebar" style={{marginTop:"5%"}}>
+            <div class="sidebar-sticky">
+              <ul class="nav flex-column mb-2">
+                <li class="nav-item">
+                  <Link to="/propiedades">
+                    <span data-feather="file-text"></span>
+                    Propiedades
+                  </Link>
+                </li>
+                <li class="nav-item">
+                  <span data-feather="file-text"></span>
+                  Mas filtros
+                </li>
+                
+              </ul>
+            </div>
+          </nav>
+
+          <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"></div>
+
+            <canvas
+              class="my-4 w-100"
+              id="myChart"
+              width="900"
+              height="380"
+            ></canvas>
+          </main>
         </div>
-    );
-    return (
-        <div className={classes.root}>
-            <CssBaseline />
-            <AppBar position="fixed" className={classes.appBar}>
-                <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="start"
-                        onClick={handleDrawerToggle}
-                        className={classes.menuButton}
-                    >
-                    </IconButton>
-                    <Typography variant="h6" noWrap>
-                        Lit
-          </Typography>
-                </Toolbar>
-            </AppBar>
-            <nav className={classes.drawer} aria-label="mailbox folders">
-                {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-                <Hidden smUp implementation="css">
-                    <Drawer
-                        container={container}
-                        variant="temporary"
-                        anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-                        open={mobileOpen}
-                        onClose={handleDrawerToggle}
-                        classes={{
-                            paper: classes.drawerPaper,
-                        }}
-                        ModalProps={{
-                            keepMounted: true, // Better open performance on mobile.
-                        }}
-                    >
-                        {drawer}
-                    </Drawer>
-                </Hidden>
-                <Hidden xsDown implementation="css">
-                    <Drawer
-                        classes={{
-                            paper: classes.drawerPaper,
-                        }}
-                        variant="permanent"
-                        open
-                    >
-                        {drawer}
-                    </Drawer>
-                </Hidden>
-            </nav>
-            {/* {Acá comienza la vista general de propiedades} */}
-        </div>
-    );
-}
-ResponsiveDrawer.propTypes = {
-    /**
-     * Injected by the documentation to work in an iframe.
-     * You won't need it on your project.
-     */
-    container: PropTypes.any,
+      </div>
+    </div>
+  );
 };
-export default ResponsiveDrawer;
