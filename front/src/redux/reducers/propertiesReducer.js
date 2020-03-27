@@ -1,9 +1,9 @@
-import { FETCH_PROPERTIES, FETCH_SINGLE_PROPERTY } from '../utils/constants'
+import { FETCH_PROPERTIES, FETCH_SINGLE_PROPERTY, SEARCH_FILTERED_PROPERTIES } from '../utils/constants'
 
 const initialState = {
     propiedades: [],
-    propiedad: {}
-
+    propiedad: {},
+    propiedadFiltrada: []
 }
 
 export default (state = initialState, action) => {
@@ -14,6 +14,10 @@ export default (state = initialState, action) => {
 
         case FETCH_SINGLE_PROPERTY: {
             return Object.assign({}, state, { propiedad: action.propiedad })
+        };
+
+        case SEARCH_FILTERED_PROPERTIES: {
+            return Object.assign({}, state, { propiedadFiltrada: action.propiedadFiltrada })
         }
 
         default:
