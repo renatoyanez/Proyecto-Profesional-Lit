@@ -1,58 +1,77 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
-
-export default () => {
+const styles = {
+  sidebar: {
+    width: "230px",
+    position: " fixed",
+    // top: "0",
+    // left: "0",
+    height: "100vh",
+    zIndex: "999",
+   // background: "#90CAF9",
+    //color: "#fff",
+    transition: "all 0.3s"
+  }
+};
+export default ({ /*propiedadFiltrada*/onSearch }) => {
   return (
     <div>
-      <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
+      <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+        <a className="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
           LIT
         </a>
-        <input
-          class="form-control form-control-dark w-100"
-          type="text"
-          placeholder="Search"
-        />
-        <ul class="navbar-nav px-3">
-          <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#">
+        <ul className="navbar-nav px-3">
+          <li className="nav-item text-nowrap">
+            <a className="nav-link" href="#">
               Sign out
             </a>
           </li>
         </ul>
       </nav>
 
-      <div class="container-fluid">
-        <div class="row">
-          <nav class="col-md-2 d-none d-md-block bg-light sidebar" style={{marginTop:"5%"}}>
-            <div class="sidebar-sticky">
-              <ul class="nav flex-column mb-2">
-                <li class="nav-item">
+      <div className="container-fluid">
+        <div className="row">
+          <nav className="sidebar bg-light  " style={styles.sidebar}>
+            <div className="sidebar-sticky">
+              <ul className="nav flex-column mb-2">
+                <li className="nav-item">
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <form onSubmit={onSearch}>
+                  <input
+                    className="form-control ds-input"
+                    type="text"
+                    placeholder="Search"
+                  />
+                  </form>
+                </li>
+                <li className="nav-item">
                   <Link to="/propiedades">
                     <span data-feather="file-text"></span>
                     Propiedades
                   </Link>
                 </li>
-                <li class="nav-item">
+                <li className="nav-item">
                   <span data-feather="file-text"></span>
                   Mas filtros
                 </li>
-                
               </ul>
             </div>
           </nav>
 
-          <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"></div>
+          {/* <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"></div>
 
             <canvas
-              class="my-4 w-100"
+              className="my-4 w-100"
               id="myChart"
               width="900"
               height="380"
             ></canvas>
-          </main>
+          </main> */}
         </div>
       </div>
     </div>

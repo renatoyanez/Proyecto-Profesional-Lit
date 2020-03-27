@@ -9,7 +9,7 @@ export default () => {
         <div>
             <Route component={SidebarContainer} />
             <Switch>
-                <Route exact path="/propiedades" component={PropertiesContainer} />
+                <Route exact path="/" component={PropertiesContainer} />
                 <Route exact path="/propiedades/:id" component={SinglePropertyContainer} />
             </Switch>
         </div>

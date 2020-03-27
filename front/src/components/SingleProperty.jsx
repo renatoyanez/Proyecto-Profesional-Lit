@@ -1,6 +1,6 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { Button, Icon } from "semantic-ui-react";
+import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 
 const style = {
   iconStyle: {
@@ -8,27 +8,21 @@ const style = {
   },
   arrowcolor: {
     filter: "invert(100%)"
+  },
+  single: {
+    marginTop: "3%",
+    marginLeft: "15%"
   }
 };
 
-const useStyles = makeStyles(theme => ({
-  button: {
-    margin: theme.spacing(1)
-  },
-  input: {
-    display: "none"
-  },
-  icon: {
-    height: "100vh"
-  }
-}));
-
-export default ({propiedad}) => {
-  const classes = useStyles();
-  var i = -1;
-
+export default ({ propiedad }) => {
   return (
-    <div className="container" style={{ marginTop: "3%" }}>
+    <div className="container" style={style.single}>
+      <Link to="/">
+        <Button style={{ marginLeft: "2%" }} color="primary">
+          Volver atras
+        </Button>
+      </Link>
       {propiedad.nombre && (
         <div
           id="carouselExampleIndicators"
@@ -36,7 +30,7 @@ export default ({propiedad}) => {
           style={{ height: "55vh" }}
           data-ride="carousel"
         >
-          {/* <ol className="carousel-indicators">
+          <ol className="carousel-indicators">
             {propiedad.imagen.map(img => {
               return (
                 <li
@@ -49,9 +43,9 @@ export default ({propiedad}) => {
                 />
               );
             })}
-          </ol> */}
+          </ol>
           <div className="carousel-inner">
-            {/* {propiedad.imagen.map(img => (
+            {propiedad.imagen.map(img => (
               <div
                 key={img}
                 className={
@@ -70,7 +64,7 @@ export default ({propiedad}) => {
                   }}
                 />
               </div>
-            ))} */}
+            ))}
           </div>
           <a
             className="carousel-control-prev"
@@ -99,20 +93,13 @@ export default ({propiedad}) => {
         <div>
           <br />
           <h2 className="text-center">{propiedad.nombre}</h2>
-          <p className="text-center text-wrap">{propiedad.description}</p>
+          <p className="text-center text-wrap">{propiedad.descripcion}</p>
           <div style={style.iconStyle}>
             <h4>${propiedad.precio}</h4>
-            <Button>
-              <Icon name="add to cart" size="large" />
-            </Button>
-            <Button>
-              <Icon name="trash alternate" size="large" />
-            </Button>
           </div>
         </div>
       )}
-     <br/>
-     
+      <br />
     </div>
   );
 };

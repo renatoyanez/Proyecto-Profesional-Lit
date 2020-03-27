@@ -10,7 +10,11 @@ Propiedades.init({
     },
     descripcion: {
         type: S.TEXT,
-        allowNull: false
+        allowNull: false,
+        // get(){
+        //     const texto = this.getDataValue(descripcion)
+        //    if (texto.length >= 20) {return `${texto.slice(0, 20)}...`}
+        // }
     },
     precio: {
         type: S.INTEGER,
@@ -21,14 +25,28 @@ Propiedades.init({
         allowNull: false
     },
     imagen: {
-        type: S.STRING,
+        type: S.ARRAY(S.STRING),
         allowNull: false
     },
     disponible: {
         type: S.BOOLEAN,
         allowNull: false,
-        defaultValue: true
+        defaultValue: true,
+        // set(value) {
+        //     if (this.disponible == false ) {this.setDataValue('nombre', `${value} NO DISPONIBLE`)} 
+        // }
     }
-}, { sequelize: db, modelName: 'propiedades' })
+}, { 
+    // hooks: {
+    //     beforeCreate: (instance, options) => {
+    //         instance.disponible == false ? instance.nombre = `${instance.nombre} NO DISPONIBLE` : null
+    //     }
+    // },
+    sequelize: db, 
+    modelName: 'propiedades' 
+})
+
+
+
 
 module.exports = Propiedades;

@@ -8,6 +8,7 @@ const morgan = require('morgan')
 const bodyParser = require('body-parser');
 const app = express();
 const propiedadesRoutes = require("./routes/propiedades")
+
 //Find the meaning of...
 app.use(express.static(__dirname + '/public'))
 app.use(bodyParser.urlencoded({
