@@ -74,7 +74,7 @@ export default ({ propiedades }) => {
           ))
         ) : (
           <div>
-            <h1>no hay nada</h1>
+            <h1>no hay resultados con tu busqueda</h1>
           </div>
         )}
       </GridList>
