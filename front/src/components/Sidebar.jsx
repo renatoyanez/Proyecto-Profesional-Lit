@@ -14,7 +14,7 @@ const styles = {
     transition: "all 0.3s"
   }
 };
-export default ({ /*propiedadFiltrada*/onSearch }) => {
+export default ({ /*propiedadFiltrada*/updateSearch, clearInput }) => {
   return (
     <div>
       <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
@@ -40,11 +40,13 @@ export default ({ /*propiedadFiltrada*/onSearch }) => {
                   <br />
                   <br />
                   <br />
-                  <form onSubmit={onSearch}>
+                  <form /*onSubmit={onSearch}*/>
                   <input
                     className="form-control ds-input"
+                    onChange={updateSearch}
+                    value={clearInput}
                     type="text"
-                    placeholder="Search"
+                    placeholder="Filtra tu busqueda"
                   />
                   </form>
                 </li>

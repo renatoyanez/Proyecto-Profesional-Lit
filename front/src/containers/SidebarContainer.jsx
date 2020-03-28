@@ -7,36 +7,37 @@ import { fetchFilteredProperties } from '../redux/actions/getProperties';
 class SidebarContainer extends Component {
     constructor(props) {
         super(props)
-        this.onSearch = this.onSearch.bind(this)
+        this.onSearch = this.onSearch.bind(this);
+        this.updateSearch = this.updateSearch.bind(this);
+        this.state = {
+            clearInput: ''
+        }
     }
-    // componentDidMount() {
-    //     this.props.fetchFilteredProperties()
-    // }
+
+    updateSearch(event){
+        this.setState({ clearInput: event.target.value.substr(0, 30) })
+    }
 
     onSearch(event){
-        event.preventDefault();
-        this.props.fetchFilteredProperties()
-        .then(() => {
-            this.props.history.push('/search')
-          })
+       // 
     }
 
     render() {
         return (
-            <Sidebar onSearch={this.onSearch} /*propiedadFiltrada={this.props.propiedadFiltrada}*//>
+            <Sidebar clearInput={this.state.clearInput} updateSearch={this.updateSearch}/>
         )
     }
 }
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        propiedadFiltrada: state.propiedadFiltrada
+        propiedadFiltrada: state.propiedadFiltrada,
     }
 }
 
-const mapDispatchToProps = function (dispatch, ownprops) {
+const matchDispatchToProps = function (dispatch, ownprops) {
     return {
-        fetchFilteredProperties: (propiedadFiltrada) => dispatch(fetchFilteredProperties(propiedadFiltrada))
+        fetchFilteredProperties: (propiedadFiltrada) => dispatch(fetchFilteredProperties(propiedadFiltrada)),
         }
 }
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SidebarContainer))
+export default withRouter(connect(mapStateToProps, matchDispatchToProps)(SidebarContainer))

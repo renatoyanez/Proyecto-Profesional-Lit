@@ -23,10 +23,10 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const matchDispatchToProps = (dispatch) => {
     return {
         fetchProducts: () => {dispatch(fetchProducts())}
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PropertiesContainer)
+export default connect(mapStateToProps, matchDispatchToProps)(PropertiesContainer)

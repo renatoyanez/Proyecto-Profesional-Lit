@@ -24,10 +24,10 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const matchDispatchToProps = (dispatch) => {
     return {
         singlePropertyCreator: (id) => {dispatch(singlePropertyCreator(id))}
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SinglePropertyContainer)
+export default connect(mapStateToProps, matchDispatchToProps)(SinglePropertyContainer)
