@@ -19,7 +19,7 @@ class SidebarContainer extends Component {
     }
 
     onSearch(event){
-       // 
+       // the route this action will face is /search. which is the page with the results shown when the user searches for something
     }
 
     render() {
