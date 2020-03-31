@@ -5,7 +5,7 @@ const Categoria = require('./Categorias');
 
 Favoritos.belongsTo(Users);
 Favoritos.belongsTo(Propiedades);
-Propiedades.belongsToMany(Categoria, { through: 'producto_categoria' });
-Categoria.belongsToMany(Propiedades, { through: "producto_categoria" });
+Propiedades.belongsToMany(Categoria, { through: 'propiedades_categoria' });
+Categoria.belongsToMany(Propiedades, { through: 'propiedades_categoria' });
 
 module.exports = { Users, Propiedades, Favoritos, Categoria };

@@ -10,7 +10,8 @@ export default () => {
             <Route component={SidebarContainer} />
             <Switch>
                 <Route exact path="/" component={PropertiesContainer} />
-                <Route exact path="/propiedades/:id" component={SinglePropertyContainer} />
+                <Route exact path="/propiedad/:id" component={SinglePropertyContainer} />
+                {/* <Route exact path="/search"> HERE GOES THE CONTAINER THAT WILL RENDER THE COMPONENT WITH THE SEARCHED PROPERTY(IES) */}
             </Switch>
         </div>
     )

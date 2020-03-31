@@ -47,7 +47,7 @@ export default ({ propiedades }) => {
               className={classes.gridList}
               key={propiedad.id}
             >
-              <Link to={`/propiedades/${propiedad.id}`}>
+              <Link to={`/propiedad/${propiedad.id}`}>
                 <CardActionArea>
                   <CardMedia
                   className={classes.media}
@@ -64,7 +64,7 @@ export default ({ propiedades }) => {
                 </CardActionArea>
               </Link>
               <CardActions>
-                <Link to={`/propiedades/${propiedad.id}`}>
+                <Link to={`/propiedad/${propiedad.id}`}>
                   <Button size="small" color="primary">
                     Ver detalle
                   </Button>

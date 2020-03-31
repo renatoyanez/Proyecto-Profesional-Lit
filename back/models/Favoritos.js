@@ -7,10 +7,6 @@ Favoritos.init({
         type: S.INTEGER,
         defaultValue: 0
     },
-    estado: {
-        type: S.STRING,
-        defaultValue: "pending"
-    },
     cambiarBoton: {
         type: S.BOOLEAN,
         defaultValue: false
