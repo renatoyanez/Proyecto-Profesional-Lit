@@ -1,6 +1,6 @@
-//Here bellow starts the requirements of your app as well as the server starting
+/******* Here bellow starts the requirements of your app as well as the server starting  *****/
 
-/**REMEMBER TO UNCOMMENT EVERYTHING YOU NEED */
+/*****  REMEMBER TO UNCOMMENT EVERYTHING YOU NEED ****/
 
 const db = require("./db/db");
 const express = require("express");
@@ -17,27 +17,28 @@ app.use(express.static(__dirname + "/public"));
 app.use(morgan("tiny"));
 //...this code
 
-app.use("/", Router);
+app.use("/api", Router);
+//app.use('api/propiedades', propiedadesRouter)
 
 
 app.get("/*", (req, res) => {
   res.sendFile(__dirname + "/public/" + "index.html");
 }); //send the html file to render it
 
-//Passport config starts here...
+/*****  Passport config starts here... ******/
 app.use(express.static("public"));
 
-//session() is used before passport.session() to ensure that the login session is restored in the correct order:
+/******* session() is used before passport.session() to ensure that the login session is restored in the correct order: *******/
 app.use(session({ secret: "cats" }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//In order to support login sessions (with the unique cookie of the session), Passport will serialize and deserialize user instances to and from the session:
+/******** In order to support login sessions (with the unique cookie of the session), Passport will serialize and deserialize user instances to and from the session:  *******/
 app.use(passport.initialize());
 app.use(passport.session());
 //and ends here
 
-//Syncronize db and run the server:
+/***** Syncronize db and run the server:   *******/
 db.sync({
   logging: false,
   force: false
