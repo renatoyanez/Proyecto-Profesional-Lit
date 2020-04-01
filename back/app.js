@@ -2,28 +2,27 @@
 
 /**REMEMBER TO UNCOMMENT EVERYTHING YOU NEED */
 
-const db = require('./db/db');
-const express = require('express');
-const morgan = require('morgan')
-const bodyParser = require('body-parser');
+const db = require("./db/db");
+const express = require("express");
+const morgan = require("morgan");
+const bodyParser = require("body-parser");
 const app = express();
-const propiedadesRouter = require("./routes/propiedades");
-const passport = require('passport');
-var session = require("express-session");
-//const Router = require('./routes/index') quitar lo de arriba y poner esto cuando resulevas el resto de las rutas
-
+//const propiedadesRouter = require("./routes/propiedades");
+const passport = require("passport");
+const session = require("express-session");
+const Router = require("./routes/index"); 
 
 //Find the meaning of...
-app.use(express.static(__dirname + '/public'))
+app.use(express.static(__dirname + "/public"));
 app.use(morgan("tiny"));
 //...this code
 
-app.use("/api/propiedades", propiedadesRouter)
-//app.use('/', Router) quitar lo de arriba y poner esto cuando resulevas el resto de las rutas
+app.use("/", Router);
 
-app.get('/*', (req, res) => {
-    res.sendFile(__dirname + '/public/' + 'index.html')
-}) //send the html file to render it 
+
+app.get("/*", (req, res) => {
+  res.sendFile(__dirname + "/public/" + "index.html");
+}); //send the html file to render it
 
 //Passport config starts here...
 app.use(express.static("public"));
@@ -40,12 +39,12 @@ app.use(passport.session());
 
 //Syncronize db and run the server:
 db.sync({
-    logging: false,
-    force: false
+  logging: false,
+  force: false
 })
-    .then(() => {
-        app.listen(3000, () => {
-            console.log('Server is listening on port 3000!');
-        });
-    })
-    .catch(console.error)
+  .then(() => {
+    app.listen(3000, () => {
+      console.log("Server is listening on port 3000!");
+    });
+  })
+  .catch(console.error);

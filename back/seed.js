@@ -8,7 +8,7 @@ Propiedades.create({
   imagen: [
     "https://a0.muscache.com/im/pictures/c3e66353-7785-4de2-891a-51075a96955e.jpg?aki_policy=xx_large"
   ],
-  disponibilidad: true
+  disponible: true
 });
 
 Propiedades.create({
@@ -19,7 +19,7 @@ Propiedades.create({
   imagen: [
     "https://a0.muscache.com/im/pictures/be294b72-82e9-450d-b866-bbfc354e81e1.jpg?aki_policy=xx_large"
   ],
-  disponibilidad: false
+  disponible: false
 });
 
 Propiedades.create({
@@ -31,7 +31,7 @@ Propiedades.create({
   imagen: [
     "https://a0.muscache.com/im/pictures/52ae14ea-9a73-4912-aa17-f5ca5429e5d4.jpg?aki_policy=xx_large"
   ],
-  disponibilidad: true
+  disponible: true
 });
 
 Propiedades.create({
@@ -43,7 +43,7 @@ Propiedades.create({
   imagen: [
     "https://a0.muscache.com/im/pictures/c7ee1431-4415-458c-9e06-d1c191f4fe66.jpg?aki_policy=xx_large"
   ],
-  disponibilidad: true
+  disponible: true
 });
 Propiedades.create({
   nombre: "Valley Suites® - Enjoy The View",
@@ -57,7 +57,7 @@ Propiedades.create({
     "https://a0.muscache.com/im/pictures/25af092c-a507-4143-877a-3172ae130a0c.jpg?aki_policy=xx_large",
     "https://a0.muscache.com/im/pictures/8acc9aab-091d-4fff-ba67-c486aa0d31cd.jpg?aki_policy=xx_large"
   ],
-  disponibilidad: true
+  disponible: true
 });
 Propiedades.create({
   nombre: "Cabaña grande, vista al lago Huala Hue Bariloche",
@@ -71,7 +71,7 @@ Propiedades.create({
     "https://a0.muscache.com/im/pictures/960f7056-80f9-47b7-8ea9-3fccb0a9e14d.jpg?aki_policy=xx_large",
     "https://a0.muscache.com/im/pictures/795a42c4-2989-4f71-a817-81d2c6764fd9.jpg?aki_policy=xx_large"
   ],
-  disponibilidad: true
+  disponible: true
 });
 Propiedades.create({
   nombre: "Haikén Ushuaia",
@@ -85,7 +85,7 @@ Propiedades.create({
     "https://a0.muscache.com/im/pictures/00e8cb6a-e8f2-41ed-8e54-1b8e5fe350df.jpg?aki_policy=xx_large",
     "https://a0.muscache.com/im/pictures/32fe27fe-471e-4010-a7fb-0e51d821e319.jpg?aki_policy=xx_large"
   ],
-  disponibilidad: true
+  disponible: true
 });
 Propiedades.create({
   nombre: "El Apapacho - Cálida y cómoda casa en Cariló.",
@@ -99,7 +99,7 @@ Propiedades.create({
     "https://a0.muscache.com/im/pictures/cd3515e8-738f-4ce4-898b-ac68035e7319.jpg?aki_policy=xx_large",
     "https://a0.muscache.com/im/pictures/52b8f36a-d102-4e46-be5e-1704c242c535.jpg?aki_policy=xx_large"
   ],
-  disponibilidad: true
+  disponible: true
 });
 Propiedades.create({
   nombre: "Departamento Alvear - Pleno centro de la ciudad",
@@ -113,7 +113,7 @@ Propiedades.create({
     "https://a0.muscache.com/im/pictures/03c617c1-f712-4cd9-9464-d468033cde5e.jpg?aki_policy=xx_large",
     "https://a0.muscache.com/im/pictures/bb3d12b3-c0ef-49fb-9fa7-65285a089cef.jpg?aki_policy=xx_large"
   ],
-  disponibilidad: true
+  disponible: true
 });
 Propiedades.create({
   nombre: "Benjamin- 200m Pza España",
@@ -128,5 +128,5 @@ Propiedades.create({
     "https://a0.muscache.com/im/pictures/2bc8a07a-5f34-46bc-814d-5ae18166756e.jpg?aki_policy=xx_large",
     "https://a0.muscache.com/im/pictures/f8b7de5f-6b4c-4a56-a1b6-5c0fb7ffbca5.jpg?aki_policy=xx_large"
   ],
-  disponibilidad: true
+  disponible: true
 });
