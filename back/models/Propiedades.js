@@ -6,15 +6,15 @@ class Propiedades extends S.Model { }
 Propiedades.init({
     nombre: {
         type: S.STRING,
-        allowNull: false
+        allowNull: false,
     },
     descripcion: {
         type: S.TEXT,
         allowNull: false,
-        // get(){
-        //     const texto = this.getDataValue(descripcion)
-        //    if (texto.length >= 20) {return `${texto.slice(0, 20)}...`}
-        // }
+        get(){
+            const texto = this.getDataValue("descripcion")
+           if (texto.length >= 20) {return `${texto.slice(0, 20)}...`}
+        }
     },
     precio: {
         type: S.INTEGER,
@@ -30,18 +30,14 @@ Propiedades.init({
     },
     disponible: {
         type: S.BOOLEAN,
-        allowNull: false,
         defaultValue: true,
-        // set(value) {
-        //     if (this.disponible == false ) {this.setDataValue('nombre', `${value} NO DISPONIBLE`)} 
-        // }
+        set(value) {
+            console.log(value, 'valueeee')
+            if (!value) { this.setDataValue('nombre', `${this.nombre} NO DISPONIBLE`) } 
+            return value
+        }
     }
 }, { 
-    // hooks: {
-    //     beforeCreate: (instance, options) => {
-    //         instance.disponible == false ? instance.nombre = `${instance.nombre} NO DISPONIBLE` : null
-    //     }
-    // },
     sequelize: db, 
     modelName: 'propiedades' 
 })
