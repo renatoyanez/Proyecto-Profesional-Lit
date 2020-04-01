@@ -8,9 +8,9 @@ const user = require('./user')
 const favoritos = require('./favoritos')
 const categorias = require('./categorias')
 
-router.use('api/propiedades', propiedades)
-router.use('api/user', user)
-router.use('api/favoritos', favoritos)
-router.use('api/categorias', categorias)
+router.use('/propiedades', propiedades)
+router.use('/user', user)
+router.use('/favoritos', favoritos)
+router.use('/categorias', categorias)
 
 module.exports = router;

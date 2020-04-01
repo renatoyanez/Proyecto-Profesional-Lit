@@ -13,16 +13,17 @@ const { Op } = require("sequelize");
 //     }
 // } descomentar de ser necesario
 
-router.post("/user/register", (req, res) => {
+router.post("/register", (req, res) => {
+    console.log('useeer')
     User.create(req.body)
         .then(res.send("Created"))
 })
 
-router.post('/user/login', passport.authenticate('local'), (req, res) => {
+router.post('/login', passport.authenticate('local'), (req, res) => {
     res.send(req.user)
 })
 
-router.get("/user/logout", (req, res) => {
+router.get("/logout", (req, res) => {
     req.logout()
     res.send('loguedout')
 })

@@ -3,7 +3,7 @@ const router = express.Router();
 const { Favoritos, Propiedades } = require("../models/index");
 const { Op } = require("sequelize");
 
-router.get("/userfav/:user", (req, res) => {
+router.get("/all/:user", (req, res) => {
   Favoritos.findAll({
     include: [
       {
@@ -16,14 +16,20 @@ router.get("/userfav/:user", (req, res) => {
         model: Propiedades
       }
     ],
-    where: { disponible: true },
-  })
-  .then(data => {
+    where: { disponible: true }
+  }).then(data => {
     res.json(data);
   });
 });
 
-router.delete("/removefav/:propiedad", (req, res, next) => {
+router.post("/add", (req, res) => {
+  Favoritos.create(req.body)
+    //.then(favorito => favorito.setPropiedad(req.body.id))
+    .then(favorito => res.send(favorito));
+});
+
+
+router.delete("/remove/:propiedad", (req, res, next) => {
   Favoritos.destroy({
     where: {
       propiedadId: req.params.propiedad
@@ -32,6 +38,6 @@ router.delete("/removefav/:propiedad", (req, res, next) => {
     .then(data => res.json(data))
     .catch(next);
 });
-//Chequear si funciona con 'propiedad' solamente
+//Chequear si funciona con 'propiedad' solamente!!!
 
 module.exports = router;

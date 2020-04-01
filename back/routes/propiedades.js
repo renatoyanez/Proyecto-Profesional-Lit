@@ -31,6 +31,7 @@ router.get("/search/:propiedades", (req, res, next) => {
 
 //This one goes looking for all properties in the db
 router.get("/all", (req, res, next) => {
+
   Propiedades.findAll()
     .then(data => {
       res.status(200).json(data);
