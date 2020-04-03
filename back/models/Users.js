@@ -11,12 +11,12 @@ User.init({
     },
     email: {
         type: S.STRING,
-        allowNull: false,
+        validate: { notEmpty: true },
         unique: true
     },
     password: {
         type: S.STRING,
-        allowNull: false
+        validate: { notEmpty: true }
     },
     salt: {
         type: S.STRING

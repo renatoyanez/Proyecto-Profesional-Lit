@@ -14,7 +14,6 @@ const { Op } = require("sequelize");
 // } descomentar de ser necesario
 
 router.post("/register", (req, res) => {
-    console.log('useeer')
     User.create(req.body)
         .then(res.send("Created"))
 })

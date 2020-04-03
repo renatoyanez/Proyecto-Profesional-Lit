@@ -7,7 +7,6 @@ const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const app = express();
-//const propiedadesRouter = require("./routes/propiedades");
 const passport = require("passport");
 const session = require("express-session");
 const Router = require("./routes/index"); 
@@ -17,16 +16,6 @@ app.use(express.static(__dirname + "/public"));
 app.use(morgan("tiny"));
 //...this code
 
-app.use("/api", Router);
-//app.use('api/propiedades', propiedadesRouter)
-
-
-app.get("/*", (req, res) => {
-  res.sendFile(__dirname + "/public/" + "index.html");
-}); //send the html file to render it
-
-/*****  Passport config starts here... ******/
-app.use(express.static("public"));
 
 /******* session() is used before passport.session() to ensure that the login session is restored in the correct order: *******/
 app.use(session({ secret: "cats" }));
@@ -37,6 +26,12 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 //and ends here
+
+app.use("/api", Router);
+
+app.get("/*", (req, res) => {
+  res.sendFile(__dirname + "/public/" + "index.html");
+}); //send the html file to render it
 
 /***** Syncronize db and run the server:   *******/
 db.sync({
