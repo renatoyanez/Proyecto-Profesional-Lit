@@ -1,4 +1,4 @@
-const { Propiedades } = require("./models/index");
+const { Propiedades, Categoria } = require("./models/index");
 
 Propiedades.create({
   nombre: "Sanchez de Bustamante 2239",
@@ -130,3 +130,11 @@ Propiedades.create({
   ],
   disponible: true
 });
+
+Categoria.bulkCreate([
+  { name: "Departamento" },
+  { name: "Casa" },
+  { name: "Ph" },
+  { name: "Compra" },
+  { name: "Alquilar" }
+])

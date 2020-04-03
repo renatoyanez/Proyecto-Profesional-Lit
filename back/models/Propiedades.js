@@ -6,15 +6,11 @@ class Propiedades extends S.Model { }
 Propiedades.init({
     nombre: {
         type: S.STRING,
-        allowNull: false,
+        validate: { notEmpty: true }
     },
     descripcion: {
         type: S.TEXT,
-        allowNull: false,
-        get(){
-            const texto = this.getDataValue("descripcion")
-           if (texto.length >= 20) {return `${texto.slice(0, 20)}...`}
-        }
+        allowNull: false
     },
     precio: {
         type: S.INTEGER,
@@ -32,9 +28,15 @@ Propiedades.init({
         type: S.BOOLEAN,
         defaultValue: true,
         set(value) {
-            console.log(value, 'valueeee')
             if (!value) { this.setDataValue('nombre', `${this.nombre} NO DISPONIBLE`) } 
-            return value
+            this.setDataValue("disponible", value)
+        }
+    },
+    truncarDescripcion: {
+        type: S.VIRTUAL,
+        get(){
+            const texto = this.getDataValue("descripcion")
+           if (texto.length >= 20) {return `${texto.slice(0, 20)}...`}
         }
     }
 }, { 
