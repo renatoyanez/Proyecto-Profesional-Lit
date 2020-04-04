@@ -14,7 +14,7 @@ const styles = {
     transition: "all 0.3s"
   }
 };
-export default ({ /*propiedadFiltrada*/updateSearch, clearInput }) => {
+export default ({ /*propiedadFiltrada*/updateSearch, clearInput, onSearch }) => {
   return (
     <div>
       <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
@@ -32,7 +32,7 @@ export default ({ /*propiedadFiltrada*/updateSearch, clearInput }) => {
 
       <div className="container-fluid">
         <div className="row">
-          <nav className="sidebar bg-light  " style={styles.sidebar}>
+          <nav className="sidebar bg-dark" style={styles.sidebar}>
             <div className="sidebar-sticky">
               <ul className="nav flex-column mb-2">
                 <li className="nav-item">
@@ -40,7 +40,7 @@ export default ({ /*propiedadFiltrada*/updateSearch, clearInput }) => {
                   <br />
                   <br />
                   <br />
-                  <form /*onSubmit={onSearch}*/>
+                  <form onSubmit={onSearch}>
                   <input
                     className="form-control ds-input"
                     onChange={updateSearch}
