@@ -2,6 +2,17 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const { User } = require("../models/index");
 
+// update
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  Usuario.findByPk(id)
+      .then(user => done(null, user))
+});
+
+
 passport.use(
   new LocalStrategy(
     { usernameField: "email" }, //set the email as the parameter for the strategy
@@ -28,14 +39,5 @@ passport.use(
   )
 );
 
-// update
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-});
-
-passport.deserializeUser((id, done) => {
-  Usuario.findByPk(id)
-      .then(user => done(null, user))
-});
 
 module.exports = passport;

@@ -1,27 +1,36 @@
-const S = require('sequelize');
-const db = require('../db/db');
+const S = require("sequelize");
+const db = require("../db/db");
 const crypto = require('crypto');
 
-class User extends S.Model { }
+class User extends S.Model {}
 
-User.init({
+User.init(
+  {
     username: {
-        type: S.STRING,
-        allowNull: false
+      type: S.STRING,
+      allowNull: false
     },
+
     email: {
-        type: S.STRING,
-        validate: { notEmpty: true },
-        unique: true
+      type: S.STRING,
+      allowNull: false,
+      isEmail: true,
+      unique: {
+        args: true,
+        msg: "Email address already in use!"
+      }
     },
     password: {
-        type: S.STRING,
-        validate: { notEmpty: true }
+      type: S.STRING,
+      allowNull: false
     },
     salt: {
         type: S.STRING
-    } //creates salt from the received password string. This will later be used to validate the user.
-}, { sequelize: db, modelName: 'user' })
+    } 
+    //creates salt from the received password string. This will later be used to validate the user.
+  },
+  { sequelize: db, modelName: "user" }
+);
 
 User.addHook("beforeCreate", (User) => {
     User.salt = crypto.randomBytes(20).toString('hex');
@@ -39,4 +48,5 @@ User.prototype.validPassword = (password) => {
 }
 
 
-module.exports = User
+
+module.exports = User;
