@@ -1,7 +1,6 @@
 import {
   FETCH_PROPERTIES,
-  FETCH_SINGLE_PROPERTY,
-//   SEARCH_FILTERED_PROPERTIES
+  FETCH_SINGLE_PROPERTY
 } from "../utils/constants";
 import axios from "axios";
 import store from "../store/store";
@@ -42,6 +41,4 @@ export const fetchFilteredProperties = filter => dispatch => {
 
     dispatch(searchproperties(properties.data));
   });
-  // .then((res) => res.data)
-  // .then(prop => { dispatch(searchproperties(prop)) })
 };

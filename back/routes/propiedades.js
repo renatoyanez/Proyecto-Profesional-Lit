@@ -40,9 +40,6 @@ router.post("/edit", (req, res, next) => {
 router.get("/search/:propiedades", (req, res, next) => {
   //this bellow sets the filters so the searching brings filtered data properly
   const search = req.params.propiedades.toLowerCase();
-  // const first = propiedades.substr(1, propiedades.length);
-  // const firstLetter = propiedades.toUpperCase().substr(0, 1);
-  // const search = firstLetter + first;
 
   Propiedades.findAll()
     .then(data => {
