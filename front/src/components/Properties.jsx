@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   },
   gridList: {
     width: "100vw",
-    height: "55vh"
+    height: "100"
   },
   media: {
     height: 0,

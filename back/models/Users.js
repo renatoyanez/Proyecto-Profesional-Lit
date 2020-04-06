@@ -32,17 +32,23 @@ User.init(
   { sequelize: db, modelName: "user" }
 );
 
-User.addHook("beforeCreate", (User) => {
-    User.salt = crypto.randomBytes(20).toString('hex');
-    User.password = User.hashPassword(User.password);
+User.addHook("beforeCreate", function(user) {
+  console.log("PASSWORD:   ", user.password);
+  user.salt = crypto.randomBytes(20).toString('hex');
+  user.password = user.hashPassword(user.password);
+  console.log("SALT:   ", user.salt);
+    
 }) //Crypto generates hash and salt from the received password string. This will later be used to validate the user.
 
-User.prototype.hashPassword = (password) => {
+User.prototype.hashPassword = function(password) {
+
     return crypto.createHmac('sha1', this.salt).update(password).digest('hex');
+    
     //use cryptos hash generator for the password
 }
 
-User.prototype.validPassword = (password) => {
+User.prototype.validPassword = function(password) {
+  
     return this.password === this.hashPassword(password);
     //using passport to finally validate the password
 }

@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
 const styles = {
   sidebar: {
@@ -18,16 +17,25 @@ export default ({ /*propiedadFiltrada*/updateSearch, clearInput, onSearch }) => 
   return (
     <div>
       <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-        <a className="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
+      <div className="navbar-brand col-sm-3 col-md-2 mr-0">
+      <a className="navbar-brand col-sm-3 col-md-2 mr-0" href="http://localhost:3000/">
           LIT
         </a>
+        </div>
+      <div>
         <ul className="navbar-nav px-3">
+        <li className="nav-item text-nowrap">
+          <Link to="/login" className="nav-link">
+              Ingresa
+            </Link>
+          </li>
           <li className="nav-item text-nowrap">
-            <a className="nav-link" href="#">
-              Sign out
-            </a>
+          <Link to="/register" className="nav-link"  >
+              Registrarse
+            </Link>
           </li>
         </ul>
+        </div>
       </nav>
 
       <div className="container-fluid">

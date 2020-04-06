@@ -51,6 +51,7 @@ export default function SignUp({ handlerChange, handlerSubmit }) {
   const classes = useStyles();
 
   return (
+    <div style={{height: "600px"}}>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -125,5 +126,6 @@ export default function SignUp({ handlerChange, handlerSubmit }) {
         <Copyright />
       </Box>
     </Container>
+    </div>
   );
 }
