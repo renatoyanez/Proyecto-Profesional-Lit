@@ -8,17 +8,31 @@ import axios from "axios";
 //   };
 // };
 
-export const userLogin = user => {
-  return {
-    type: USER_LOGIN,
-    payload: user
-  };
-};
+export const userLogin = user => ({
+  type: USER_LOGIN,
+  user
+});
 
-export const loginCreator = user => {
-  return axios.post("/api/user/login", user).then(user => {
-    dispatch(userLogin(user.data));
-  });
+// export const loginCreator = user => {
+//   axios.post("/api/user/register", user).then(user => {
+//     store.dispatch(userLogin(user.data));
+//     // user.data.admin == true && history.push("/admin")
+//     return user.data;
+//   });
+// };
+export const createUser = (username, email, password) => {
+  return function(dispatch) {
+    axios
+      .post("/api/user/register", {
+        username: username,
+        email: email,
+        password: password
+      })
+      .then(res => {
+        dispatch(userLogin(res));
+      });
+
+  };
 };
 
 // export const registerCreator = user => dispatch =>

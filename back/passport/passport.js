@@ -1,6 +1,6 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const { User } = require("../models/index");
+const User = require("../models/Users");
 
 // update
 passport.serializeUser((user, done) => {
@@ -8,7 +8,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-  Usuario.findByPk(id)
+  User.findByPk(id)
       .then(user => done(null, user))
 });
 

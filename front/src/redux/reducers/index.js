@@ -5,5 +5,5 @@ import userReducers from './userReducer'
 
 export default combineReducers({
     propiedades: propertiesReducer,
-    users: userReducers
+    user: userReducers
 }) 

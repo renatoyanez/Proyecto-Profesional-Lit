@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import Register from "../components/Register";
 import { withRouter } from "react-router-dom";
-import { userLogin } from "../redux/actions/getUser";
-import axios from "axios";
+import { createUser } from "../redux/actions/getUser";
 import { connect } from "react-redux";
 
 class RegisterContainer extends Component {
@@ -17,25 +16,20 @@ class RegisterContainer extends Component {
     this.handlerSubmit = this.handlerSubmit.bind(this);
   }
 
-  handlerChange(event) {
-    this.setState({ username: event.target.value.substr(0, 20) });
-  };
+  handlerChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
 
-  handlerSubmit(event) {
-    event.preventDefault();
-    return axios
-      .post("/api/users/register", {
-        username: this.state.username,
-        email: this.state.email,
-        password: this.state.password
-      })
-      .then(user =>
-        this.props.userLogin({
-          email: user.data.email,
-          password: this.state.password
-        })
-      );
-  };
+  handlerSubmit(e) {
+    e.preventDefault();
+    this.props.createUser(
+      this.state.username,
+      this.state.email,
+      this.state.password
+    );
+  }
 
   render() {
     return (
@@ -47,15 +41,14 @@ class RegisterContainer extends Component {
   }
 }
 
-const matchDispatchToProps = () => {
+const matchDispatchToProps = dispatch => {
   return {
-    userLogin: userLogin
+    createUser: (username, email, password) =>
+      dispatch(createUser(username, email, password))
   };
 };
 
-export default withRouter(
-  connect(
-    null,
-    matchDispatchToProps
-  )(RegisterContainer)
-);
+export default withRouter(connect(
+  null,
+  matchDispatchToProps
+)(RegisterContainer));

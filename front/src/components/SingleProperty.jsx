@@ -11,7 +11,6 @@ const style = {
   },
   single: {
     marginTop: "3%",
-    marginLeft: "15%"
   }
 };
 
