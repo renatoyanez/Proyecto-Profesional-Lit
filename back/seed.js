@@ -1,15 +1,11 @@
 const { Propiedades, Categoria } = require("./models/index");
 
-
-const categoria1 = Categoria.create({ name: "Departamento" })
-const categoria2 = Categoria.create({ name: "Casa" })
-const categoria3 = Categoria.create({ name: "Ph" })
-const categoria4 = Categoria.create({ name: "Compra" })
-const categoria5 = Categoria.create({ name: "Alquilar" })
-
-// Promise.all([...Categoria, ])
-
-
+Promise.all([
+Categoria.create({ name: "Departamento" }),
+Categoria.create({ name: "Casa" }),
+Categoria.create({ name: "Ph" }),
+Categoria.create({ name: "Compra" }),
+Categoria.create({ name: "Alquilar" }),
 Propiedades.create({
   nombre: "Sanchez de Bustamante 2239",
   descripcion: "Lindo departamento dos ambientes",
@@ -19,7 +15,7 @@ Propiedades.create({
     "https://a0.muscache.com/im/pictures/c3e66353-7785-4de2-891a-51075a96955e.jpg?aki_policy=xx_large"
   ],
   disponible: true
-});
+}),
 
 Propiedades.create({
   nombre: "Billinghurts 2328",
@@ -30,7 +26,7 @@ Propiedades.create({
     "https://a0.muscache.com/im/pictures/be294b72-82e9-450d-b866-bbfc354e81e1.jpg?aki_policy=xx_large"
   ],
   disponible: false
-});
+}),
 
 Propiedades.create({
   nombre: "Av 9 de Julio 1000",
@@ -42,8 +38,7 @@ Propiedades.create({
     "https://a0.muscache.com/im/pictures/52ae14ea-9a73-4912-aa17-f5ca5429e5d4.jpg?aki_policy=xx_large"
   ],
   disponible: true
-});
-
+}),
 Propiedades.create({
   nombre: "Fitz Roy 2050",
   descripcion:
@@ -54,7 +49,7 @@ Propiedades.create({
     "https://a0.muscache.com/im/pictures/c7ee1431-4415-458c-9e06-d1c191f4fe66.jpg?aki_policy=xx_large"
   ],
   disponible: true
-});
+}),
 Propiedades.create({
   nombre: "Valley Suites® - Enjoy The View",
   descripcion:
@@ -68,8 +63,8 @@ Propiedades.create({
     "https://a0.muscache.com/im/pictures/8acc9aab-091d-4fff-ba67-c486aa0d31cd.jpg?aki_policy=xx_large"
   ],
   disponible: true
-});
-Propiedades.create({
+}),
+Propiedades.create({ 
   nombre: "Cabaña grande, vista al lago Huala Hue Bariloche",
   descripcion:
     "Es, con todos los medios de transporte (Subte., trenes y buses). Equipado con Internet alta velocidad , Smart TV. 50 pulgadas , aire acondicionado frío / calor, heladera, microondas, horno y hornallas eléctricas, tostadora, cafetera, ropa de cama y toallas. Además te esperamos con un mate, café y té para que puedas disfrutar de una estadía placentera.",
@@ -82,8 +77,8 @@ Propiedades.create({
     "https://a0.muscache.com/im/pictures/795a42c4-2989-4f71-a817-81d2c6764fd9.jpg?aki_policy=xx_large"
   ],
   disponible: true
-});
-Propiedades.create({
+}),
+Propiedades.create({ 
   nombre: "Haikén Ushuaia",
   descripcion:
     "Mono ambiente a estrenar muy luminoso con una excelente vista a la Montaña y especial para el turismo. Contactanos.",
@@ -96,7 +91,7 @@ Propiedades.create({
     "https://a0.muscache.com/im/pictures/32fe27fe-471e-4010-a7fb-0e51d821e319.jpg?aki_policy=xx_large"
   ],
   disponible: true
-});
+}),
 Propiedades.create({
   nombre: "El Apapacho - Cálida y cómoda casa en Cariló.",
   descripcion:
@@ -110,8 +105,8 @@ Propiedades.create({
     "https://a0.muscache.com/im/pictures/52b8f36a-d102-4e46-be5e-1704c242c535.jpg?aki_policy=xx_large"
   ],
   disponible: true
-});
-Propiedades.create({
+}),
+Propiedades.create({  
   nombre: "Departamento Alvear - Pleno centro de la ciudad",
   descripcion:
     "Apartamento nuevo (2019), luminoso y con detalles de diseño. Se destaca su inmejorable ubicacion. Rodeado de foros gastronómicos y culturales, con todos los medios de transporte (Subte., trenes y buses). Equipado con Internet alta velocidad , Smart TV. 50 pulgadas , aire acondicionado frío / calor, heladera, microondas, horno y hornallas eléctricas, tostadora, cafetera, ropa de cama y toallas. Además te esperamos con un mate, café y té para que puedas disfrutar de una estadía placentera.",
@@ -124,7 +119,7 @@ Propiedades.create({
     "https://a0.muscache.com/im/pictures/bb3d12b3-c0ef-49fb-9fa7-65285a089cef.jpg?aki_policy=xx_large"
   ],
   disponible: true
-});
+}),
 Propiedades.create({
   nombre: "Benjamin- 200m Pza España",
   descripcion:
@@ -139,4 +134,15 @@ Propiedades.create({
     "https://a0.muscache.com/im/pictures/f8b7de5f-6b4c-4a56-a1b6-5c0fb7ffbca5.jpg?aki_policy=xx_large"
   ],
   disponible: true
-});
+})]).then(([departamento, casa, ph, compra, alquilar, depto1, depto2, depto3, depto4, depto5, casa1, depto6, casa2, depto7, depto8]) => { 
+  depto1.addCategoria(departamento) && depto1.addCategoria(alquilar);
+  depto2.addCategoria(departamento) && depto2.addCategoria(alquilar);
+  depto3.addCategoria(departamento) && depto3.addCategoria(alquilar);
+  depto4.addCategoria(departamento) && depto4.addCategoria(alquilar);
+  depto5.addCategoria(departamento) && depto5.addCategoria(alquilar);
+  casa1.addCategoria(casa) && casa1.addCategoria(compra);
+  depto6.addCategoria(departamento) && depto6.addCategoria(alquilar);
+  casa2.addCategoria(casa) && casa2.addCategoria(alquilar);
+  depto7.addCategoria(departamento) && depto7.addCategoria(compra);
+  depto8.addCategoria(departamento) && depto8.addCategoria(alquilar);
+ })

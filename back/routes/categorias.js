@@ -4,19 +4,10 @@ const router = express.Router();
 const { Categoria, Propiedades } = require("../models/index");
 const { Op } = require("sequelize");
 
-router.post("/create", (req, res, next) => {
-  Categoria.create(req.body)
-    .then(data => {
-      res.status(201).json(data);
-    })
-    .catch(err => {
-      throw new Error(err);
-    });
-});
-
 router.get("/all", (req, res, next) => {
   Categoria.findAll().then(data => res.json(data));
 });
+
 
 router.get("/single/:id", (req, res, next) => {
   Categoria.findAll({
@@ -54,29 +45,50 @@ router.put("/edit/:id", (req, res, next) => {
   ).then(() => res.sendStatus(201));
 });
 
-
+router.post("/create", (req, res, next) => {
+  Categoria.create(req.body)
+    .then(data => {
+      res.status(201).json(data);
+    })
+    .catch(err => {
+      throw new Error(err);
+    });
+});
 
 /**** Agrega propiedades a categoria *****/
 // router.post("/add", (req, res, next) => {
-//   Propiedades.create({
-//     nombre: req.body.nombre,
-//     descripcion: req.body.descripcion,
-//     precio: req.body.precio,
-//     imagen: req.body.imagen,
-//     disponible: req.body.disponible
-//   })
+//   Propiedades.create(req.body)
 //   .then(propiedad =>
 //     Categoria.findAll()
-//     .then(categories => {
-//       const filtrada = categories.filter(c => {
-//         if (req.body.categories.includes(c.name)) return c;
+//     .then(categorias => {
+//       const filtrada = categorias.filter(c => {
+//         if (req.body.categorias.includes(c.name)) return c;
 //       });
-//       propiedad.addCategories(filtrada)
+//       propiedad.addCategoria(filtrada)
 //       .then(() => {
 //         res.status(200).send("OK");
 //       });
 //     })
 //   );
 // });
+
+
+
+// router.get('/:nombre', function (req, res) {
+//   try {
+//     Propiedades.findAll({
+//           include: [{
+//               model: Categoria,
+//               where: {
+//                   name: req.params.nombre
+//               }
+//           }]
+//       })
+//       .then((categoria) => {
+//           res.status(200).send(categoria)
+//       })
+//   } catch (err) { console.log(err) }
+// })
+
 
 module.exports = router;
