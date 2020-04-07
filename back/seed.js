@@ -1,5 +1,15 @@
 const { Propiedades, Categoria } = require("./models/index");
 
+
+const categoria1 = Categoria.create({ name: "Departamento" })
+const categoria2 = Categoria.create({ name: "Casa" })
+const categoria3 = Categoria.create({ name: "Ph" })
+const categoria4 = Categoria.create({ name: "Compra" })
+const categoria5 = Categoria.create({ name: "Alquilar" })
+
+// Promise.all([...Categoria, ])
+
+
 Propiedades.create({
   nombre: "Sanchez de Bustamante 2239",
   descripcion: "Lindo departamento dos ambientes",
@@ -130,11 +140,3 @@ Propiedades.create({
   ],
   disponible: true
 });
-
-Categoria.bulkCreate([
-  { name: "Departamento" },
-  { name: "Casa" },
-  { name: "Ph" },
-  { name: "Compra" },
-  { name: "Alquilar" }
-])

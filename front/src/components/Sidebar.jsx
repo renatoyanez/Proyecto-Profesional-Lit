@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 const styles = {
+  navbar:{
+    height: "6vh"
+  },
   sidebar: {
     width: "230px",
     position: " fixed",
@@ -8,33 +11,51 @@ const styles = {
     // left: "0",
     height: "100vh",
     zIndex: "999",
-   // background: "#90CAF9",
+    // background: "#90CAF9",
     //color: "#fff",
     transition: "all 0.3s"
+  },
+  register: {
+    display: "flex",
+    justifyContent: "center",
+    backgroundColor: "red"
   }
 };
-export default ({ /*propiedadFiltrada*/updateSearch, clearInput, onSearch }) => {
+export default ({
+  /*propiedadFiltrada*/ updateSearch,
+  clearInput,
+  onSearch
+}) => {
   return (
     <div>
-      <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-      <div className="navbar-brand col-sm-3 col-md-2 mr-0">
-      <a className="navbar-brand col-sm-3 col-md-2 mr-0" href="http://localhost:3000/">
+      <nav style={styles.navbar} className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a className="navbar-brand" href="#">
           LIT
         </a>
-        </div>
-      <div>
-        <ul className="navbar-nav px-3">
-        <li className="nav-item text-nowrap">
-          <Link to="/login" className="nav-link">
-              Ingresa
-            </Link>
-          </li>
-          <li className="nav-item text-nowrap">
-          <Link to="/register" className="nav-link"  >
-              Registrarse
-            </Link>
-          </li>
-        </ul>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarCollapse"
+          aria-controls="navbarCollapse"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarCollapse">
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item active">
+              <a className="nav-link" href="#">
+                Log-In <span className="sr-only">(current)</span>
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#">
+                Sign-Up
+              </a>
+            </li>
+          </ul>
         </div>
       </nav>
 
@@ -49,13 +70,13 @@ export default ({ /*propiedadFiltrada*/updateSearch, clearInput, onSearch }) => 
                   <br />
                   <br />
                   <form onSubmit={onSearch}>
-                  <input
-                    className="form-control ds-input"
-                    onChange={updateSearch}
-                    value={clearInput}
-                    type="text"
-                    placeholder="Filtra tu busqueda"
-                  />
+                    <input
+                      className="form-control ds-input"
+                      onChange={updateSearch}
+                      value={clearInput}
+                      type="text"
+                      placeholder="Filtra tu busqueda"
+                    />
                   </form>
                 </li>
                 <li className="nav-item">

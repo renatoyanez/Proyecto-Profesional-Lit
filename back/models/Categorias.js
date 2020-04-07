@@ -18,4 +18,5 @@ Categoria.init(
   { sequelize: db, modelName: "categoria" }
 );
 
+
 module.exports = Categoria;
