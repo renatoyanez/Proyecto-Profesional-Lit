@@ -48,25 +48,35 @@ router.delete("/delete/:id", (req, res, next) => {
 });
 
 router.put("/edit/:id", (req, res, next) => {
-  Categoria.update({ name: req.body.name }, { where: { id: req.params.id } })
-  .then(() => res.sendStatus(201));
+  Categoria.update(
+    { name: req.body.name },
+    { where: { id: req.params.id } }
+  ).then(() => res.sendStatus(201));
 });
 
-// router.put("/edit/:id", (req, res, next) => {
 
-//   Categoria.findOne({ where: { id: req.body.id } })
-//     .then(categoria =>
-//       categoria.update({
-//         nombre: req.body.nombre ? req.body.nombre : categoria.nombre
-//         // descripcion: req.body.descripcion ? req.body.descripcion : categoria.descripcion,
-//         // precio: req.body.precio ? req.body.precio : categoria.precio
-//       })
-//     )
-//     .then(() => Categoria.findAll()
-//     .then((categoria) => {
-//       res.status(200).json(categoria)
-//   }))
-//   .catch(next)
-//  })
+
+/**** Agrega propiedades a categoria *****/
+// router.post("/add", (req, res, next) => {
+//   Propiedades.create({
+//     nombre: req.body.nombre,
+//     descripcion: req.body.descripcion,
+//     precio: req.body.precio,
+//     imagen: req.body.imagen,
+//     disponible: req.body.disponible
+//   })
+//   .then(propiedad =>
+//     Categoria.findAll()
+//     .then(categories => {
+//       const filtrada = categories.filter(c => {
+//         if (req.body.categories.includes(c.name)) return c;
+//       });
+//       propiedad.addCategories(filtrada)
+//       .then(() => {
+//         res.status(200).send("OK");
+//       });
+//     })
+//   );
+// });
 
 module.exports = router;

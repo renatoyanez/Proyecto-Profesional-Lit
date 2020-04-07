@@ -4,6 +4,7 @@ const router = express.Router();
 const { Propiedades } = require("../models/index");
 const { Op } = require("sequelize");
 
+
 /**** This one creates a property ****/
 router.post("/create", (req, res, next) => {
   
