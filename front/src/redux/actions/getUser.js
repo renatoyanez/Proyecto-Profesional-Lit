@@ -29,7 +29,7 @@ export const createUser = (username, email, password) => {
         password: password
       })
       .then(res => {
-        dispatch(userLogin(res));
+        dispatch(userLogin(res.data));
       });
 
   };

@@ -28,7 +28,7 @@ class RegisterContainer extends Component {
       this.state.username,
       this.state.email,
       this.state.password
-    );
+    )
   }
 
   render() {
