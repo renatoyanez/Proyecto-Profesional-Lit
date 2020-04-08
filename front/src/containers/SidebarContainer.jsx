@@ -25,7 +25,7 @@ class SidebarContainer extends Component {
     this.props
       .fetchFilteredProperties(this.state.clearInput)
       .then(() => {
-          this.props.history.push("/");
+          this.props.history.push(`/search/${this.state.clearInput}`);
         })
         .then(() => this.setState({ clearInput: "" }))
   }
