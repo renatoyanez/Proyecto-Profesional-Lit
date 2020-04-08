@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignInSide() {
+export default (props) => {
   const classes = useStyles();
 
   return (
@@ -72,8 +72,21 @@ export default function SignInSide() {
           <Typography component="h1" variant="h5">
             Ingresar
           </Typography>
-          <form className={classes.form} noValidate>
+          <form onSubmit={props.handlerSubmit} className={classes.form} noValidate>
+          <TextField
+              onChange={props.handlerChange}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="username"
+              autoFocus
+            />
             <TextField
+              onChange={props.handlerChange}
               variant="outlined"
               margin="normal"
               required
@@ -85,6 +98,7 @@ export default function SignInSide() {
               autoFocus
             />
             <TextField
+              onChange={props.handlerChange}
               variant="outlined"
               margin="normal"
               required

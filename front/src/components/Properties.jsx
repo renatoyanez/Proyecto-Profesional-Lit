@@ -64,7 +64,7 @@ export default ({ propiedades }) => {
                 </CardActionArea>
               </Link>
               <CardActions>
-                <Link to={`/propiedad/${propiedad.nombre}`}>
+                <Link to={`/propiedad/${propiedad.id}`}>
                   <Button size="small" color="primary">
                     Ver detalle
                   </Button>

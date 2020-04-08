@@ -43,8 +43,7 @@ class RegisterContainer extends Component {
 
 const matchDispatchToProps = dispatch => {
   return {
-    createUser: (username, email, password) =>
-      dispatch(createUser(username, email, password))
+    createUser: (username, email, password) => dispatch(createUser(username, email, password))
   };
 };
 

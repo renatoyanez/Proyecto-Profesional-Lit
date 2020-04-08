@@ -1,4 +1,4 @@
-const { Propiedades, Categoria } = require("./models/index");
+const { Propiedades, Categoria, Users } = require("./models/index");
 
 Promise.all([
 Categoria.create({ name: "Departamento" }),
@@ -146,3 +146,15 @@ Propiedades.create({
   depto7.addCategoria(departamento) && depto7.addCategoria(compra);
   depto8.addCategoria(departamento) && depto8.addCategoria(alquilar);
  })
+
+Users.create({
+  username: "Renato",
+  email: "renatoyanez95@gmail.com",
+  password: "123"
+}).then((user) => {
+  console.log("USER DATA TRIAL", {
+  username: user.username,
+  email: user.email,
+  password: user.password
+  });
+})
