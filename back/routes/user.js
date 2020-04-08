@@ -37,6 +37,8 @@ router.get('/all', (req, res, next) => {
         res.status(201).json(data)
     }).catch(next)
 })
+
+
 // router.get("/auth", userLogged) chequea que el usuario que intenta loguearse esta autenticado para autorizar el logueo, descomentalo cuando descomentes la funcion userLogged
 
 module.exports = router;

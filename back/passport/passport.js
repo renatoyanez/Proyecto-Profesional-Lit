@@ -17,6 +17,8 @@ passport.use(
   new LocalStrategy(
     { usernameField: "email" }, //set the email as the parameter for the strategy
     (inputEmail, password, done) => {
+      console.log("EMAIL: ", inputEmail, "PASS: ", password);
+      
       User.findOne({
         where: {
           email: inputEmail

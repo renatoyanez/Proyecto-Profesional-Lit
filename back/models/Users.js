@@ -8,7 +8,11 @@ User.init(
   {
     username: {
       type: S.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: {
+        args: true,
+        msg: "Username already in use!"
+      }
     },
 
     email: {
