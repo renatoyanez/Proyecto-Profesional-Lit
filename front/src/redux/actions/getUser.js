@@ -1,9 +1,17 @@
-import { USER_LOGIN } from "../utils/constants";
+import { USER_LOGIN, LOAD_COOKIE, USER_LOGOUT } from "../utils/constants";
 import axios from "axios";
 
 export const userLogin = user => ({
   type: USER_LOGIN,
   user
+});
+
+export const loadCookie = () => ({
+  type: LOAD_COOKIE
+});
+
+export const userLogout = () => ({
+  type: USER_LOGOUT
 });
 
 export const createUser = (username, email, password) => {
@@ -20,23 +28,36 @@ export const createUser = (username, email, password) => {
   };
 };
 
-export const userLoginCreator = (theUser) => {
+export const userLoginCreator = theUser => {
   console.log("The user: ", theUser);
-  
+
   return dispatch => {
-    axios
-      .post("/api/user/login", theUser)
-      .then(user => {
-        dispatch(userLogin(user.data));
-      });
+    axios.post("/api/user/login", theUser).then(user => {
+      dispatch(userLogin(user.data));
+    });
   };
 };
 
-/****** Para cuando exista usuario admin: *****/
-// export const loginCreator = user => {
-//   axios.post("/api/user/register", user).then(user => {
-//     store.dispatch(userLogin(user.data));
-//     // user.data.admin == true && history.push("/admin")
-//     return user.data;
-//   });
+// export const loadCookieCreator = () => {
+//   return function(dispatch) {
+//     dispatch(loadCookie());
+//     return axios.get("/auth").then(res => {
+//       dispatch(userLogin(res.data));
+//     });
+//   };
 // };
+
+export const logOutCreator = () => {
+  return function(dispatch) {
+    return axios.get("/api/user/logout").then(() => {
+      dispatch(userLogout());
+    });
+  };
+};
+
+export const fetchLoggedUser = () => dispatch => 
+  axios.get("/api/user/auth").then(res => {
+    console.log("RES: ", res);
+    dispatch(userLogin(res.data));
+    return res.data;
+  });

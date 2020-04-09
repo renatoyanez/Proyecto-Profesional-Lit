@@ -32,7 +32,6 @@ class LoginContainer extends Component {
 
 const matchDispatchToProps = (dispatch) => {
   return {
-    // userLogin: userLoginCreator
     userLogin: user => dispatch(userLoginCreator(user))
   };
 };

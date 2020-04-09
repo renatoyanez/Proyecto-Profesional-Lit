@@ -8,7 +8,7 @@ const styles = {
     textAlign: "right"
   }
 };
-export default ({ user }) => {
+export default ({ user, onLogout }) => {
   console.log("USER: ", user);
   
   return (
@@ -32,7 +32,7 @@ export default ({ user }) => {
       </button>
       <div className="collapse navbar-collapse" id="navbarCollapse">
         <ul className="navbar-nav mr-auto">
-          <li className="nav-item">
+          <li onClick={onLogout} className="nav-item">
             <Link to="/login" className="nav-link">
               Log-Out <span className="sr-only">(current)</span>
             </Link>
