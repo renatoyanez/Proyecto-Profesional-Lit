@@ -7,6 +7,7 @@ const propiedades = require('./propiedades');
 const user = require('./user')
 const favoritos = require('./favoritos')
 const categorias = require('./categorias')
+const passport = require('../passport/passport')
 
 router.use('/propiedades', propiedades)
 router.use('/user', user)
