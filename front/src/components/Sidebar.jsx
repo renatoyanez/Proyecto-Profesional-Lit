@@ -21,8 +21,7 @@ const styles = {
     backgroundColor: "red"
   }
 };
-export default ({
-  /*propiedadFiltrada*/ updateSearch,
+export default ({ updateSearch,
   clearInput,
   onSearch
 }) => {

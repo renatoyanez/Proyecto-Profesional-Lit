@@ -1,37 +1,48 @@
-import React from 'react'
-import swal from '@sweetalert/with-react'
- 
-const onPick = value => {
-  swal("Thanks for your rating!", `You rated us ${value}/3`, "success")
-}
- 
-const MoodButton = ({ rating, onClick }) => (
-  <button 
-    data-rating={rating}
-    className="mood-btn" 
-    onClick={() => onClick(rating)}
-  />
-)
- 
-swal({
-  text: "How was your experience getting help with this issue?",
-  buttons: {
-    cancel: "Close",
-  },
-  content: (
-    <div>
-      <MoodButton 
-        rating={1} 
-        onClick={onPick}
-      />
-      <MoodButton 
-        rating={2} 
-        onClick={onPick}
-      />
-      <MoodButton 
-        rating={3} 
-        onClick={onPick}
-      />
-    </div>
-  )
-})
+// import React from "react";
+
+// export default ({ /*** handleChange, handleSubmit*/ }) => {
+//   return (
+//     <div >
+
+// <div className="modal fade" id="modalRegisterForm" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel"
+//   aria-hidden="true">
+//   <div className="modal-dialog" role="document">
+//     <div className="modal-content">
+//       <div className="modal-header text-center">
+//         <h4 className="modal-title w-100 font-weight-bold"> Editar esta propiedad </h4>
+//         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+//           <span aria-hidden="true">&times;</span>
+//         </button>
+//       </div>
+//       <form /*onSubmit={handleSubmit}*/>
+//       <div className="modal-body mx-3">
+//         <div className="md-form mb-5">
+//           <i className="fas fa-user prefix grey-text"></i>
+//           <input name="name" id="orangeForm-name" className="form-control validate" placeholder="Your name" /*onChange={handleChange}*//>
+//         </div>
+//         <div className="md-form mb-5">
+//           <i className="fas fa-user prefix grey-text"></i>
+//           <input name="lastname" id="orangeForm-surname" className="form-control validate"placeholder="Your surname" /*onChange={handleChange}*//>
+//         </div>
+//         <div className="md-form mb-5">
+//           <i className="fas fa-envelope prefix grey-text"></i>
+//           <input type="email" name="email" id="orangeForm-email" className="form-control validate"placeholder="Your email" /*onChange={handleChange}*//>
+//         </div>
+
+//         <div className="md-form mb-4">
+//           <i className="fas fa-lock prefix grey-text"></i>
+//           <input type="password"name="password" id="orangeForm-pass" className="form-control validate"placeholder="Your password" /*onChange={handleChange}*//>
+//         </div>
+
+//       </div>
+//       <div className="modal-footer d-flex justify-content-center">
+//         <button type="submit" className="btn btn-deep-dark" data-toggle="modal" data-target="#modalRegisterForm">Guardar cambios</button>
+//       </div>
+//       </form>
+//     </div>
+//   </div>
+// </div>
+// </div>
+
+//   );
+// };
