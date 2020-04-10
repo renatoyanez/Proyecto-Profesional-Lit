@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -7,8 +8,8 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { Link } from "react-router-dom";
 import GridList from "@material-ui/core/GridList";
+// import ModalContainer from '../containers/ModalContainer'
 
 
 const useStyles = makeStyles(theme => ({
@@ -34,7 +35,6 @@ export default ({ propiedades }) => {
   const classes = useStyles();
 
   return (
-    // <div>
     <div className={classes.root}>
       <GridList cellHeight={400} className={classes.gridList}>
         {propiedades.length >= 1 ? (
@@ -64,9 +64,9 @@ export default ({ propiedades }) => {
                 </CardActionArea>
               </Link>
               <CardActions>
-                <Link to={`/propiedad/${propiedad.id}`}>
+                <Link to={'/modal'}>
                   <Button size="small" color="primary">
-                    Ver detalle
+                    Editar
                   </Button>
                 </Link>
               </CardActions>
@@ -77,8 +77,8 @@ export default ({ propiedades }) => {
           </div>
         )}
       </GridList>
+      {/* <ModalContainer /> */}
     </div>
-    // </div>
   );
 };
 

@@ -16,14 +16,11 @@ class MainContainer extends React.Component {
 
     render() {
         return (
-            <Main /** user={this.props.user}*//>
+            <Main />
         )
     }
 }
 
-// const mapStateToProps = ({ user }) => ({
-//     user: user.user
-//   });
 
 const matchDispatchToProps = function (dispatch, ownprops) {
     return {

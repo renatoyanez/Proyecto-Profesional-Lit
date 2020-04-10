@@ -18,8 +18,6 @@ class SidebarContainer extends Component {
     this.setState({ clearInput: event.target.value.substr(0, 30) });
   }
 
-  // the route bellow this action will face is /search. which is the page with the results shown when the user searches for something
-
   onSearch(event) {
     event.preventDefault();
     this.props

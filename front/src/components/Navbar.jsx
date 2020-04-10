@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 const styles = {
   navbar: {
@@ -32,11 +32,13 @@ export default ({ user, onLogout }) => {
       </button>
       <div className="collapse navbar-collapse" id="navbarCollapse">
         <ul className="navbar-nav mr-auto">
+        {user ? (
           <li onClick={onLogout} className="nav-item">
             <Link to="/login" className="nav-link">
               Log-Out <span className="sr-only">(current)</span>
             </Link>
-          </li>
+        </li>) : (
+          <>
           <li className="nav-item">
             <Link to="/login" className="nav-link">
               Log-In <span className="sr-only">(current)</span>
@@ -47,6 +49,8 @@ export default ({ user, onLogout }) => {
               Sign-Up
             </Link>
           </li>
+          </>
+          )}
           <li className="nav-item">
               {user ? (`Welcome ${user}`) : (null)}
           </li>
