@@ -9,8 +9,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import GridList from "@material-ui/core/GridList";
-// import ModalContainer from '../containers/ModalContainer'
-
+import ModalContainer from "../containers/ModalContainer";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -28,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   media: {
     height: 0,
     paddingTop: "56.25%" // 16:9
-  },
+  }
 }));
 
 export default ({ propiedades }) => {
@@ -50,7 +49,7 @@ export default ({ propiedades }) => {
               <Link to={`/propiedad/${propiedad.id}`}>
                 <CardActionArea>
                   <CardMedia
-                  className={classes.media}
+                    className={classes.media}
                     // style={{
                     //   height: "60%",
                     //   objectFit: "contain"
@@ -64,20 +63,22 @@ export default ({ propiedades }) => {
                 </CardActionArea>
               </Link>
               <CardActions>
-                <Link to={'/modal'}>
-                  <Button size="small" color="primary">
+                <Button size="small" color="primary">
+                  <p
+                    data-toggle="modal"
+                    data-target={'#editionFormId'}
+                  >
                     Editar
-                  </Button>
-                </Link>
+                  </p>
+                </Button>
               </CardActions>
             </Card>
           ))
         ) : (
-          <div>
-          </div>
+          <div></div>
         )}
       </GridList>
-      {/* <ModalContainer /> */}
+      <ModalContainer />
     </div>
   );
 };
