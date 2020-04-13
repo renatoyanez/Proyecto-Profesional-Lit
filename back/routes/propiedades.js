@@ -17,26 +17,19 @@ router.post("/create", (req, res, next) => {
 
 /**** This one edits property: ****/
 router.post("/edit", (req, res, next) => {
+  
   Propiedades.findOne({ where: { id: req.body.id } })
-    .then(propiedad =>
-      propiedad.update({
-        nombre: req.body.nombre ? req.body.nombre : propiedad.nombre,
-        descripcion: req.body.descripcion ? req.body.descripcion : propiedad.descripcion,
-        precio: req.body.precio ? req.body.precio : propiedad.precio,
-        ubicacion: req.body.ubicacion ? req.body.ubicacion : propiedad.ubicacion
-      })
-    )
-    .then(propiedad =>
-      Categoria.findAll().then(categorias => {
-        const cat = categorias.filter(c => {
-          if (req.body.categories.includes(c.name)) return c;
-        });
-        propiedad.setCategoria(cat);
-      })
+  .then(propiedad =>
+    propiedad.update({
+      nombre: req.body.nombre ? req.body.nombre : propiedad.nombre,
+      descripcion: req.body.descripcion ? req.body.descripcion : propiedad.descripcion,
+      precio: req.body.precio ? req.body.precio : propiedad.precio,
+      ubicacion: req.body.ubicacion ? req.body.ubicacion : propiedad.ubicacion
+    })
     )
     .then(() =>
-      Product.findAll().then(products => {
-        res.status(200).send(products);
+    Propiedades.findAll().then(propiedad => {
+        res.status(200).send(propiedad);
       })
     )
     .catch(next);

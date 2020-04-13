@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
+import ModalContainer from "../containers/ModalContainer";
 
 const style = {
   iconStyle: {
@@ -95,10 +96,15 @@ export default ({ propiedad }) => {
           <p className="text-center text-wrap">{propiedad.descripcion}</p>
           <div style={style.iconStyle}>
             <h4>${propiedad.precio}</h4>
+            <br/>
+            <Button size="small" color="primary">
+            <h4 data-toggle="modal" data-target={`#editionFormId${propiedad.id}`}>Editar datos</h4>
+            </Button>
           </div>
         </div>
       )}
       <br />
+      <ModalContainer />
     </div>
   );
 };
