@@ -64,9 +64,7 @@ export default ({ propiedades }) => {
               </Link>
               <CardActions>
                 <Button size="small" color="primary">
-                  <p
-                    data-toggle="modal"
-                    data-target={'#editionFormId'}
+                  <p data-toggle="modal" data-target={'#editionFormId'}
                   >
                     Editar
                   </p>
@@ -78,7 +76,7 @@ export default ({ propiedades }) => {
           <div></div>
         )}
       </GridList>
-      <ModalContainer />
+      <ModalContainer/>
     </div>
   );
 };
