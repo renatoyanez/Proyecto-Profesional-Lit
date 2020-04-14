@@ -1,9 +1,5 @@
-import {
-  FETCH_PROPERTIES,
-  FETCH_SINGLE_PROPERTY
-} from "../utils/constants";
+import { FETCH_PROPERTIES, FETCH_SINGLE_PROPERTY } from "../utils/constants";
 import axios from "axios";
-import store from "../store/store";
 
 //Brings all the properties
 export const fetchProperties = propiedades => ({
@@ -36,9 +32,29 @@ export const singlePropertyCreator = id => dispatch => {
 };
 
 export const fetchFilteredProperties = filter => dispatch => {
-  return axios.get(`/api/propiedades/search/${filter}`)
-  .then(properties => {
-
+  return axios.get(`/api/propiedades/search/${filter}`).then(properties => {
     dispatch(searchproperties(properties.data));
   });
+};
+
+export const createProperty = (
+  nombre,
+  descripcion,
+  precio,
+  ubicacion,
+  imagen,
+  disponible
+) => dispatch => {
+  return axios
+    .post("/api/propiedades/create", {
+      nombre,
+      descripcion,
+      precio,
+      ubicacion,
+      imagen,
+      disponible
+    })
+    .then(res => {
+      dispatch(fetchSingleProperty(res));
+    });
 };

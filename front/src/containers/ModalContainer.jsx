@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import Modal from "../components/Modal";
+import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
-import { fetchSingleProperty } from '../redux/actions/getProperties';
+import Modal from "../components/Modal";
 import axios from 'axios';
+import { fetchSingleProperty } from '../redux/actions/getProperties';
 
 class ModalContainer extends Component {
   constructor(props) {
@@ -48,8 +49,6 @@ class ModalContainer extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("EL ID DE LAS PROPSSSS:    ", this.props)
-    console.log("EL STATE:    ", this.state)
     return axios.post("/api/propiedades/edit", {
       id: this.props.propiedad.id, //por si lo necesitas
       nombre: this.state.nombre,
@@ -59,9 +58,10 @@ class ModalContainer extends Component {
       // imagen: [...this.state.imagen],
       // disponible: true
     }).then((propiedad) => {
-      console.log("PROPIEDAD EN EL .THEN RES:    ", propiedad)
+      // console.log("EL ID LA PROPIEDAD:    ", propiedad.data)
         this.props.fetchSingleProperty(propiedad) // aqui va el action que te agrega propiedades
-        alert('Product Updated!') // busca un sweet alert 
+        // this.props.history.push(?);
+        alert('Propiedad editada!') // busca un sweet alert 
     })
   }
 
@@ -84,7 +84,7 @@ const matchDispatchToProps = (dispatch) => {
 }
 
 
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
   matchDispatchToProps
-)(ModalContainer);
+)(ModalContainer));

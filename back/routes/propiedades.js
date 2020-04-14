@@ -6,7 +6,15 @@ const { Op } = require("sequelize");
 
 /**** This one creates a property ****/
 router.post("/create", (req, res, next) => {
-  Propiedades.create(req.body)
+  console.log("EL REQ BODY PAPAAAA:    ", req.body);
+  Propiedades.create({
+    nombre: req.body.nombre,
+    descripcion: req.body.descripcion,
+    precio: req.body.precio,
+    ubicacion:req.body.ubicacion,
+    imagen: req.body.imagen,
+    disponible:req.body.disponible
+  })
     .then(propiedad => {
       res.status(201).json(propiedad);
     })
@@ -17,18 +25,19 @@ router.post("/create", (req, res, next) => {
 
 /**** This one edits property: ****/
 router.post("/edit", (req, res, next) => {
-  
   Propiedades.findOne({ where: { id: req.body.id } })
-  .then(propiedad =>
-    propiedad.update({
-      nombre: req.body.nombre ? req.body.nombre : propiedad.nombre,
-      descripcion: req.body.descripcion ? req.body.descripcion : propiedad.descripcion,
-      precio: req.body.precio ? req.body.precio : propiedad.precio,
-      ubicacion: req.body.ubicacion ? req.body.ubicacion : propiedad.ubicacion
-    })
+    .then(propiedad =>
+      propiedad.update({
+        nombre: req.body.nombre ? req.body.nombre : propiedad.nombre,
+        descripcion: req.body.descripcion
+          ? req.body.descripcion
+          : propiedad.descripcion,
+        precio: req.body.precio ? req.body.precio : propiedad.precio,
+        ubicacion: req.body.ubicacion ? req.body.ubicacion : propiedad.ubicacion
+      })
     )
     .then(() =>
-    Propiedades.findAll().then(propiedad => {
+      Propiedades.findAll().then(propiedad => {
         res.status(200).send(propiedad);
       })
     )

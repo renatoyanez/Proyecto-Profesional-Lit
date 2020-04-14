@@ -9,7 +9,6 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import GridList from "@material-ui/core/GridList";
-import ModalContainer from "../containers/ModalContainer";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -63,12 +62,11 @@ export default ({ propiedades }) => {
                 </CardActionArea>
               </Link>
               <CardActions>
+              <Link to={`/propiedad/${propiedad.id}`}>
                 <Button size="small" color="primary">
-                  <p data-toggle="modal" data-target={'#editionFormId'}
-                  >
-                    Editar
-                  </p>
+                    Ver detalle      
                 </Button>
+                </Link>
               </CardActions>
             </Card>
           ))
@@ -76,7 +74,6 @@ export default ({ propiedades }) => {
           <div></div>
         )}
       </GridList>
-      <ModalContainer/>
     </div>
   );
 };
