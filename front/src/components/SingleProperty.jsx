@@ -11,7 +11,7 @@ const style = {
     filter: "invert(100%)"
   },
   single: {
-    marginTop: "3%",
+    marginTop: "3%"
   }
 };
 
@@ -20,9 +20,14 @@ export default ({ propiedad }) => {
     <div className="container" style={style.single}>
       <Link to="/">
         <Button style={{ marginLeft: "2%" }} color="primary">
-          Volver atras
+        <h5>Volver atras</h5>
         </Button>
       </Link>
+      <Button style={{ float: "right" }} size="small" color="primary">
+        <h5 data-toggle="modal" data-target={`#editionFormId${propiedad.id}`}>
+          Editar datos
+        </h5>
+      </Button>
       {propiedad.nombre && (
         <div
           id="carouselExampleIndicators"
@@ -96,10 +101,6 @@ export default ({ propiedad }) => {
           <p className="text-center text-wrap">{propiedad.descripcion}</p>
           <div style={style.iconStyle}>
             <h4>${propiedad.precio}</h4>
-            <br/>
-            <Button size="small" color="primary">
-            <h4 data-toggle="modal" data-target={`#editionFormId${propiedad.id}`}>Editar datos</h4>
-            </Button>
           </div>
         </div>
       )}

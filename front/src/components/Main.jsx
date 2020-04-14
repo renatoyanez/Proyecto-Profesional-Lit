@@ -6,7 +6,7 @@ import SinglePropertyContainer from "../containers/SinglePropertyContainer";
 import RegisterContainer from "../containers/RegisterContainer";
 import LoginContainer from "../containers/LoginContainer";
 import NavbarContainer from "../containers/NavbarContainer";
-// import ModalContainer from '../containers/ModalContainer'
+import CreatePropertyContainer from "../containers/CreatePropertyContainer";
 
 
 export default () => {
@@ -14,6 +14,7 @@ export default () => {
     <div>
       <NavbarContainer />
       <Route path="/register" component={RegisterContainer} />
+      <Route path="/create" component={CreatePropertyContainer} />
       <Route path="/login" component={LoginContainer} />
       <Route path="/propiedad/:id" component={SinglePropertyContainer} />
       <Route component={SidebarContainer} />
