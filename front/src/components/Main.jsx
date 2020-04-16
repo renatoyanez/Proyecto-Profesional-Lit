@@ -8,20 +8,21 @@ import LoginContainer from "../containers/LoginContainer";
 import NavbarContainer from "../containers/NavbarContainer";
 import CreatePropertyContainer from "../containers/CreatePropertyContainer";
 
-
 export default () => {
   return (
     <div>
-      <NavbarContainer />
-      <Route path="/register" component={RegisterContainer} />
-      <Route path="/create" component={CreatePropertyContainer} />
-      <Route path="/login" component={LoginContainer} />
-      <Route path="/propiedad/:id" component={SinglePropertyContainer} />
-      <Route component={SidebarContainer} />
+      <SidebarContainer />
       <Switch>
-        <Route exact path="/" component={PropertiesContainer} /> {/*Aqui vas a renderizar un home si llegas a crearlo*/}
-        <Route exact path="/all" component={PropertiesContainer} />
+        <Route exact path="/register" component={RegisterContainer} />
+        <Route exact path="/create" component={CreatePropertyContainer} />
+        <Route exact path="/login" component={LoginContainer} />
+        <Route
+          exact
+          path="/propiedad/:id"
+          component={SinglePropertyContainer}
+        />
         <Route exact path="/search/:nombre" component={PropertiesContainer} />
+        <Route exact path="/" component={PropertiesContainer} />
       </Switch>
     </div>
   );

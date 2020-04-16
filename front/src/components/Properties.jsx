@@ -11,18 +11,6 @@ import Typography from "@material-ui/core/Typography";
 import GridList from "@material-ui/core/GridList";
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    display: "flex",
-    flexWrap: "nowrap",
-    overflow: "hidden",
-    justifyContent: "space-around",
-    marginLeft: "17%",
-    marginTop: "4%"
-  },
-  gridList: {
-    width: "100vw",
-    height: "100"
-  },
   media: {
     height: 0,
     paddingTop: "56.25%" // 16:9
@@ -33,8 +21,8 @@ export default ({ propiedades }) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <GridList cellHeight={400} className={classes.gridList}>
+    <div >
+      <GridList cellHeight={400}>
         {propiedades.length >= 1 ? (
           propiedades.map(propiedad => (
             <Card
@@ -42,17 +30,12 @@ export default ({ propiedades }) => {
                 width: "18rem",
                 margin: "2%"
               }}
-              className={classes.gridList}
               key={propiedad.id}
             >
               <Link to={`/propiedad/${propiedad.id}`}>
                 <CardActionArea>
                   <CardMedia
                     className={classes.media}
-                    // style={{
-                    //   height: "60%",
-                    //   objectFit: "contain"
-                    // }}
                     image={propiedad.imagen[0]}
                   />
                   <CardContent>
@@ -62,10 +45,10 @@ export default ({ propiedades }) => {
                 </CardActionArea>
               </Link>
               <CardActions>
-              <Link to={`/propiedad/${propiedad.id}`}>
-                <Button size="small" color="primary">
-                    Ver detalle      
-                </Button>
+                <Link to={`/propiedad/${propiedad.id}`}>
+                  <Button size="small" color="primary">
+                    Ver detalle
+                  </Button>
                 </Link>
               </CardActions>
             </Card>
@@ -110,7 +93,7 @@ export default ({ propiedades }) => {
 //   console.log(propiedades, "propiedadesdd");
 
 //   return (
-//     <div className={classes.root}>
+//     <div >
 //       <GridList cellHeight={400} className={classes.gridList}>
 //         {propiedades.length >= 1 ? (
 //           propiedades.map(prod => (
