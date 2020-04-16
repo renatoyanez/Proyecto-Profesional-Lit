@@ -2,6 +2,7 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import ModalContainer from "../containers/ModalContainer";
+import { useHistory } from "react-router-dom";
 
 const style = {
   iconStyle: {
@@ -12,22 +13,43 @@ const style = {
   },
   single: {
     marginTop: "3%"
+  },
+
+  centerButtoms: {
+    display: "flex",
+    justifyContent: "space-between"
   }
 };
 
-export default ({ propiedad }) => {
+
+export default ({ propiedad, handleDelete }) => {
+
+  let history = useHistory();
+
+  function handleClick() {
+    history.goBack();
+  }
+
   return (
     <div className="container" style={style.single}>
-      <Link to="/">
-        <Button style={{ marginLeft: "2%" }} color="primary">
+    <div style={style.centerButtom}>
+      {/* <Link to="/"> */}
+        <Button onClick={ handleClick } style={{ marginLeft: "2%" }} color="primary">
         <h5>Volver atras</h5>
         </Button>
-      </Link>
-      <Button style={{ float: "right" }} size="small" color="primary">
+      {/* </Link> */}
+      <Button size="small" color="primary">
         <h5 data-toggle="modal" data-target={`#editionFormId${propiedad.id}`}>
           Editar datos
         </h5>
       </Button>
+
+      <Button onClick = { () => { handleDelete(propiedad.id) } } style={{ float: "right" }} size="small" color="primary">
+        <h5>
+          Eliminar
+        </h5>
+      </Button>
+    </div>
       {propiedad.nombre && (
         <div
           id="carouselExampleIndicators"

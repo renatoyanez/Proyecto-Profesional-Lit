@@ -19,7 +19,8 @@ export default () => {
       <Route path="/propiedad/:id" component={SinglePropertyContainer} />
       <Route component={SidebarContainer} />
       <Switch>
-        <Route exact path="/" component={PropertiesContainer} />
+        <Route exact path="/" component={PropertiesContainer} /> {/*Aqui vas a renderizar un home si llegas a crearlo*/}
+        <Route exact path="/all" component={PropertiesContainer} />
         <Route exact path="/search/:nombre" component={PropertiesContainer} />
       </Switch>
     </div>

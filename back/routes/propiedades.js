@@ -6,14 +6,13 @@ const { Op } = require("sequelize");
 
 /**** This one creates a property ****/
 router.post("/create", (req, res, next) => {
-  console.log("EL REQ BODY PAPAAAA:    ", req.body);
   Propiedades.create({
     nombre: req.body.nombre,
     descripcion: req.body.descripcion,
     precio: req.body.precio,
-    ubicacion:req.body.ubicacion,
+    ubicacion: req.body.ubicacion,
     imagen: req.body.imagen,
-    disponible:req.body.disponible
+    disponible: req.body.disponible
   })
     .then(propiedad => {
       res.status(201).json(propiedad);
@@ -45,16 +44,26 @@ router.post("/edit", (req, res, next) => {
 });
 
 //Route that goes to the db by searching parameter
-//The first route will search with params
-router.get("/search/:propiedades", (req, res, next) => {
-  //this bellow sets the filters so the searching brings filtered data properly
-  const search = req.params.propiedades.toLowerCase();
+router.get('/search/:propiedades', (req, res, next) => {
+  console.log("EL QUERY:  ", req.query);
+  if(req.query.filterByPrice === "true") {
+    req.findByPrice = {
+    where: {
+      precio: { [Op.between]: [req.query.menor, req.query.mayor] }
+    }
+  }}
+  next()
+})
 
-  Propiedades.findAll()
-    .then(data => {
+router.get("/search/:propiedades", (req, res, next) => {
+  console.log("FIND BY PRICE: ", req.findByPrice);
+  const search = req.params.propiedades.toLowerCase();
+  console.log("SEARCH: ", search)
+  Propiedades.findAll(req.findByPrice)
+    .then(data => {      
       if (!data) res.sendStatus(404);
       const propertiesFilter = data.filter(
-        /*** Buscar con metodos sequelize****/
+        /**** Buscar con metodos sequelize****/
         propiedades =>
           propiedades.nombre.toLowerCase().includes(search) ||
           propiedades.descripcion.toLowerCase().includes(search) ||
@@ -67,21 +76,11 @@ router.get("/search/:propiedades", (req, res, next) => {
     });
 });
 
-/***** Searches by location *****/
-router.get("/barrio/:ubicacion", (req, res, next) => {
-  //const search = req.params.ubicacion.toLowerCase()
 
-  Propiedades.findAll({
-    where: { ubicacion: req.params.ubicacion }
-  })
-    .then(data => {
-      if (!data) res.sendStatus(404);
-      res.json(data);
-    })
-    .catch(err => {
-      throw new Error(err);
-    });
-});
+/*** Searches by price: ***/
+/**** IMPORTANTE: En algun momento hay que refacotrear sta ruta debido a que no es recomedable filtrar responses de rutas al back con javascript nativo, En su lugar se recomienda utilizar las herramientas dadas por sequelize para filtrar requests como el where o el op ****/
+
+
 
 /**** Deletes property ****/
 router.delete("/delete/:id", (req, res, next) => {
