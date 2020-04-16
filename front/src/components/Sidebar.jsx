@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 const styles = {
-  navbar:{
+  navbar: {
     height: "6vh"
   },
   sidebar: {
@@ -17,14 +17,10 @@ const styles = {
   },
   register: {
     display: "flex",
-    justifyContent: "center",
-    backgroundColor: "red"
+    justifyContent: "center"
   }
 };
-export default ({ updateSearch,
-  clearInput,
-  onSearch
-}) => {
+export default ({ handleChange, onSearch }) => {
   return (
     <div>
       <div className="container-fluid">
@@ -37,25 +33,66 @@ export default ({ updateSearch,
                   <br />
                   <br />
                   <br />
+
                   <form onSubmit={onSearch}>
                     <input
                       className="form-control ds-input"
-                      onChange={updateSearch}
-                      value={clearInput}
+                      onChange={handleChange}
+                      name='clearInput'
                       type="text"
                       placeholder="Filtra tu busqueda"
                     />
+                 
+
+                  
+                      <input
+                      className="form-control ds-input"
+                      onChange={handleChange}
+                      type="text"
+                      placeholder="Menor precio"
+                      name="menor"
+                    />
+                 
+                    <br />
+
+               
+                    <input
+                      className="form-control ds-input"
+                      onChange={handleChange}
+                      type="text"
+                      placeholder="Mayor precio"
+                      name="mayor"
+                    />
+                    <button type='submit'>Buscar propiedad</button>
+                   
                   </form>
                 </li>
-                <li className="nav-item">
-                  <Link to="/propiedades">
-                    <span data-feather="file-text"></span>
-                    Propiedades
-                  </Link>
-                </li>
+                <br />
+                <br />
+                <br />
+                <br />
                 <li className="nav-item">
                   <span data-feather="file-text"></span>
-                  Mas filtros
+                  <h6 className="nav-item">Buscar por precio:</h6>
+                  {/* <form onSubmit={filterByPrice}>
+                  <input
+                      className="form-control ds-input"
+                      onChange={handleChange}
+                      type="text"
+                      placeholder="Menor precio"
+                      name="menor"
+                    />
+                    <br />
+                    <input
+                      className="form-control ds-input"
+                      onChange={handleChange}
+                      type="text"
+                      placeholder="Mayor precio"
+                      name="mayor"
+                    />
+                    <button type='submit'>Buscar</button>
+                  </form>
+                 */}
                 </li>
               </ul>
             </div>

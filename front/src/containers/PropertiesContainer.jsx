@@ -7,9 +7,12 @@ class PropertiesContainer extends Component {
     constructor(props) {
         super(props)
     }
+
     componentDidMount() {
-        this.props.fetchProducts()
+        if(!this.props.propiedades.length) this.props.fetchProducts()
     }
+
+
     render() {
         return (
             <Properties propiedades={this.props.propiedades}/>
