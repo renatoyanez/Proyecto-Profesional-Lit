@@ -15,28 +15,17 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import SearchIcon from "@material-ui/icons/Search";
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from "@material-ui/core/FormControl";
 import ApartmentIcon from "@material-ui/icons/Apartment";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
-
-// function Copyright() {
-//   return (
-//     <Typography variant="body2" color="textSecondary" align="center">
-//       {"Copyright © "}
-//       <Link color="inherit" href="https://material-ui.com/">
-//         Your Website
-//       </Link>{" "}
-//       {new Date().getFullYear()}
-//       {"."}
-//     </Typography>
-//   );
-// }
+import AddIcon from "@material-ui/icons/Add";
+import HomeWorkIcon from '@material-ui/icons/HomeWork';
 
 const drawerWidth = 240;
 
@@ -45,7 +34,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex"
   },
   toolbar: {
-    paddingRight: 24 // keep right padding when drawer closed
+    paddingRight: 24 
   },
   toolbarIcon: {
     display: "flex",
@@ -76,7 +65,8 @@ const useStyles = makeStyles(theme => ({
     display: "none"
   },
   title: {
-    flexGrow: 1
+    flexGrow: 1,
+    textAlign:"center"
   },
   drawerPaper: {
     position: "relative",
@@ -118,15 +108,14 @@ const useStyles = makeStyles(theme => ({
     height: 240
   },
   formControl: {
-    margin: theme.spacing(3),
+    margin: theme.spacing(3)
   },
   button: {
-    margin: theme.spacing(1, 1, 0, 0),
-  },
+    margin: theme.spacing(1, 1, 0, 0)
+  }
 }));
 
 export default ({ handleChange, onSearch, user, onLogout }) => {
-
   const classes = useStyles();
   const handleRadioChange = event => {
     setHelperText(" ");
@@ -136,87 +125,82 @@ export default ({ handleChange, onSearch, user, onLogout }) => {
   return (
     <div className={classes.root}>
       <AppBar
+        style={{ background: "#37474f" }}
         position="absolute"
         className={clsx(classes.appBar && classes.appBarShift)}
       >
         <Toolbar className={classes.toolbar}>
-          {user ?  
-          <IconButton color="inherit">
-          <Link to="/login">
-              <Button
-                variant="contained"
-                className={classes.link}
-                onClick={onLogout}
-              >
-              Logout
-              </Button>
-            </Link> 
-            </IconButton>:
-          <div>
-
-          <IconButton color="inherit">
-
-            <Link to="/login">
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                className={classes.link}
-              >
-                Login
-              </Button>
-            </Link>
-          </IconButton>
+          {user ? (
             <IconButton color="inherit">
+              <Link to="/login">
+                <Button
+                  variant="contained"
+                  onClick={onLogout}
+                  style={{ backgroundColor: "#bdbdbd" }}
+                >
+                  Logout
+                </Button>
+              </Link>
+            </IconButton>
+          ) : (
+            <div>
+              <IconButton color="inherit">
+                <Link to="/login">
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    style={{ backgroundColor: "#bdbdbd" }}
+                  >
+                    Login
+                  </Button>
+                </Link>
+              </IconButton>
+              <IconButton color="inherit">
+                <Link to="/register">
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    style={{ backgroundColor: "#bdbdbd" }}
+                  >
+                    Registrate
+                  </Button>
+                </Link>
+              </IconButton>
+            </div>
+          )}
 
-            <Link to="/register">
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                className={classes.link}
+          {user ? (
+            <IconButton color="inherit">
+              <Typography
+                component="h3"
+                variant="h6"
+                color="inherit"
+                noWrap
+                className={classes.title}
               >
-                Registrate
-              </Button>
-            </Link>
-          </IconButton>
-          </div>
-
-        }
-
-          {user ? 
-           <IconButton color="inherit">
-        
-           <Typography
-              component="h3"
-              variant="h6"
-              color="inherit"
-              noWrap
-              className={classes.title}
-            >
-              {`Bienvenido ${user}!`}
-            </Typography>
-         
-         </IconButton>
-         :
-         null}
-         {user === "Renato" ? 
-         <IconButton color="inherit">
-        <Link to="/create">
-         <Typography
-            component="h3"
-            variant="h6"
-            color="inherit"
-            noWrap
-            className={classes.title}
-          >
-            Crear nueva propiedad
-          </Typography>
-          </Link>
-       
-       </IconButton>
-       :
-       null}
+                {`Bienvenido ${user}!`}
+              </Typography>
+            </IconButton>
+          ) : null}
+          {user === "Renato" ? (
+            <IconButton color="inherit">
+              <Link to="/create">
+                <Button
+                  variant="contained"
+                  style={{ backgroundColor: "#bdbdbd" }}
+                  //onClick={handleClick}
+                  className={classes.button}
+                  startIcon={<AddIcon />}
+                  style={{ marginLeft: "4%" }}
+                >
+                  Crear
+                </Button>
+             
+              </Link>
+            </IconButton>
+          ) : null}
         </Toolbar>
       </AppBar>
       <Drawer
@@ -227,17 +211,17 @@ export default ({ handleChange, onSearch, user, onLogout }) => {
         open={open}
       >
         <div className={classes.toolbarIcon}>
-        <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
-              noWrap
-              className={classes.title}
-            >
-            <Link to="/">
-              L I T
-              </Link>
-            </Typography>
+          <HomeWorkIcon  style={{marginLeft:"3%"}}/>
+          <Typography
+            component="h1"
+            variant="h6"
+            color="inherit"
+            noWrap
+            
+            className={classes.title}
+          >
+            <Link to="/">L     I      T</Link>
+          </Typography>
         </div>
         <Divider />
         <List>
@@ -280,10 +264,10 @@ export default ({ handleChange, onSearch, user, onLogout }) => {
               </Grid>
             </ListItem>
             <ListItem button>
-            <Button
+              <Button
                 type="submit"
-                variant="outlined"
-                color="primary"
+                variant="contained"
+                style={{ backgroundColor: "#bdbdbd" }}
                 className={classes.button}
               >
                 Busca tu Propiedad
@@ -297,45 +281,38 @@ export default ({ handleChange, onSearch, user, onLogout }) => {
             <ListItemText primary="Categorias" />
           </ListItem>
           <ListItem button>
-            <FormControl
-              component="fieldset"
-              className={classes.formControl}
-            >
+            <FormControl component="fieldset" className={classes.formControl}>
               <RadioGroup
                 aria-label="quiz"
                 name="quiz"
                 onChange={handleRadioChange}
               >
                 <FormControlLabel
-                value="depto"
+                  value="depto"
                   control={<Radio />}
                   label="Departamento"
                 />
+                <FormControlLabel value="ph" control={<Radio />} label="PH" />
                 <FormControlLabel
-                value="ph"
-                  control={<Radio />}
-                  label="PH"
-                />
-                <FormControlLabel
-                value="casa"
+                  value="casa"
                   control={<Radio />}
                   label="Casa"
                 />
                 <FormControlLabel
-                value="compra"
+                  value="compra"
                   control={<Radio />}
                   label="Compra"
                 />
                 <FormControlLabel
-                value="alquilar"
+                  value="alquilar"
                   control={<Radio />}
                   label="Alquilar"
                 />
               </RadioGroup>
               <Button
                 type="submit"
-                variant="outlined"
-                color="primary"
+                variant="contained"
+                style={{ backgroundColor: "#bdbdbd" }}
                 className={classes.button}
               >
                 Filtra
@@ -348,12 +325,9 @@ export default ({ handleChange, onSearch, user, onLogout }) => {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <Box pt={4}>
-            {/* <Copyright /> */}
-          </Box>
+          <Box pt={4}>{/* <Copyright /> */}</Box>
         </Container>
       </main>
     </div>
   );
 };
-

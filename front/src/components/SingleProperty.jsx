@@ -3,6 +3,11 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import ModalContainer from "../containers/ModalContainer";
 import { useHistory } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import red from "@material-ui/core/colors/red";
 
 const style = {
   iconStyle: {
@@ -21,12 +26,17 @@ const style = {
     justifyContent: "space-between"
   }
 };
-
+const useStyles = makeStyles(theme => ({
+  button: {
+    margin: theme.spacing(1),
+ 
+  }
+}));
 
 export default ({ user, propiedad, handleDelete }) => {
-
-  console.log("USUARIO: ", user)
-
+  console.log("USUARIO: ", user);
+  const classes = useStyles();
+  const primary = red[500];
   let history = useHistory();
 
   function handleClick() {
@@ -35,26 +45,44 @@ export default ({ user, propiedad, handleDelete }) => {
 
   return (
     <div className="container" style={style.single}>
-    <div style={style.centerButtom}>
- 
-        <Button onClick={ handleClick } style={{ marginLeft: "2%" }} color="primary">
-        <h5>Volver atras</h5>
+      <div style={style.centerButtom}>
+        <Button
+          onClick={handleClick}
+          className={classes.button}
+          startIcon={<ArrowBackIcon />}
+          style={{ marginLeft: "4%" }}
+        >
+          Volver atrás
         </Button>
-         {user.admin ? (
-         <>
-      <Button size="small" color="primary">
-        <h5 data-toggle="modal" data-target={`#editionFormId${propiedad.id}`}>
-          Editar datos
-        </h5>
-      </Button>
-
-      <Button onClick = { () => { handleDelete(propiedad.id) } } style={{ float: "right" }} size="small" color="primary">
-        <h5>
-          Eliminar
-        </h5>
-      </Button>
-      </>) : null}
-    </div>
+       
+        {user.admin ? (
+          <>
+            <Button
+              variant="contained"
+              // style={{backgroundColor:"#f44336"}}
+              className={classes.button}
+              startIcon={<EditIcon />}
+              data-toggle="modal"
+              data-target={`#editionFormId${propiedad.id}`}
+            >
+              Editar Propiedad
+            </Button>
+           
+            <Button
+              variant="contained"
+              style={{ backgroundColor: "#f44336" }}
+              className={classes.button}
+              startIcon={<DeleteIcon />}
+              onClick={() => {
+                handleDelete(propiedad.id);
+              }}
+            >
+              Eliminar
+            </Button>
+            
+          </>
+        ) : null}
+      </div>
       {propiedad.nombre && (
         <div
           id="carouselExampleIndicators"

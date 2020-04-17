@@ -5,7 +5,6 @@ import PropertiesContainer from "../containers/PropertiesContainer";
 import SinglePropertyContainer from "../containers/SinglePropertyContainer";
 import RegisterContainer from "../containers/RegisterContainer";
 import LoginContainer from "../containers/LoginContainer";
-import NavbarContainer from "../containers/NavbarContainer";
 import CreatePropertyContainer from "../containers/CreatePropertyContainer";
 
 export default () => {

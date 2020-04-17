@@ -8,7 +8,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import HotelIcon from '@material-ui/icons/Hotel';
+import HotelIcon from "@material-ui/icons/Hotel";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default (props)=>{
+export default props => {
   const classes = useStyles();
 
   return (
@@ -64,7 +64,11 @@ export default (props)=>{
           <Typography component="h1" variant="h5">
             Registrate
           </Typography>
-          <form onSubmit={props.handlerSubmit} className={classes.form} noValidate>
+          <form
+            onSubmit={props.handlerSubmit}
+            className={classes.form}
+            noValidate
+          >
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -116,7 +120,7 @@ export default (props)=>{
               type="submit"
               fullWidth
               variant="contained"
-              color="primary"
+              style={{ backgroundColor: "#bdbdbd" }}
               className={classes.submit}
             >
               Registrarse
@@ -136,4 +140,4 @@ export default (props)=>{
       </Container>
     </div>
   );
-}
+};

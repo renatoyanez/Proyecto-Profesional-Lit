@@ -1,64 +1,67 @@
-import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import React from "react";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Link from "@material-ui/core/Link";
+import Paper from "@material-ui/core/Paper";
+import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
+      {"Copyright © "}
       <Link color="inherit" href="http://localhost:3000/">
         Home Page
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
-    height: '100vh',
+    height: "100vh",
     marginTop: "-50%"
   },
   image: {
     // backgroundImage: 'url(https://source.unsplash.com/featured/?indoor,interior,home,livingroom,bedroom)',
-    backgroundImage: 'url(https://www.caandesign.com/wp-content/uploads/2017/01/battery-park-city-beautiful-apartment-designed-lo-chen-design-05-1068x714.jpg)',  
-    backgroundRepeat: 'no-repeat',
+    backgroundImage:
+      "url(https://www.caandesign.com/wp-content/uploads/2017/01/battery-park-city-beautiful-apartment-designed-lo-chen-design-05-1068x714.jpg)",
+    backgroundRepeat: "no-repeat",
     backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
+      theme.palette.type === "light"
+        ? theme.palette.grey[50]
+        : theme.palette.grey[900],
+    backgroundSize: "cover",
+    backgroundPosition: "center"
   },
   paper: {
     margin: theme.spacing(8, 4),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
   },
   avatar: {
     margin: theme.spacing(1)
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(1)
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
+    margin: theme.spacing(3, 0, 2)
+  }
 }));
 
-export default (props) => {
+export default props => {
   const classes = useStyles();
 
   return (
@@ -73,8 +76,12 @@ export default (props) => {
           <Typography component="h1" variant="h5">
             Ingresar
           </Typography>
-          <form onSubmit={props.handlerSubmit} className={classes.form} noValidate>
-          <TextField
+          <form
+            onSubmit={props.handlerSubmit}
+            className={classes.form}
+            noValidate
+          >
+            <TextField
               onChange={props.handlerChange}
               variant="outlined"
               margin="normal"
@@ -118,7 +125,7 @@ export default (props) => {
               type="submit"
               fullWidth
               variant="contained"
-              color="primary"
+              style={{ backgroundColor: "#bdbdbd" }}
               className={classes.submit}
             >
               Aceptar
@@ -126,7 +133,7 @@ export default (props) => {
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
-                ¿Olvidaste tu password?
+                  ¿Olvidaste tu password?
                 </Link>
               </Grid>
               <Grid item>
@@ -143,4 +150,4 @@ export default (props) => {
       </Grid>
     </Grid>
   );
-}
+};
