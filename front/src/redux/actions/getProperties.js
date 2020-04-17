@@ -30,13 +30,12 @@ export const singlePropertyCreator = id => dispatch => {
   });
 };
 
-//Searches property
+//Searches property by name/location/description/price(by range)
 export const fetchFilteredProperties = (filter, precio) => dispatch => {
   console.log("FILTER: ", filter, "PRECIO:  ", precio);
 
   return axios
-    .get(
-      `/api/propiedades/search/${filter}?filterByPrice=${precio.filterByPrice}&menor=${precio.menor}&mayor=${precio.mayor}`
+    .get(`/api/propiedades/search/${filter}?filterByPrice=${precio.filterByPrice}&menor=${precio.menor}&mayor=${precio.mayor}`
     )
     .then(properties => {
       dispatch(searchproperties(properties.data));
@@ -44,13 +43,6 @@ export const fetchFilteredProperties = (filter, precio) => dispatch => {
     .catch(() => console.log("No encontro respuesta"));
 };
 
-//Searches by price range:
-// export const fetchPriceProperties = (lowest, highest) => dispatch => {
-//   return axios.get(`/api/propiedades/search/precio/${lowest}/${highest}`).then(properties => {
-//     console.log("PROPIEDADES FILTRADAS DEL BACK: ", properties.data)
-//     dispatch(searchproperties(properties.data));
-//   })
-// }
 
 //Creates a property
 export const createProperty = (

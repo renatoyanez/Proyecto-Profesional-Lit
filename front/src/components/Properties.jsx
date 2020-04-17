@@ -14,6 +14,10 @@ const useStyles = makeStyles(theme => ({
   media: {
     height: 0,
     paddingTop: "56.25%" // 16:9
+  },
+  container: {
+    marginTop: "-45%",
+    marginLeft: "20%"
   }
 }));
 
@@ -21,8 +25,8 @@ export default ({ propiedades }) => {
   const classes = useStyles();
 
   return (
-    <div >
-      <GridList cellHeight={400}>
+    <div  className={classes.container}>
+      <GridList cellHeight={400} >
         {propiedades.length >= 1 ? (
           propiedades.map(propiedad => (
             <Card

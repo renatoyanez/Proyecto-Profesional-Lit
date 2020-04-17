@@ -28,6 +28,9 @@ User.init(
       type: S.STRING,
       allowNull: false
     },
+    admin: {
+      type: S.BOOLEAN
+    },
     salt: {
         type: S.STRING
     } 

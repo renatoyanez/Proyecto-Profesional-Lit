@@ -29,6 +29,11 @@ function Copyright() {
 }
 
 const useStyles = makeStyles(theme => ({
+  container: {
+    height: "600px",
+    marginTop: "-50%",
+    marginLeft: "18%"
+  },
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
@@ -36,8 +41,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center"
   },
   avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
+    margin: theme.spacing(1)
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -55,7 +59,7 @@ export default props => {
   const classes = useStyles();
 
   return (
-    <div style={{ height: "600px", marginTop:"0%"}}>
+    <div className={classes.container}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>

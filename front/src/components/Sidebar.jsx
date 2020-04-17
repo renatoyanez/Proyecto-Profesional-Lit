@@ -15,7 +15,6 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import SearchIcon from "@material-ui/icons/Search";
-
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -26,18 +25,18 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+// function Copyright() {
+//   return (
+//     <Typography variant="body2" color="textSecondary" align="center">
+//       {"Copyright © "}
+//       <Link color="inherit" href="https://material-ui.com/">
+//         Your Website
+//       </Link>{" "}
+//       {new Date().getFullYear()}
+//       {"."}
+//     </Typography>
+//   );
+// }
 
 const drawerWidth = 240;
 
@@ -149,7 +148,7 @@ export default ({ handleChange, onSearch, user, onLogout }) => {
                 className={classes.link}
                 onClick={onLogout}
               >
-              Log-out
+              Logout
               </Button>
             </Link> 
             </IconButton>:
@@ -184,19 +183,7 @@ export default ({ handleChange, onSearch, user, onLogout }) => {
           </div>
 
         }
-          {/* <IconButton color="inherit">
-            <Link to="/register">
-              <Button
-                type="button"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.link}
-              >
-                Registrate
-              </Button>
-            </Link>
-          </IconButton> */}
+
           {user ? 
            <IconButton color="inherit">
         
@@ -213,6 +200,23 @@ export default ({ handleChange, onSearch, user, onLogout }) => {
          </IconButton>
          :
          null}
+         {user === "Renato" ? 
+         <IconButton color="inherit">
+        <Link to="/create">
+         <Typography
+            component="h3"
+            variant="h6"
+            color="inherit"
+            noWrap
+            className={classes.title}
+          >
+            Crear nueva propiedad
+          </Typography>
+          </Link>
+       
+       </IconButton>
+       :
+       null}
         </Toolbar>
       </AppBar>
       <Drawer
@@ -230,7 +234,9 @@ export default ({ handleChange, onSearch, user, onLogout }) => {
               noWrap
               className={classes.title}
             >
+            <Link to="/">
               L I T
+              </Link>
             </Typography>
         </div>
         <Divider />
@@ -343,10 +349,11 @@ export default ({ handleChange, onSearch, user, onLogout }) => {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Box pt={4}>
-            <Copyright />
+            {/* <Copyright /> */}
           </Box>
         </Container>
       </main>
     </div>
   );
 };
+

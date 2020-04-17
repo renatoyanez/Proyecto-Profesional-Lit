@@ -8,7 +8,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import HotelIcon from '@material-ui/icons/Hotel';
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
@@ -27,6 +27,11 @@ function Copyright() {
 }
 
 const useStyles = makeStyles(theme => ({
+  container: {
+    height: "600px",
+    marginTop: "-48%",
+    marginLeft: "18%"
+  },
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
@@ -34,8 +39,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center"
   },
   avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
+    margin: theme.spacing(1)
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -50,12 +54,12 @@ export default (props)=>{
   const classes = useStyles();
 
   return (
-    <div style={{ height: "600px" }}>
+    <div className={classes.container}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
+            <HotelIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Registrate

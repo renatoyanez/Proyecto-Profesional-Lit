@@ -150,11 +150,13 @@ Propiedades.create({
 Users.create({
   username: "Renato",
   email: "renatoyanez95@gmail.com",
-  password: "123"
+  password: "123",
+  admin: true
 }).then((user) => {
   console.log("USER DATA TRIAL", {
   username: user.username,
   email: user.email,
-  password: user.password
+  password: user.password,
+  admin: user.admin
   });
 })

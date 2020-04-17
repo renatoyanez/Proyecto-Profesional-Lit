@@ -89,11 +89,11 @@ export default props => (
           <div
             className="modal-footer d-flex justify-content-center"
           >
-          <Link to={`/propiedad/${props.propiedad.id}`} >
+          {/* <Link to={`/propiedad/${props.propiedad.id}`} > */}
             <button className="btn btn-indigo" onClick={props.handleSubmit}>
               Send <i className="fas fa-paper-plane-o ml-1"></i>
             </button>
-            </Link>
+            {/* </Link> */}
           </div>
         </div>
       </div>
