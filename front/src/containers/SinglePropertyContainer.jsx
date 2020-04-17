@@ -18,6 +18,7 @@ class SinglePropertyContainer extends Component {
 
     handleDelete(remove) {
         this.setState({/*cambiar el estado del modal*/})
+        alert("Acabas de eliminar esta propiedad")
         this.props.deleteProperty(remove)
         .then(() => {
             this.props.history.push('/')
@@ -27,7 +28,7 @@ class SinglePropertyContainer extends Component {
     render() {
         return (
 
-            <SingleProperty handleDelete = {this.handleDelete} propiedad={this.props.propiedad}/>
+            <SingleProperty user={this.props.user} handleDelete = {this.handleDelete} propiedad={this.props.propiedad}/>
         )
     }
 }
@@ -35,7 +36,8 @@ class SinglePropertyContainer extends Component {
 const mapStateToProps = (state) => {
     
     return {
-        propiedad: state.propiedades.propiedad
+        propiedad: state.propiedades.propiedad,
+        user: state.user.logged
     }
 }
 

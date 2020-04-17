@@ -1,13 +1,9 @@
-import { USER_LOGIN, LOAD_COOKIE, USER_LOGOUT } from "../utils/constants";
+import { USER_LOGIN, USER_LOGOUT } from "../utils/constants";
 import axios from "axios";
 
 export const userLogin = user => ({
   type: USER_LOGIN,
   user
-});
-
-export const loadCookie = () => ({
-  type: LOAD_COOKIE
 });
 
 export const userLogout = () => ({
@@ -32,8 +28,9 @@ export const userLoginCreator = theUser => {
   console.log("The user: ", theUser);
 
   return dispatch => {
-    axios.post("/api/user/login", theUser).then(user => {
+    axios.post("/api/user/login", theUser, history).then(user => {
       dispatch(userLogin(user.data));
+      return user.data
     });
   };
 };
@@ -50,7 +47,8 @@ export const userLoginCreator = theUser => {
 export const logOutCreator = () => {
   return function(dispatch) {
     return axios.get("/api/user/logout").then(() => {
-      dispatch(userLogout());
+      dispatch(userLogout())
+      
     });
   };
 };

@@ -50,7 +50,7 @@ class ModalContainer extends Component {
   handleSubmit(event) {
     event.preventDefault();
     return axios.post("/api/propiedades/edit", {
-      id: this.props.propiedad.id, //por si lo necesitas
+      id: this.props.propiedad.id,
       nombre: this.state.nombre,
       descripcion: this.state.descripcion,
       precio: parseInt(this.state.precio),
@@ -58,9 +58,8 @@ class ModalContainer extends Component {
       // imagen: [...this.state.imagen],
       // disponible: true
     }).then((propiedad) => {
-      // console.log("EL ID LA PROPIEDAD:    ", propiedad.data)
-        this.props.fetchSingleProperty(propiedad) // aqui va el action que te agrega propiedades
-        // this.props.history.push(?);
+        this.props.fetchSingleProperty(propiedad) 
+        // this.props.history.push('/')
         alert('Propiedad editada!') // busca un sweet alert 
     })
   }

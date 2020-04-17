@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Frament } from "react";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import ModalContainer from "../containers/ModalContainer";
@@ -12,7 +12,8 @@ const style = {
     filter: "invert(100%)"
   },
   single: {
-    marginTop: "3%"
+    marginTop: "-46%",
+    marginLeft: "15%"
   },
 
   centerButtoms: {
@@ -22,7 +23,9 @@ const style = {
 };
 
 
-export default ({ propiedad, handleDelete }) => {
+export default ({ user, propiedad, handleDelete }) => {
+
+  console.log("USUARIO: ", user)
 
   let history = useHistory();
 
@@ -33,11 +36,12 @@ export default ({ propiedad, handleDelete }) => {
   return (
     <div className="container" style={style.single}>
     <div style={style.centerButtom}>
-      {/* <Link to="/"> */}
+ 
         <Button onClick={ handleClick } style={{ marginLeft: "2%" }} color="primary">
         <h5>Volver atras</h5>
         </Button>
-      {/* </Link> */}
+         {user.admin ? (
+         <>
       <Button size="small" color="primary">
         <h5 data-toggle="modal" data-target={`#editionFormId${propiedad.id}`}>
           Editar datos
@@ -49,6 +53,7 @@ export default ({ propiedad, handleDelete }) => {
           Eliminar
         </h5>
       </Button>
+      </>) : null}
     </div>
       {propiedad.nombre && (
         <div

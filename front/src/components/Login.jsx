@@ -9,7 +9,7 @@ import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -29,9 +29,11 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
+    marginTop: "-50%"
   },
   image: {
-    backgroundImage: 'url(https://source.unsplash.com/featured/?indoor,interior,home,livingroom,bedroom)',
+    // backgroundImage: 'url(https://source.unsplash.com/featured/?indoor,interior,home,livingroom,bedroom)',
+    backgroundImage: 'url(https://www.caandesign.com/wp-content/uploads/2017/01/battery-park-city-beautiful-apartment-designed-lo-chen-design-05-1068x714.jpg)',  
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
@@ -45,8 +47,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    margin: theme.spacing(1)
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -67,7 +68,7 @@ export default (props) => {
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
+            <AccountCircleIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Ingresar

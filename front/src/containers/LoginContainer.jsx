@@ -22,7 +22,7 @@ class LoginContainer extends Component {
   
   handlerSubmit(event) {
     event.preventDefault();
-    this.props.userLogin(this.state)
+    this.props.userLogin(this.state, this.props.history)
   }
 
   render() {

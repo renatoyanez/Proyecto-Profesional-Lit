@@ -1,16 +1,13 @@
-import { USER_LOGIN, LOAD_COOKIE, USER_LOGOUT } from '../utils/constants'
+import { USER_LOGIN, USER_LOGOUT } from '../utils/constants'
 
 const initialState = {
-    logged: {},
-    loading: false
+    logged: {}
 }
 
 export default function(state = initialState, action) {
     switch (action.type) {
-        case LOAD_COOKIE:
-            return Object.assign({}, state, { loading: true });
         case USER_LOGIN:
-            return Object.assign({}, state, { logged: action.user, loading: false });
+            return Object.assign({}, state, { logged: action.user});
         case USER_LOGOUT:
             return Object.assign({}, state, { logged: {} }); 
         default:
