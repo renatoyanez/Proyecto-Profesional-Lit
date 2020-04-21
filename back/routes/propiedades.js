@@ -56,7 +56,6 @@ router.get('/search/:propiedades', (req, res, next) => {
 })
 
 router.get("/search/:propiedades", (req, res, next) => {
-  console.log("FIND BY PRICE: ", req.findByPrice);
   const search = req.params.propiedades.toLowerCase();
   console.log("SEARCH: ", search)
   Propiedades.findAll(req.findByPrice)
@@ -76,9 +75,6 @@ router.get("/search/:propiedades", (req, res, next) => {
     });
 });
 
-
-/*** Searches by price: ***/
-/**** IMPORTANTE: En algun momento hay que refacotrear sta ruta debido a que no es recomedable filtrar responses de rutas al back con javascript nativo, En su lugar se recomienda utilizar las herramientas dadas por sequelize para filtrar requests como el where o el op ****/
 
 
 

@@ -153,7 +153,7 @@ Users.create({
   password: "123",
   admin: true
 }).then((user) => {
-  console.log("USER DATA TRIAL", {
+  console.log("SUPERADMIN: ", {
   username: user.username,
   email: user.email,
   password: user.password,

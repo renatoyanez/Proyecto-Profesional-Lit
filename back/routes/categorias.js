@@ -2,48 +2,62 @@
 const express = require("express");
 const router = express.Router();
 const { Categoria, Propiedades } = require("../models/index");
-const { Op } = require("sequelize");
-
-router.get("/all", (req, res, next) => {
-  Categoria.findAll().then(data => res.json(data));
-});
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 
-router.get("/single/:id", (req, res, next) => {
+/**** Searches by params ****/
+router.get("/:categoria", (req, res, next) => {
+  const lowCase = req.params.categoria.toLowerCase()
   Categoria.findAll({
     include: [
-      {
-        model: Propiedades
-      }
-    ],
-    where: {
-      id: req.params.id
+    {
+      model: Propiedades
     }
-  }).then(data => {
-    res.json(data);
-  });
+  ], 
+  where: {
+    name: Sequelize.where(Sequelize.fn('LOWER', Sequelize.col('name')), 'LIKE', '%' + lowCase + '%')
+  }}).then((categoria) => {
+    return res.json(categoria)
+  })
+  .catch(next)
 });
 
-router.get("/:categoria", (req, res, next) => {
-  Categoria.findAll({
-    where: { name: req.params.categoria }
-  }).then(data => {
-    res.json(data);
-  });
-});
 
 router.delete("/delete/:id", (req, res, next) => {
   Categoria.destroy({
     where: { id: req.params.id }
-  }).then(data => res.json(data));
+  }).then(data => res.json(data))
+  next()
+});
+
+router.delete("/delete/:categoria", (req, res, next) => {
+  Categoria.destroy({
+    where: { name: req.params.categoria }
+  }).then(data => res.json(data))
+  .catch(err => {
+    throw new Error(err);
+  });
 });
 
 router.put("/edit/:id", (req, res, next) => {
   Categoria.update(
     { name: req.body.name },
     { where: { id: req.params.id } }
-  ).then(() => res.sendStatus(201));
+  ).then(() => res.sendStatus(201))
+  next()
 });
+
+router.put("/edit/:categoria", (req, res, next) => {
+  Categoria.update(
+    { name: req.body.name },
+    { where: { name: req.params.categoria } }
+  ).then(() => res.sendStatus(201))
+  .catch(err => {
+    throw new Error(err);
+  });
+});
+
 
 router.post("/create", (req, res, next) => {
   Categoria.create(req.body)
@@ -54,41 +68,5 @@ router.post("/create", (req, res, next) => {
       throw new Error(err);
     });
 });
-
-/**** Agrega propiedades a categoria *****/
-// router.post("/add", (req, res, next) => {
-//   Propiedades.create(req.body)
-//   .then(propiedad =>
-//     Categoria.findAll()
-//     .then(categorias => {
-//       const filtrada = categorias.filter(c => {
-//         if (req.body.categorias.includes(c.name)) return c;
-//       });
-//       propiedad.addCategoria(filtrada)
-//       .then(() => {
-//         res.status(200).send("OK");
-//       });
-//     })
-//   );
-// });
-
-
-
-// router.get('/:nombre', function (req, res) {
-//   try {
-//     Propiedades.findAll({
-//           include: [{
-//               model: Categoria,
-//               where: {
-//                   name: req.params.nombre
-//               }
-//           }]
-//       })
-//       .then((categoria) => {
-//           res.status(200).send(categoria)
-//       })
-//   } catch (err) { console.log(err) }
-// })
-
 
 module.exports = router;
