@@ -13,12 +13,13 @@ class CreatePropertyContainer extends Component {
       precio: 0,
       ubicacion: "",
       imagen: "",
-      disponible: true
-      // categorias: []
+      disponible: true,
+      categorias: {}
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
 
   handleChange(event) {
     this.setState({
@@ -28,26 +29,32 @@ class CreatePropertyContainer extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    let price = parseInt(this.state.precio)
-    console.log(price, "PRICEEEEEEEEEEEEEE");
-    
+    let price = parseInt(this.state.precio);
+
     let arrayOfImages = [];
     let images = this.state.imagen.split(", ");
     images.forEach(img => {
       arrayOfImages.push(img);
     });
+    
+    // let arrayOfCategories = [];
+    // let categories = this.state.categorias.split(", ");
+    // categories.forEach(cat => {
+    //   arrayOfCategories.push(cat);
+    // })
+
     this.props.createProperty(
       this.state.nombre,
       this.state.descripcion,
       price,
       this.state.ubicacion,
       arrayOfImages,
-      this.state.disponible
+      this.state.disponible,
+      // arrayOfCategories
     );
   }
 
   render() {
-
     return (
       <CreateProperty
         handleChange={this.handleChange}
@@ -59,24 +66,7 @@ class CreatePropertyContainer extends Component {
 
 const matchDispatchToProps = (dispatch, ownprops) => {
   return {
-    createProperty: (
-      nombre,
-      descripcion,
-      precio,
-      ubicacion,
-      imagen,
-      disponible
-    ) =>
-      dispatch(
-        createProperty(
-          nombre,
-          descripcion,
-          precio,
-          ubicacion,
-          imagen,
-          disponible
-        )
-      )
+    createProperty: (nombre, descripcion, precio, ubicacion, imagen, disponible) => dispatch(createProperty(nombre, descripcion, precio, ubicacion, imagen, disponible))
   };
 };
 

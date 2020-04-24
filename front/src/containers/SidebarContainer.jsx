@@ -2,11 +2,9 @@ import React, { Component } from "react";
 import Sidebar from "../components/Sidebar";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import {
-  fetchFilteredProperties,
-  fetchProducts
-} from "../redux/actions/getProperties";
+import { fetchFilteredProperties, fetchProducts } from "../redux/actions/getProperties";
 import { logOutCreator } from "../redux/actions/getUser"
+import { fetchCategoriesCreator } from '../redux/actions/getCategories'
 
 class SidebarContainer extends Component {
   constructor(props) {
@@ -14,12 +12,26 @@ class SidebarContainer extends Component {
     this.state = {
       clearInput: "",
       menor: 0,
-      mayor: 0
+      mayor: 0,
+      categories: {}
     };
     this.onSearch = this.onSearch.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.onLogout = this.onLogout.bind(this);
+    this.handleCatChange = this.handleCatChange.bind(this)
   }
+
+  componentDidMount() {
+    if(!this.props.categories.length) this.props.fetchCategoriesCreator()
+  }
+
+  handleCatChange(event) {
+    console.log("EL VALUE DEL HANDLE: ", event.target.value);
+    this.state.categories[event.target.value] = true
+    this.setState({[event.target.value]: event.target.value })
+    
+  }
+
 
   handleChange(e) {
     this.setState({
@@ -30,17 +42,27 @@ class SidebarContainer extends Component {
   /**** Para el search de propiedades por nombre, ubicacion. etc ****/
   onSearch(event) {
     event.preventDefault();
+
     const filterValue = this.state.menor || this.state.mayor ? true : false;
-    this.props
-      .fetchFilteredProperties(this.state.clearInput, {
+    let arrayOfCategories = [];
+
+    for(var key in this.state.categories) {
+      arrayOfCategories.push(key)
+      console.log("ARRAY OF CATEGORIES: ", arrayOfCategories)
+      console.log("EL OBJETO DE CATEGORIAS CLICKEADAS: ", this.state.categories)
+      this.props.fetchFilteredProperties(this.state.clearInput, {
         menor: this.state.menor,
         mayor: this.state.mayor,
         filterByPrice: filterValue
-      })
+      }, arrayOfCategories)
       .then(() => {
         this.props.history.push(`/search/${this.state.clearInput}`);
       });
+    }
   }
+
+  
+
   onLogout() {
     this.props.logOut();
   }
@@ -52,6 +74,8 @@ class SidebarContainer extends Component {
         handleChange={this.handleChange}
         user={this.props.user}
         onLogout={this.onLogout}
+        categories={this.props.categories}
+        handleCatChange={this.handleCatChange}
       />
     );
   }
@@ -61,17 +85,17 @@ const mapStateToProps = (state, ownProps) => {
   return {
     propiedadFiltrada: state.propiedadFiltrada,
     user: state.user.logged.username,
-    propiedades: state.propiedades.propiedades //borralo de ser necesaio
+    propiedades: state.propiedades.propiedades,
+    categories: state.categories.categories
   };
 };
 
 const matchDispatchToProps = function(dispatch, ownprops) {
   return {
-    fetchFilteredProperties: (propiedadFiltrada, obj) =>
-      dispatch(fetchFilteredProperties(propiedadFiltrada, obj)),
-    // fetchPriceProperties: (menor, mayor) => dispatch(fetchPriceProperties(menor, mayor)),
+    fetchFilteredProperties: (propiedadFiltrada, obj) => dispatch(fetchFilteredProperties(propiedadFiltrada, obj)),
     fetchProducts: () => dispatch(fetchProducts()),
-    logOut: () => dispatch(logOutCreator())
+    logOut: () => dispatch(logOutCreator()),
+    fetchCategoriesCreator: () => dispatch(fetchCategoriesCreator())
   };
 };
 export default withRouter(
