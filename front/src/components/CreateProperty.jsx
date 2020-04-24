@@ -131,7 +131,7 @@ export default props => {
                   required
                   fullWidth
                   id="Imagen"
-                  label="Imagen (URL)"
+                  label="URLs (separadas por comas)"
                   name="imagen"
                   autoComplete="lname"
                 />

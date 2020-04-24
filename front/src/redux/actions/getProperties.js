@@ -31,11 +31,11 @@ export const singlePropertyCreator = id => dispatch => {
 };
 
 //Searches property by name/location/description/price(by range)
-export const fetchFilteredProperties = (filter, precio) => dispatch => {
-  console.log("FILTER: ", filter, "PRECIO:  ", precio);
+export const fetchFilteredProperties = (filter, precio, categorium) => dispatch => {
+  console.log("FILTER: ", filter, "PRECIO:  ", precio, "CATEGORIAS: ", categorium);
 
   return axios
-    .get(`/api/propiedades/search/${filter}?filterByPrice=${precio.filterByPrice}&menor=${precio.menor}&mayor=${precio.mayor}`
+    .get(`/api/propiedades/search/${filter}?filterByPrice=${precio.filterByPrice}&menor=${precio.menor}&mayor=${precio.mayor}&categories=${categorium}`
     )
     .then(properties => {
       dispatch(searchproperties(properties.data));
@@ -45,22 +45,10 @@ export const fetchFilteredProperties = (filter, precio) => dispatch => {
 
 
 //Creates a property
-export const createProperty = (
-  nombre,
-  descripcion,
-  precio,
-  ubicacion,
-  imagen,
-  disponible
-) => dispatch => {
+export const createProperty = (nombre, descripcion, precio, ubicacion, imagen, disponible, categorias) => dispatch => {
   return axios
     .post("/api/propiedades/create", {
-      nombre,
-      descripcion,
-      precio,
-      ubicacion,
-      imagen,
-      disponible
+      nombre, descripcion, precio, ubicacion, imagen, disponible, categorias
     })
     .then(res => {
       dispatch(fetchSingleProperty(res));

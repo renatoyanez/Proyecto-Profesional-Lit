@@ -6,6 +6,9 @@ const { Op } = require("sequelize");
 
 /**** This one creates a property ****/
 router.post("/create", (req, res, next) => {
+  console.log("CATEGORIA EN EL REQ BODY: ", req.body.categorias);
+  
+  const categories = req.body.categorias;
   Propiedades.create({
     nombre: req.body.nombre,
     descripcion: req.body.descripcion,
@@ -15,7 +18,13 @@ router.post("/create", (req, res, next) => {
     disponible: req.body.disponible
   })
     .then(propiedad => {
-      res.status(201).json(propiedad);
+      Categoria.findAll({
+        where: {
+          name: categories
+        }
+      }).then(categorium =>
+        propiedad.addCategoria(categorium).then(() => res.status(201).json(propiedad))
+      );
     })
     .catch(err => {
       throw new Error(err);
@@ -44,22 +53,23 @@ router.post("/edit", (req, res, next) => {
 });
 
 //Route that goes to the db by searching parameter
-router.get('/search/:propiedades', (req, res, next) => {
+router.get("/search/:propiedades", (req, res, next) => {
   console.log("EL QUERY:  ", req.query);
-  if(req.query.filterByPrice === "true") {
+  if (req.query.filterByPrice === "true") {
     req.findByPrice = {
-    where: {
-      precio: { [Op.between]: [req.query.menor, req.query.mayor] }
-    }
-  }}
-  next()
-})
+      where: {
+        precio: { [Op.between]: [req.query.menor, req.query.mayor] }
+      }
+    };
+  }
+  next();
+});
 
 router.get("/search/:propiedades", (req, res, next) => {
   const search = req.params.propiedades.toLowerCase();
-  console.log("SEARCH: ", search)
+  console.log("SEARCH: ", search);
   Propiedades.findAll(req.findByPrice)
-    .then(data => {      
+    .then(data => {
       if (!data) res.sendStatus(404);
       const propertiesFilter = data.filter(
         /**** Buscar con metodos sequelize****/
@@ -74,9 +84,6 @@ router.get("/search/:propiedades", (req, res, next) => {
       throw new Error(err);
     });
 });
-
-
-
 
 /**** Deletes property ****/
 router.delete("/delete/:id", (req, res, next) => {

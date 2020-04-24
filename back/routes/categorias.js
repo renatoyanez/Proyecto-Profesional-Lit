@@ -5,6 +5,14 @@ const { Categoria, Propiedades } = require("../models/index");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
+router.get("/all", (req, res, next) => {
+  Categoria.findAll()
+    .then(data => {
+      res.status(200).json(data);
+    })
+    .catch(next);
+});
+
 
 /**** Searches by params ****/
 router.get("/:categoria", (req, res, next) => {

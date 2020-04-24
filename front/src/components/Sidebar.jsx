@@ -15,8 +15,6 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import SearchIcon from "@material-ui/icons/Search";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import ApartmentIcon from "@material-ui/icons/Apartment";
@@ -26,6 +24,7 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import AddIcon from "@material-ui/icons/Add";
 import HomeWorkIcon from '@material-ui/icons/HomeWork';
+import Checkbox from '@material-ui/core/Checkbox';
 
 const drawerWidth = 240;
 
@@ -115,12 +114,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default ({ handleChange, onSearch, user, onLogout }) => {
+export default ({ handleChange, handleCatChange, onSearch, user, onLogout, categories }) => {
   const classes = useStyles();
-  const handleRadioChange = event => {
-    setHelperText(" ");
-    setError(false);
-  };
+  // const handleRadioChange = event => {
+  //   setHelperText(" ");
+  //   setError(false);
+  // };
 
   return (
     <div className={classes.root}>
@@ -281,34 +280,14 @@ export default ({ handleChange, onSearch, user, onLogout }) => {
             <ListItemText primary="Categorias" />
           </ListItem>
           <ListItem button>
+          <form onSubmit={onSearch}>
             <FormControl component="fieldset" className={classes.formControl}>
-              <RadioGroup
-                aria-label="quiz"
-                name="quiz"
-                onChange={handleRadioChange}
-              >
-                <FormControlLabel
-                  value="depto"
-                  control={<Radio />}
-                  label="Departamento"
-                />
-                <FormControlLabel value="ph" control={<Radio />} label="PH" />
-                <FormControlLabel
-                  value="casa"
-                  control={<Radio />}
-                  label="Casa"
-                />
-                <FormControlLabel
-                  value="compra"
-                  control={<Radio />}
-                  label="Compra"
-                />
-                <FormControlLabel
-                  value="alquilar"
-                  control={<Radio />}
-                  label="Alquilar"
-                />
-              </RadioGroup>
+               {categories.length ? ( 
+                 categories.map(category => 
+               <FormControlLabel
+                  control={<Checkbox onChange={handleCatChange} value={category.name} color="default" />}
+                  label={category.name}
+               />)) : (<div><p>No hay categorias existentes</p></div>)}
               <Button
                 type="submit"
                 variant="contained"
@@ -318,6 +297,7 @@ export default ({ handleChange, onSearch, user, onLogout }) => {
                 Filtra
               </Button>
             </FormControl>
+            </form>
           </ListItem>
         </List>
         <Divider />

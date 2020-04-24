@@ -1,8 +1,4 @@
 import React from "react";
-import InputGroup from "react-bootstrap/InputGroup";
-import FormControl from "react-bootstrap/FormControl";
-import Link from '@material-ui/core/Link';
-
 
 export default props => (
   
@@ -31,7 +27,7 @@ export default props => (
             </button>
           </div>
           <div className="modal-body mx-3">
-            <div className="md-form mb-5">
+            <div className="md-form mb-3">
               <i className="fa fa-gear mr-5"></i>
               <input
                 type="text"
@@ -42,7 +38,7 @@ export default props => (
                 onChange={props.handleChange}
               />
             </div>
-            <div className="md-form mb-5">
+            <div className="md-form mb-3">
               <i className="fa fa-gear mr-5"></i>
               <input
                 type="text"
@@ -54,7 +50,7 @@ export default props => (
               />
             </div>
 
-            <div className="md-form mb-5">
+            <div className="md-form mb-3">
               <i className="fa fa-gear mr-5"></i>
               <input
                 type="text"
@@ -66,7 +62,7 @@ export default props => (
               />
             </div>
 
-            <div className="md-form mb-5">
+            <div className="md-form mb-3">
               <i className="fa fa-gear mr-5"></i>
               <input
                 type="text"
