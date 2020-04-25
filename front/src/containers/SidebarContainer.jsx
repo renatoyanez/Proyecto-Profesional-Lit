@@ -18,24 +18,24 @@ class SidebarContainer extends Component {
     this.onSearch = this.onSearch.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.onLogout = this.onLogout.bind(this);
-    this.handleCatChange = this.handleCatChange.bind(this)
+    // this.handleCatChange = this.handleCatChange.bind(this)
   }
 
   componentDidMount() {
     if(!this.props.categories.length) this.props.fetchCategoriesCreator()
   }
 
-  handleCatChange(event) {
-    console.log("EL VALUE DEL HANDLE: ", event.target.value);
-    this.state.categories[event.target.value] = true
-    this.setState({[event.target.value]: event.target.value })
+  // handleCatChange(event) {
+  //   console.log("EL VALUE DEL HANDLE: ", event.target.value);
+  //   this.state.categories[event.target.value] = true
+  //   this.setState({ [event.target.value]: event.target.value })
     
-  }
+  // }
 
 
-  handleChange(e) {
+  handleChange(event) {
     this.setState({
-      [e.target.name]: e.target.value
+      [event.target.name]: event.target.value
     });
   }
 
@@ -44,21 +44,22 @@ class SidebarContainer extends Component {
     event.preventDefault();
 
     const filterValue = this.state.menor || this.state.mayor ? true : false;
-    let arrayOfCategories = [];
+    // let arrayOfCategories = [];
 
-    for(var key in this.state.categories) {
-      arrayOfCategories.push(key)
-      console.log("ARRAY OF CATEGORIES: ", arrayOfCategories)
+    // for(var key in this.state.categories) {
+    //   arrayOfCategories.push(key)
+      // console.log("ARRAY OF CATEGORIES: ", arrayOfCategories)
+      // }
       console.log("EL OBJETO DE CATEGORIAS CLICKEADAS: ", this.state.categories)
       this.props.fetchFilteredProperties(this.state.clearInput, {
         menor: this.state.menor,
         mayor: this.state.mayor,
-        filterByPrice: filterValue
-      }, arrayOfCategories)
+        filterByPrice: filterValue,
+        // categories: arrayOfCategories
+      })
       .then(() => {
         this.props.history.push(`/search/${this.state.clearInput}`);
       });
-    }
   }
 
   
@@ -75,7 +76,7 @@ class SidebarContainer extends Component {
         user={this.props.user}
         onLogout={this.onLogout}
         categories={this.props.categories}
-        handleCatChange={this.handleCatChange}
+        // handleCatChange={this.handleCatChange}
       />
     );
   }

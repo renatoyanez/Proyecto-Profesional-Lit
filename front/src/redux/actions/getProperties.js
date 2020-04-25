@@ -31,11 +31,11 @@ export const singlePropertyCreator = id => dispatch => {
 };
 
 //Searches property by name/location/description/price(by range)
-export const fetchFilteredProperties = (filter, precio, categorium) => dispatch => {
-  console.log("FILTER: ", filter, "PRECIO:  ", precio, "CATEGORIAS: ", categorium);
+export const fetchFilteredProperties = (searched, filters) => dispatch => {
+  console.log("SEARCHED: ", searched, "FILTERS:  ", filters);
 
   return axios
-    .get(`/api/propiedades/search/${filter}?filterByPrice=${precio.filterByPrice}&menor=${precio.menor}&mayor=${precio.mayor}&categories=${categorium}`
+    .get(`/api/propiedades/search/${searched}?filterByPrice=${filters.filterByPrice}&menor=${filters.menor}&mayor=${filters.mayor}&categories=${filters.categories}`
     )
     .then(properties => {
       dispatch(searchproperties(properties.data));

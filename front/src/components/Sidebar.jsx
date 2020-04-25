@@ -262,17 +262,18 @@ export default ({ handleChange, handleCatChange, onSearch, user, onLogout, categ
                 />
               </Grid>
             </ListItem>
-            <ListItem button>
-              <Button
-                type="submit"
-                variant="contained"
-                style={{ backgroundColor: "#bdbdbd" }}
-                className={classes.button}
-              >
-                Busca tu Propiedad
-              </Button>
-            </ListItem>
-          </form>
+                  <ListItem button>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      style={{ backgroundColor: "#bdbdbd" }}
+                      className={classes.button}
+                    >
+                      Busca tu Propiedad
+                    </Button>
+                  </ListItem>
+            </form>
+
           <ListItem button>
             <ListItemIcon>
               <ApartmentIcon />
@@ -280,24 +281,22 @@ export default ({ handleChange, handleCatChange, onSearch, user, onLogout, categ
             <ListItemText primary="Categorias" />
           </ListItem>
           <ListItem button>
-          <form onSubmit={onSearch}>
             <FormControl component="fieldset" className={classes.formControl}>
                {categories.length ? ( 
                  categories.map(category => 
-               <FormControlLabel
+                  <FormControlLabel
                   control={<Checkbox onChange={handleCatChange} value={category.name} color="default" />}
                   label={category.name}
-               />)) : (<div><p>No hay categorias existentes</p></div>)}
+                  />)) : (<div><p>No hay categorias existentes</p></div>)}
               <Button
                 type="submit"
                 variant="contained"
                 style={{ backgroundColor: "#bdbdbd" }}
                 className={classes.button}
-              >
+                >
                 Filtra
               </Button>
             </FormControl>
-            </form>
           </ListItem>
         </List>
         <Divider />

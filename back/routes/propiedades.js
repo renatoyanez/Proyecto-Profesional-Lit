@@ -56,7 +56,7 @@ router.post("/edit", (req, res, next) => {
 router.get("/search/:propiedades", (req, res, next) => {
   console.log("EL QUERY:  ", req.query);
   if (req.query.filterByPrice === "true") {
-    req.findByPrice = {
+    req.findByPriceAndCategory = {
       where: {
         precio: { [Op.between]: [req.query.menor, req.query.mayor] }
       }
@@ -66,9 +66,15 @@ router.get("/search/:propiedades", (req, res, next) => {
 });
 
 router.get("/search/:propiedades", (req, res, next) => {
+  console.log("CATEGORIAS: ", req.query.categories)
+
+  next()
+})
+
+router.get("/search/:propiedades", (req, res, next) => {
   const search = req.params.propiedades.toLowerCase();
   console.log("SEARCH: ", search);
-  Propiedades.findAll(req.findByPrice)
+  Propiedades.findAll(req.findByPriceAndCategory)
     .then(data => {
       if (!data) res.sendStatus(404);
       const propertiesFilter = data.filter(
