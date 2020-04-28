@@ -27,7 +27,7 @@ export default ({ propiedades }) => {
   return (
     <div  className={classes.container}>
       <GridList cellHeight={400} >
-        {propiedades.length >= 1 ? (
+        {propiedades != null ? (propiedades.length >= 1 ? (
           propiedades.map(propiedad => (
             <Card
               style={{
@@ -59,7 +59,7 @@ export default ({ propiedades }) => {
           ))
         ) : (
           <div></div>
-        )}
+        )) : (null)}
       </GridList>
     </div>
   );

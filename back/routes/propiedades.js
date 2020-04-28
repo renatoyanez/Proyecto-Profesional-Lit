@@ -2,12 +2,15 @@
 const express = require("express");
 const router = express.Router();
 const { Propiedades, Categoria } = require("../models/index");
-const { Op } = require("sequelize");
+// const { Op } = require("sequelize");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
+
 
 /**** This one creates a property ****/
 router.post("/create", (req, res, next) => {
   console.log("CATEGORIA EN EL REQ BODY: ", req.body.categorias);
-  
+
   const categories = req.body.categorias;
   Propiedades.create({
     nombre: req.body.nombre,
@@ -52,11 +55,30 @@ router.post("/edit", (req, res, next) => {
     .catch(next);
 });
 
-//Route that goes to the db by searching parameter
+
+//Route that goes to the DB by searching parameter
+router.get("/search/:propiedades", (req, res, next) => {
+  console.log("EL QUERY CATEGORIES:  ", req.query.categories.split("_"));
+  const categorium = req.query.categories.split("_")
+  if (req.query.categoriesBoolean === "true") {
+    req.findByCategory = {
+      include: [
+        {
+          model: Categoria,
+          where: {
+            name: { [Op.like]: { [Op.any]: categorium } }
+          }
+      }
+      ] 
+    }
+  }
+  next();
+});
+
 router.get("/search/:propiedades", (req, res, next) => {
   console.log("EL QUERY:  ", req.query);
   if (req.query.filterByPrice === "true") {
-    req.findByPriceAndCategory = {
+    req.findByPrice = {
       where: {
         precio: { [Op.between]: [req.query.menor, req.query.mayor] }
       }
@@ -65,16 +87,11 @@ router.get("/search/:propiedades", (req, res, next) => {
   next();
 });
 
-router.get("/search/:propiedades", (req, res, next) => {
-  console.log("CATEGORIAS: ", req.query.categories)
-
-  next()
-})
 
 router.get("/search/:propiedades", (req, res, next) => {
   const search = req.params.propiedades.toLowerCase();
-  console.log("SEARCH: ", search);
-  Propiedades.findAll(req.findByPriceAndCategory)
+  // console.log("SEARCH: ", search);
+  Propiedades.findAll({...req.findByPrice, ...req.findByCategory})
     .then(data => {
       if (!data) res.sendStatus(404);
       const propertiesFilter = data.filter(
@@ -84,6 +101,8 @@ router.get("/search/:propiedades", (req, res, next) => {
           propiedades.descripcion.toLowerCase().includes(search) ||
           propiedades.ubicacion.toLowerCase().includes(search)
       );
+      // console.log("RESPONSE DEL SEARCH", propertiesFilter[0].dataValues.categoria[0].dataValues.name);
+
       res.json(propertiesFilter);
     })
     .catch(err => {

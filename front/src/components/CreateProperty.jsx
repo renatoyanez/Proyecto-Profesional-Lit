@@ -6,7 +6,6 @@ import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import Radio from "@material-ui/core/Radio";
-
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
@@ -31,7 +30,7 @@ function Copyright() {
 const useStyles = makeStyles(theme => ({
   container: {
     height: "600px",
-    marginTop: "-50%",
+    marginTop: "-47%",
     marginLeft: "18%"
   },
   paper: {
