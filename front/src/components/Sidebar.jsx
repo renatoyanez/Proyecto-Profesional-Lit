@@ -114,7 +114,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default ({ handleChange, handleCatChange, onSearch, user, onLogout, categories }) => {
+export default ({ handleChange, handleCatChange, onSearch, onCatSearch, user, onLogout, categories }) => {
   const classes = useStyles();
   // const handleRadioChange = event => {
   //   setHelperText(" ");
@@ -129,7 +129,7 @@ export default ({ handleChange, handleCatChange, onSearch, user, onLogout, categ
         className={clsx(classes.appBar && classes.appBarShift)}
       >
         <Toolbar className={classes.toolbar}>
-          {user ? (
+          {user.username ? (
             <IconButton color="inherit">
               <Link to="/login">
                 <Button
@@ -170,7 +170,7 @@ export default ({ handleChange, handleCatChange, onSearch, user, onLogout, categ
             </div>
           )}
 
-          {user ? (
+          {user.username ? (
             <IconButton color="inherit">
               <Typography
                 component="h3"
@@ -179,17 +179,16 @@ export default ({ handleChange, handleCatChange, onSearch, user, onLogout, categ
                 noWrap
                 className={classes.title}
               >
-                {`Bienvenido ${user}!`}
+                {`Bienvenido ${user.username}!`}
               </Typography>
             </IconButton>
           ) : null}
-          {user === "Renato" ? (
+          {user.admin ? (
             <IconButton color="inherit">
               <Link to="/create">
                 <Button
                   variant="contained"
                   style={{ backgroundColor: "#bdbdbd" }}
-                  //onClick={handleClick}
                   className={classes.button}
                   startIcon={<AddIcon />}
                   style={{ marginLeft: "4%" }}
@@ -272,8 +271,8 @@ export default ({ handleChange, handleCatChange, onSearch, user, onLogout, categ
                       Busca tu Propiedad
                     </Button>
                   </ListItem>
-            </form>
-
+              {/* </form>
+              <form onSubmit={onCatSearch}> */}
           <ListItem button>
             <ListItemIcon>
               <ApartmentIcon />
@@ -282,12 +281,12 @@ export default ({ handleChange, handleCatChange, onSearch, user, onLogout, categ
           </ListItem>
           <ListItem button>
             <FormControl component="fieldset" className={classes.formControl}>
-               {categories.length ? ( 
+               {categories != null ? (categories.length ? ( 
                  categories.map(category => 
                   <FormControlLabel
-                  control={<Checkbox onChange={handleCatChange} value={category.name} color="default" />}
+                  control={<Checkbox onChange={handleCatChange} name={category.name} color="default" />}
                   label={category.name}
-                  />)) : (<div><p>No hay categorias existentes</p></div>)}
+                  />)) : (<div><p>No hay categorias existentes</p></div>)) : null}
               <Button
                 type="submit"
                 variant="contained"
@@ -298,6 +297,7 @@ export default ({ handleChange, handleCatChange, onSearch, user, onLogout, categ
               </Button>
             </FormControl>
           </ListItem>
+          </form>
         </List>
         <Divider />
       </Drawer>

@@ -1,4 +1,4 @@
-import { FETCH_PROPERTIES, FETCH_SINGLE_PROPERTY } from "../utils/constants";
+import { FETCH_PROPERTIES, FETCH_SINGLE_PROPERTY, FETCH_CATEGORIES } from "../utils/constants";
 import axios from "axios";
 
 export const fetchProperties = propiedades => ({
@@ -33,9 +33,9 @@ export const singlePropertyCreator = id => dispatch => {
 //Searches property by name/location/description/price(by range)
 export const fetchFilteredProperties = (searched, filters) => dispatch => {
   console.log("SEARCHED: ", searched, "FILTERS:  ", filters);
-
+  const categorium = filters.categories.join("_")
   return axios
-    .get(`/api/propiedades/search/${searched}?filterByPrice=${filters.filterByPrice}&menor=${filters.menor}&mayor=${filters.mayor}&categories=${filters.categories}`
+    .get(`/api/propiedades/search/${searched}?filterByPrice=${filters.filterByPrice}&menor=${filters.menor}&mayor=${filters.mayor}&categories=${categorium}&categoriesBoolean=${filters.categoriesBoolean}`
     )
     .then(properties => {
       dispatch(searchproperties(properties.data));

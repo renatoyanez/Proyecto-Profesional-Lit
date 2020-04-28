@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchFilteredProperties, fetchProducts } from "../redux/actions/getProperties";
 import { logOutCreator } from "../redux/actions/getUser"
-import { fetchCategoriesCreator } from '../redux/actions/getCategories'
+import { fetchCategoriesCreator, fetchSearchedCategories } from '../redux/actions/getCategories'
 
 class SidebarContainer extends Component {
   constructor(props) {
@@ -18,20 +18,33 @@ class SidebarContainer extends Component {
     this.onSearch = this.onSearch.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.onLogout = this.onLogout.bind(this);
-    // this.handleCatChange = this.handleCatChange.bind(this)
+    this.handleCatChange = this.handleCatChange.bind(this)
   }
 
   componentDidMount() {
-    if(!this.props.categories.length) this.props.fetchCategoriesCreator()
+
+    if (!this.props.categories.length) this.props.fetchCategoriesCreator()
+      .then(() => {
+        const objectOfCategories = {};
+        this.props.categories.map(category => {
+          console.log(category)
+
+          objectOfCategories[category.name] = false
+
+        })
+        // console.log(objectOfCategories)
+        this.setState({ categories: objectOfCategories })
+      }).then(() => console.log("ESTADO DE CATEGORIAS: ", this.state.categories))
   }
 
-  // handleCatChange(event) {
-  //   console.log("EL VALUE DEL HANDLE: ", event.target.value);
-  //   this.state.categories[event.target.value] = true
-  //   this.setState({ [event.target.value]: event.target.value })
-    
-  // }
+  /**** POR TERMINAR */
+  handleCatChange(event) {
+    console.log("EL TARGET DEL HANDLE: ", event.target.checked);
+    // console.log("EL VALUE DEL HANDLE: ", event.target.value);
+    // console.log("EL OBJETO DE CATEGORIAS CLICKEADAS: ", this.state.categories)
 
+    this.setState({ categories: {...this.state.categories, [event.target.name]: event.target.checked } })
+  }
 
   handleChange(event) {
     this.setState({
@@ -43,26 +56,27 @@ class SidebarContainer extends Component {
   onSearch(event) {
     event.preventDefault();
 
-    const filterValue = this.state.menor || this.state.mayor ? true : false;
-    // let arrayOfCategories = [];
+    const objectOfCategories = this.state.categories
 
-    // for(var key in this.state.categories) {
-    //   arrayOfCategories.push(key)
-      // console.log("ARRAY OF CATEGORIES: ", arrayOfCategories)
-      // }
-      console.log("EL OBJETO DE CATEGORIAS CLICKEADAS: ", this.state.categories)
-      this.props.fetchFilteredProperties(this.state.clearInput, {
-        menor: this.state.menor,
-        mayor: this.state.mayor,
-        filterByPrice: filterValue,
-        // categories: arrayOfCategories
-      })
+    let arrayOfCategories = [];
+    for (let key in objectOfCategories) {
+      if (objectOfCategories[key]) arrayOfCategories.push(key)
+    }
+
+
+    const filterValue = this.state.menor || this.state.mayor ? true : false;
+    // console.log("EL OBJETO DE CATEGORIAS CLICKEADAS: ", this.state.categories)
+    this.props.fetchFilteredProperties(this.state.clearInput, {
+      menor: this.state.menor,
+      mayor: this.state.mayor,
+      filterByPrice: filterValue,
+      categoriesBoolean: !!arrayOfCategories.length,
+      categories: arrayOfCategories
+    })
       .then(() => {
         this.props.history.push(`/search/${this.state.clearInput}`);
       });
   }
-
-  
 
   onLogout() {
     this.props.logOut();
@@ -72,11 +86,12 @@ class SidebarContainer extends Component {
     return (
       <Sidebar
         onSearch={this.onSearch}
+        onCatSearch={this.onCatSearch}
         handleChange={this.handleChange}
         user={this.props.user}
         onLogout={this.onLogout}
         categories={this.props.categories}
-        // handleCatChange={this.handleCatChange}
+        handleCatChange={this.handleCatChange}
       />
     );
   }
@@ -85,18 +100,19 @@ class SidebarContainer extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     propiedadFiltrada: state.propiedadFiltrada,
-    user: state.user.logged.username,
+    user: state.user.logged,
     propiedades: state.propiedades.propiedades,
     categories: state.categories.categories
   };
 };
 
-const matchDispatchToProps = function(dispatch, ownprops) {
+const matchDispatchToProps = function (dispatch, ownprops) {
   return {
     fetchFilteredProperties: (propiedadFiltrada, obj) => dispatch(fetchFilteredProperties(propiedadFiltrada, obj)),
     fetchProducts: () => dispatch(fetchProducts()),
     logOut: () => dispatch(logOutCreator()),
-    fetchCategoriesCreator: () => dispatch(fetchCategoriesCreator())
+    fetchCategoriesCreator: () => dispatch(fetchCategoriesCreator()),
+    fetchSearchedCategories: (categorium) => dispatch(fetchSearchedCategories(categorium))
   };
 };
 export default withRouter(

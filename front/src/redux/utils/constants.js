@@ -9,4 +9,5 @@ export const LOAD_COOKIE = "LOAD_COOKIE";
 export const USER_LOGOUT = "USER_LOGOUT";
 
 /**** Constants related to categories ****/
-export const FETCH_CATEGORIES = "FETCH_CATEGORIES"
+export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
+export const FETCH_SINGLE_CATEGORY = "FETCH_SINGLE_CATEGORY";
