@@ -18,7 +18,18 @@ const useStyles = makeStyles(theme => ({
   container: {
     marginTop: "-45%",
     marginLeft: "20%"
-  }
+  },
+  description: {
+    color: "rgb(113, 113, 113)",
+    fontFamily: "Circular",
+    fontWeight: "400",
+    fontSize: "14px",
+    lineHeight: "18px",
+    maxHeight: "18px",
+    textOverflow: "ellipsis",
+    display: "-webkit-box",
+    overflow: "hidden"
+}
 }));
 
 export default ({ propiedades }) => {
@@ -54,6 +65,7 @@ export default ({ propiedades }) => {
                     Ver detalle
                   </Button>
                 </Link>
+              {/* <p className={classes.container}> {propiedad.truncarDescripcion}</p> */}
               </CardActions>
             </Card>
           ))
