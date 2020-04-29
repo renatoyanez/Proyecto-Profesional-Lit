@@ -22,6 +22,7 @@ class CreatePropertyContainer extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClick = this.handleClick.bind(this)
     this.onDropdownClick = this.onDropdownClick.bind(this)
+    this.handleRadioButton = this.handleRadioButton.bind(this)
   }
 
   componentDidMount() {
@@ -51,6 +52,9 @@ class CreatePropertyContainer extends Component {
     this.setState({ categories: {...this.state.categories, [event.target.id]: !this.state.categories[event.target.id] } })
   }
 
+  handleRadioButton(event) {
+    this.setState({ disponible: !event.target.value })
+  }
 
 
   handleChange(event) {
@@ -69,14 +73,12 @@ class CreatePropertyContainer extends Component {
       arrayOfImages.push(img);
     });
 
-    console.log("CATEGORIAS EN EL ESTADO: ", this.state.categories)
     const objectOfCategories = this.state.categories
 
 
     for (let key in objectOfCategories) {
       if (objectOfCategories[key]) var categorium = key
     }
-    
     
     
     this.props.createProperty(
@@ -98,6 +100,7 @@ class CreatePropertyContainer extends Component {
         handleClick={this.handleClick}
         categories={this.props.categories}
         onDropdownClick={this.onDropdownClick}
+        handleRadioButton={this.handleRadioButton}
       />
     );
   }
