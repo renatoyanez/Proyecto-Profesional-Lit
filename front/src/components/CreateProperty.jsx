@@ -153,27 +153,29 @@ export default props => {
                   <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleDropDownClick}>
                     Categorias
                   </Button>
-                    <Menu
-                      id="simple-menu"
-                      anchorEl={anchorEl}
-                      keepMounted
-                      open={Boolean(anchorEl)}
-                      onClose={handleClose}
-                      >
-                      {props.categories ? (props.categories.map(category =>
+                  <Menu
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                  >
+                    {props.categories ? (props.categories.map(category =>
                       <MenuItem id={category.name} onClick={props.handleClick}>{category.name}</MenuItem>
-                   )) : (null)}
-                   </Menu>
+                    )) : (null)}
+                  </Menu>
                 </>
               </Grid>
               <Grid item xs={12}>
-                <RadioGroup onChange={props.handleChange} aria-label="quiz" name="quiz">
+                <RadioGroup aria-label="quiz"  >
                   <FormControlLabel
+                    name="Disponible"
                     value="true"
                     control={<Radio />}
                     label="Disponible"
                   />
-                  <FormControlLabel
+                  <FormControlLabel onChange={props.handleRadioButton}
+                    name="No Disponible"
                     value="false"
                     control={<Radio />}
                     label="No Disponible"

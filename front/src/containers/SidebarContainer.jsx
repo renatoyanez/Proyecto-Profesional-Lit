@@ -27,7 +27,6 @@ class SidebarContainer extends Component {
       .then(() => {
         const objectOfCategories = {};
         this.props.categories.map(category => {
-          console.log(category)
 
           objectOfCategories[category.name] = false
 

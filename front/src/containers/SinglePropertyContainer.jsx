@@ -17,12 +17,8 @@ class SinglePropertyContainer extends Component {
     }
 
     handleDelete(remove) {
-        this.setState({/*cambiar el estado del modal*/})
         alert("Acabas de eliminar esta propiedad")
         this.props.deleteProperty(remove)
-        .then(() => {
-            this.props.history.push('/')
-        })
     }
 
     render() {

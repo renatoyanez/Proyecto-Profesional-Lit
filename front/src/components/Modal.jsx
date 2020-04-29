@@ -1,9 +1,10 @@
 import React from "react";
 
 export default props => (
-  
+
   <div>
     <div
+      style={{ marginTop: "10%" }}
       className="modal fade"
       id={`editionFormId${props.propiedad.id}`}
       tabIndex="-1"
@@ -85,7 +86,7 @@ export default props => (
           <div
             className="modal-footer d-flex justify-content-center"
           >
-          {/* <Link to={`/propiedad/${props.propiedad.id}`} > */}
+            {/* <Link to={`/propiedad/${props.propiedad.id}`} > */}
             <button className="btn btn-indigo" onClick={props.handleSubmit}>
               Send <i className="fas fa-paper-plane-o ml-1"></i>
             </button>
