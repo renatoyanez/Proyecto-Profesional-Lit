@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -13,6 +13,8 @@ import AddCircleIcon from "@material-ui/icons/AddCircle";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 function Copyright() {
   return (
@@ -49,13 +51,24 @@ const useStyles = makeStyles(theme => ({
   submit: {
     margin: theme.spacing(3, 0, 2)
   },
-  input:{
-      padding:"10%"
+  input: {
+    padding: "10%"
   }
 }));
 
 export default props => {
   const classes = useStyles();
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleDropDownClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
 
   return (
     <div className={classes.container}>
@@ -76,7 +89,7 @@ export default props => {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
-                
+
                   onChange={props.handleChange}
                   variant="outlined"
                   required
@@ -134,6 +147,24 @@ export default props => {
                   name="imagen"
                   autoComplete="lname"
                 />
+              </Grid>
+              <Grid item xs={12}>
+                <>
+                  <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleDropDownClick}>
+                    Categorias
+                  </Button>
+                    <Menu
+                      id="simple-menu"
+                      anchorEl={anchorEl}
+                      keepMounted
+                      open={Boolean(anchorEl)}
+                      onClose={handleClose}
+                      >
+                      {props.categories ? (props.categories.map(category =>
+                      <MenuItem id={category.name} onClick={props.handleClick}>{category.name}</MenuItem>
+                   )) : (null)}
+                   </Menu>
+                </>
               </Grid>
               <Grid item xs={12}>
                 <RadioGroup onChange={props.handleChange} aria-label="quiz" name="quiz">

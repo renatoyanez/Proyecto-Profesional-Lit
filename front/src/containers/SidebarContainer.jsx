@@ -37,12 +37,8 @@ class SidebarContainer extends Component {
       }).then(() => console.log("ESTADO DE CATEGORIAS: ", this.state.categories))
   }
 
-  /**** POR TERMINAR */
-  handleCatChange(event) {
-    console.log("EL TARGET DEL HANDLE: ", event.target.checked);
-    // console.log("EL VALUE DEL HANDLE: ", event.target.value);
-    // console.log("EL OBJETO DE CATEGORIAS CLICKEADAS: ", this.state.categories)
 
+  handleCatChange(event) {
     this.setState({ categories: {...this.state.categories, [event.target.name]: event.target.checked } })
   }
 
@@ -63,9 +59,8 @@ class SidebarContainer extends Component {
       if (objectOfCategories[key]) arrayOfCategories.push(key)
     }
 
-
     const filterValue = this.state.menor || this.state.mayor ? true : false;
-    // console.log("EL OBJETO DE CATEGORIAS CLICKEADAS: ", this.state.categories)
+
     this.props.fetchFilteredProperties(this.state.clearInput, {
       menor: this.state.menor,
       mayor: this.state.mayor,

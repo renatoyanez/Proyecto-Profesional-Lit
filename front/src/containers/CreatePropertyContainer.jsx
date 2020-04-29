@@ -3,6 +3,7 @@ import CreateProperty from "../components/CreateProperty";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { createProperty } from "../redux/actions/getProperties";
+import { fetchCategoriesCreator } from '../redux/actions/getCategories'
 
 class CreatePropertyContainer extends Component {
   constructor(props) {
@@ -14,11 +15,42 @@ class CreatePropertyContainer extends Component {
       ubicacion: "",
       imagen: "",
       disponible: true,
-      categorias: {}
+      categories: {},
+      dropDownOpen: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this)
+    this.onDropdownClick = this.onDropdownClick.bind(this)
   }
+
+  componentDidMount() {
+    if (!this.props.categories.length) this.props.fetchCategoriesCreator()
+    .then(() => {
+      const objectOfCategories = {};
+      this.props.categories.map(category => {
+        
+        objectOfCategories[category.name] = false
+        
+      })
+      this.setState({ categories: objectOfCategories })
+    })
+  }
+
+
+  onDropdownClick() {
+    this.setState({ dropDownOpen: true });
+  }
+
+  onClose() {
+    this.setState({ dropDownOpen: false });
+  }
+
+
+  handleClick(event) {
+    this.setState({ categories: {...this.state.categories, [event.target.id]: !this.state.categories[event.target.id] } })
+  }
+
 
 
   handleChange(event) {
@@ -36,13 +68,17 @@ class CreatePropertyContainer extends Component {
     images.forEach(img => {
       arrayOfImages.push(img);
     });
-    
-    // let arrayOfCategories = [];
-    // let categories = this.state.categorias.split(", ");
-    // categories.forEach(cat => {
-    //   arrayOfCategories.push(cat);
-    // })
 
+    console.log("CATEGORIAS EN EL ESTADO: ", this.state.categories)
+    const objectOfCategories = this.state.categories
+
+
+    for (let key in objectOfCategories) {
+      if (objectOfCategories[key]) var categorium = key
+    }
+    
+    
+    
     this.props.createProperty(
       this.state.nombre,
       this.state.descripcion,
@@ -50,29 +86,41 @@ class CreatePropertyContainer extends Component {
       this.state.ubicacion,
       arrayOfImages,
       this.state.disponible,
-      // arrayOfCategories
-    );
-  }
-
+      categorium
+      );
+    }
+    
   render() {
     return (
       <CreateProperty
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
+        handleClick={this.handleClick}
+        categories={this.props.categories}
+        onDropdownClick={this.onDropdownClick}
       />
     );
   }
 }
 
-const matchDispatchToProps = (dispatch, ownprops) => {
+
+const mapStateToProps = (state, ownProps) => {
   return {
-    createProperty: (nombre, descripcion, precio, ubicacion, imagen, disponible) => dispatch(createProperty(nombre, descripcion, precio, ubicacion, imagen, disponible))
+    categories: state.categories.categories
+  };
+};
+
+
+const matchDispatchToProps = (dispatch) => {
+  return {
+    createProperty: (nombre, descripcion, precio, ubicacion, imagen, disponible, categorias) => dispatch(createProperty(nombre, descripcion, precio, ubicacion, imagen, disponible, categorias)),
+    fetchCategoriesCreator: () => dispatch(fetchCategoriesCreator())
   };
 };
 
 export default withRouter(
   connect(
-    null,
+    mapStateToProps,
     matchDispatchToProps
   )(CreatePropertyContainer)
 );

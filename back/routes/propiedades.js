@@ -9,9 +9,8 @@ const Op = Sequelize.Op;
 
 /**** This one creates a property ****/
 router.post("/create", (req, res, next) => {
-  console.log("CATEGORIA EN EL REQ BODY: ", req.body.categorias);
+  console.log("CATEGORIA EN EL REQ BODY: ", req.body);
 
-  const categories = req.body.categorias;
   Propiedades.create({
     nombre: req.body.nombre,
     descripcion: req.body.descripcion,
@@ -23,7 +22,7 @@ router.post("/create", (req, res, next) => {
     .then(propiedad => {
       Categoria.findAll({
         where: {
-          name: categories
+          name: req.body.categorias
         }
       }).then(categorium =>
         propiedad.addCategoria(categorium).then(() => res.status(201).json(propiedad))
