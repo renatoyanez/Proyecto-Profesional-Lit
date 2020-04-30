@@ -4,27 +4,24 @@ const { Favoritos, Propiedades, Users } = require("../models/index");
 const { Op } = require("sequelize");
 
 
-router.post("/test", (req, res) => {
-
-  Propiedades.create({
-    nombre: "un nombre",
-    descripcion: "una descripcion",
-    precio: 10,
-    ubicacion: "una ubicacion",
-    imagen: [""],
-    disponible: true
+router.post("/add", (req, res) => {
+  console.log(req.body);
+  Favoritos.create({
+    cantidad: 0
   })
-    .then(propiedad => Favoritos.create({ cantidad: 1 })
-      .then(favorito => favorito.setPropiedades(propiedad))
-      .then(nuevofavorito => res.json(nuevofavorito))
-    )
+    .then(favoritos => (
+      favoritos.setPropiedade(req.body.propiedad)))
+    .then(favoritos => (
+      favoritos.setUser(req.body.user.id)))
+    .then(favoritos => (res.json(favoritos)))
 })
+
 
 router.get("/all/:user", (req, res) => {
   Favoritos.findAll({
     include: [
       {
-        model: User,
+        model: Users,
         where: {
           id: req.params.user
         }
@@ -32,18 +29,11 @@ router.get("/all/:user", (req, res) => {
       {
         model: Propiedades
       }
-    ],
-    where: { disponible: true }
+    ]
+    // where: { disponible: true }
   }).then(data => {
     res.json(data);
   });
-});
-
-router.post("/add", (req, res) => {
-  Favoritos.create(req.body)
-    .then(favorito => favorito.setPropiedades(req.body.propiedad))
-    .then(favorito => favorito.setUsers(req.body.user))
-    .then(favorito => res.json(favorito));
 });
 
 
