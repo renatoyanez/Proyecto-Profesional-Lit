@@ -8,6 +8,8 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import red from "@material-ui/core/colors/red";
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 const style = {
   iconStyle: {
@@ -17,7 +19,7 @@ const style = {
     filter: "invert(100%)"
   },
   single: {
-    marginTop: "-46%",
+    marginTop: "-44%",
     marginLeft: "15%"
   },
 
@@ -29,7 +31,7 @@ const style = {
 const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1),
- 
+
   }
 }));
 
@@ -45,7 +47,7 @@ export default ({ user, propiedad, handleDelete }) => {
 
   return (
     <div className="container" style={style.single}>
-      <div style={style.centerButtom}>
+      <div style={style.centerButtoms}>
         <Button
           onClick={handleClick}
           className={classes.button}
@@ -54,7 +56,7 @@ export default ({ user, propiedad, handleDelete }) => {
         >
           Volver atrás
         </Button>
-       
+
         {user.admin ? (
           <>
             <Button
@@ -67,19 +69,20 @@ export default ({ user, propiedad, handleDelete }) => {
             >
               Editar Propiedad
             </Button>
-           
-            <Button
-              variant="contained"
-              style={{ backgroundColor: "#f44336" }}
-              className={classes.button}
-              startIcon={<DeleteIcon />}
-              onClick={() => {
-                handleDelete(propiedad.id);
-              }}
-            >
-              Eliminar
+            <Link to="/">
+              <Button
+                variant="contained"
+                style={{ backgroundColor: "#f44336" }}
+                className={classes.button}
+                startIcon={<DeleteIcon />}
+                onClick={() => {
+                  handleDelete(propiedad.id);
+                }}
+              >
+                Eliminar
             </Button>
-            
+            </Link>
+
           </>
         ) : null}
       </div>
@@ -159,6 +162,14 @@ export default ({ user, propiedad, handleDelete }) => {
           </div>
         </div>
       )}
+
+
+      <Button
+        onClick={handleClick}
+      >
+        <FavoriteBorderIcon />
+      </Button>
+
       <br />
       <ModalContainer />
     </div>

@@ -44,4 +44,5 @@ Propiedades.init({
     modelName: 'propiedades' 
 })
 
+
 module.exports = Propiedades;
