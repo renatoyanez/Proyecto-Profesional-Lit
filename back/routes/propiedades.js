@@ -2,7 +2,6 @@
 const express = require("express");
 const router = express.Router();
 const { Propiedades, Categoria } = require("../models/index");
-// const { Op } = require("sequelize");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
@@ -89,7 +88,6 @@ router.get("/search/:propiedades", (req, res, next) => {
 
 router.get("/search/:propiedades", (req, res, next) => {
   const search = req.params.propiedades.toLowerCase();
-  // console.log("SEARCH: ", search);
   Propiedades.findAll({...req.findByPrice, ...req.findByCategory})
     .then(data => {
       if (!data) res.sendStatus(404);
@@ -100,8 +98,6 @@ router.get("/search/:propiedades", (req, res, next) => {
           propiedades.descripcion.toLowerCase().includes(search) ||
           propiedades.ubicacion.toLowerCase().includes(search)
       );
-      // console.log("RESPONSE DEL SEARCH", propertiesFilter[0].dataValues.categoria[0].dataValues.name);
-
       res.json(propertiesFilter);
     })
     .catch(err => {
