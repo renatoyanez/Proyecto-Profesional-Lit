@@ -42,7 +42,8 @@ router.post("/edit", (req, res, next) => {
           ? req.body.descripcion
           : propiedad.descripcion,
         precio: req.body.precio ? req.body.precio : propiedad.precio,
-        ubicacion: req.body.ubicacion ? req.body.ubicacion : propiedad.ubicacion
+        ubicacion: req.body.ubicacion ? req.body.ubicacion : propiedad.ubicacion,
+        imagen: req.body.imagen ? req.body.imagen : propiedad.imagen
       })
     )
     .then(() =>
@@ -66,8 +67,8 @@ router.get("/search/:propiedades", (req, res, next) => {
           where: {
             name: { [Op.like]: { [Op.any]: categorium } }
           }
-      }
-      ] 
+        }
+      ]
     }
   }
   next();
@@ -88,7 +89,7 @@ router.get("/search/:propiedades", (req, res, next) => {
 
 router.get("/search/:propiedades", (req, res, next) => {
   const search = req.params.propiedades.toLowerCase();
-  Propiedades.findAll({...req.findByPrice, ...req.findByCategory})
+  Propiedades.findAll({ ...req.findByPrice, ...req.findByCategory })
     .then(data => {
       if (!data) res.sendStatus(404);
       const propertiesFilter = data.filter(

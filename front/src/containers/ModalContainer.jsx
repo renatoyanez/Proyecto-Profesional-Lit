@@ -13,7 +13,7 @@ class ModalContainer extends Component {
         descripcion: '',
         precio: '',
         ubicacion: '',
-        // imagen: '',
+        imagen: '',
         // disponible: false,
         // categorias: []
     }
@@ -49,15 +49,22 @@ class ModalContainer extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    let arrayOfImages = [];
+    let images = this.state.imagen.split(", ");
+    images.forEach(img => {
+      arrayOfImages.push(img);
+    });
+    console.log("ARREGLOOOO", arrayOfImages)
     return axios.post("/api/propiedades/edit", {
       id: this.props.propiedad.id,
       nombre: this.state.nombre,
       descripcion: this.state.descripcion,
       precio: parseInt(this.state.precio),
       ubicacion: this.state.ubicacion,
-      // imagen: [...this.state.imagen],
+      imagen: arrayOfImages,
       // disponible: true
     }).then((propiedad) => {
+      console.log("PROPIEDAD", propiedad)
         this.props.fetchSingleProperty(propiedad) 
         alert('Propiedad editada!') // busca un sweet alert 
     })

@@ -17,7 +17,6 @@ class PropertiesContainer extends Component {
     handleAddFavorite(propertyId) {
         if (this.props.user.id) {
             alert("Agregada a favoritos")
-            console.log("HANDLE ADD FAVS EN PROPERTIES: ", { props: this.props, user: this.props.user })
             let obj = { propiedad: propertyId, user: this.props.user }
             this.props.addFavoriteCreator(obj)
         }

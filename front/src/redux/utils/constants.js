@@ -10,7 +10,7 @@ export const USER_LOGOUT = "USER_LOGOUT";
 
 /**** Constants related to categories ****/
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
-export const FETCH_SINGLE_CATEGORY = "FETCH_SINGLE_CATEGORY";
+export const FETCH_PROPERTY_BY_CATEGORY = "FETCH_PROPERTY_BY_CATEGORY";
 
 /*** Constants related to favourites ***/
 export const FETCH_FAVOURITE = "FETCH_FAVOURITE"

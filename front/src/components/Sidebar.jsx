@@ -185,7 +185,6 @@ export default ({ handleChange, handleCatChange, onSearch, onCatSearch, user, on
               </IconButton>
             </div>
           )}
-
           {user.username ? (
             <IconButton color="inherit">
               <Typography

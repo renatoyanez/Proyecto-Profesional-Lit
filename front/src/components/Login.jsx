@@ -29,7 +29,7 @@ function Copyright() {
 const useStyles = makeStyles(theme => ({
   root: {
     height: "100vh",
-    marginTop: "-50%"
+    marginTop: "-49%"
   },
   image: {
     // backgroundImage: 'url(https://source.unsplash.com/featured/?indoor,interior,home,livingroom,bedroom)',
