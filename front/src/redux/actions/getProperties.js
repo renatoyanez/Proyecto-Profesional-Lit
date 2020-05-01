@@ -56,8 +56,12 @@ export const createProperty = (nombre, descripcion, precio, ubicacion, imagen, d
 };
 
 //Removes property
-export const deleteProperty = id => () => {
-  return axios.delete(`/api/propiedades/delete/${id}`).then(() => {
+export const deleteProperty = id => dispatch => {
+  return axios.delete(`/api/propiedades/delete/${id}`)
+  .then(() => {
+    dispatch(fetchProducts())
+  })
+  .then(() => {
     console.log("Property deleted succesfully!");
   });
 };

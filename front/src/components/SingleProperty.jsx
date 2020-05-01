@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default ({ user, propiedad, handleDelete }) => {
+export default ({ user, propiedad, handleDelete, handleAddFavorite }) => {
   console.log("USUARIO: ", user);
   const classes = useStyles();
   const primary = red[500];
@@ -165,7 +165,7 @@ export default ({ user, propiedad, handleDelete }) => {
 
 
       <Button
-        onClick={handleClick}
+        onClick={handleAddFavorite}
       >
         <FavoriteBorderIcon />
       </Button>

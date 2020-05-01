@@ -18,6 +18,9 @@ router.post("/add", (req, res) => {
 
 /**** Gets properties in the favourites place of a certain user ****/
 router.get("/all/:userId", (req, res) => {
+
+  console.log("ID DEL USER EN LA RUTA: ", req.params.userId);
+
   Favoritos.findAll({
     include: [
       {
@@ -38,6 +41,7 @@ router.get("/all/:userId", (req, res) => {
 
 /**** Removes property ****/
 router.delete("/remove/:userId/:propiedadId", (req, res, next) => {
+  console.log("LOS PARAMS EN EL DELETE: ", { userId: req.params.userId, propiedadId: req.params.propiedadId })
   Favoritos.destroy({
     where: {
       propiedadeId: req.params.propiedadId,
@@ -45,7 +49,6 @@ router.delete("/remove/:userId/:propiedadId", (req, res, next) => {
     }
   })
     .then(data => res.json(data))
-});
-//Chequear si funciona con 'propiedad' solamente!
+})
 
 module.exports = router;
