@@ -65,6 +65,7 @@ class CreatePropertyContainer extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    alert("Propiedad creada exitosamente")
     let price = parseInt(this.state.precio);
 
     let arrayOfImages = [];

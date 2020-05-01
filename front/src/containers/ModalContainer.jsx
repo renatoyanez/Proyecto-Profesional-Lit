@@ -59,7 +59,6 @@ class ModalContainer extends Component {
       // disponible: true
     }).then((propiedad) => {
         this.props.fetchSingleProperty(propiedad) 
-        // this.props.history.push('/')
         alert('Propiedad editada!') // busca un sweet alert 
     })
   }

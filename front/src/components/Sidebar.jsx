@@ -25,6 +25,7 @@ import { Link } from "react-router-dom";
 import AddIcon from "@material-ui/icons/Add";
 import HomeWorkIcon from '@material-ui/icons/HomeWork';
 import Checkbox from '@material-ui/core/Checkbox';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 const drawerWidth = 240;
 
@@ -130,6 +131,7 @@ export default ({ handleChange, handleCatChange, onSearch, onCatSearch, user, on
       >
         <Toolbar className={classes.toolbar}>
           {user.username ? (
+            <>
             <IconButton color="inherit">
               <Link to="/login">
                 <Button
@@ -141,6 +143,20 @@ export default ({ handleChange, handleCatChange, onSearch, onCatSearch, user, on
                 </Button>
               </Link>
             </IconButton>
+             <IconButton color="inherit">
+             <Link to="/favorites">
+               <Button
+                 variant="contained"
+                 style={{ backgroundColor: "#bdbdbd" }}
+                 startIcon={<FavoriteBorderIcon />}
+                 style={{ marginLeft: "4%" }}
+               >
+                 Favoritos
+               </Button>
+            
+             </Link>
+           </IconButton>
+           </>
           ) : (
             <div>
               <IconButton color="inherit">

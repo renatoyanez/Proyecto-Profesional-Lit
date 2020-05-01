@@ -18,7 +18,7 @@ export default () => {
         <Route exact path="/login" component={LoginContainer} />
         <Route exact path="/propiedad/:id" component={SinglePropertyContainer} />
         <Route exact path="/search/:nombre" component={PropertiesContainer} />
-        <Route exact path="/favourites/:user" component={FavouritesContainer} />
+        <Route exact path="/favorites" component={FavouritesContainer} />
         <Route exact path="/" component={PropertiesContainer} />
       </Switch>
     </div>

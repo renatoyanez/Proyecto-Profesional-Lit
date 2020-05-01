@@ -22,7 +22,6 @@ class SidebarContainer extends Component {
   }
 
   componentDidMount() {
-
     if (!this.props.categories.length) this.props.fetchCategoriesCreator()
       .then(() => {
         const objectOfCategories = {};

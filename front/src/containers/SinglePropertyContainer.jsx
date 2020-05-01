@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
 import SingleProperty from '../components/SingleProperty';
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import { singlePropertyCreator, deleteProperty } from '../redux/actions/getProperties'
+import { addFavoriteCreator } from '../redux/actions/getFavourites'
+
 
 class SinglePropertyContainer extends Component {
     constructor(props) {
@@ -11,6 +13,7 @@ class SinglePropertyContainer extends Component {
             open: false
         }
         this.handleDelete = this.handleDelete.bind(this)
+        this.handleAddFavorite = this.handleAddFavorite.bind(this)
     }
     componentDidMount() {
         this.props.singlePropertyCreator(this.props.match.params.id)
@@ -21,16 +24,24 @@ class SinglePropertyContainer extends Component {
         this.props.deleteProperty(remove)
     }
 
+    handleAddFavorite(event) {
+        event.preventDefault();
+ 
+            let obj = { propiedad: this.props.match.params.id, user: this.props.user }
+            this.props.addFavoriteCreator(obj)
+            alert("Agregada a favoritos")
+    }
+
     render() {
         return (
 
-            <SingleProperty user={this.props.user} handleDelete = {this.handleDelete} propiedad={this.props.propiedad}/>
+            <SingleProperty user={this.props.user} handleDelete={this.handleDelete} propiedad={this.props.propiedad} handleAddFavorite={this.handleAddFavorite} />
         )
     }
 }
 
 const mapStateToProps = (state) => {
-    
+
     return {
         propiedad: state.propiedades.propiedad,
         user: state.user.logged
@@ -40,8 +51,9 @@ const mapStateToProps = (state) => {
 const matchDispatchToProps = (dispatch) => {
     return {
         singlePropertyCreator: (id) => { dispatch(singlePropertyCreator(id)) },
-        deleteProperty: (id) => ( dispatch(deleteProperty(id)) )
+        deleteProperty: (id) => (dispatch(deleteProperty(id))),
+        addFavoriteCreator: (obj) => dispatch(addFavoriteCreator(obj))
     }
 }
 
-export default withRouter(connect(mapStateToProps, matchDispatchToProps)(SinglePropertyContainer))
+export default withRouter(connect(mapStateToProps, matchDispatchToProps)(SinglePropertyContainer));
