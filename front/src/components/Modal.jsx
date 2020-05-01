@@ -75,7 +75,18 @@ export default props => (
               />
             </div>
 
-            {/*  aca lo de imagenes que guardaste borrador  */}
+            <div className="md-form mb-3">
+              <i className="fa fa-gear mr-5"></i>
+              <input
+                type="text"
+                name="imagen"
+                id="form3"
+                placeholder="Imagenes"
+                className="form-control validate"
+                onChange={props.handleChange}
+              />
+            </div>
+
 
             {/*  aca lo de cataegorias que guardaste borrador  */}
 

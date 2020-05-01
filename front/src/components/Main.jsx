@@ -7,6 +7,7 @@ import RegisterContainer from "../containers/RegisterContainer";
 import LoginContainer from "../containers/LoginContainer";
 import CreatePropertyContainer from "../containers/CreatePropertyContainer";
 import FavouritesContainer from "../containers/FavouritesContainer";
+// import CategoriesContainer from '../containers/CategoriesContainer'
 
 export default () => {
   return (
@@ -19,6 +20,8 @@ export default () => {
         <Route exact path="/propiedad/:id" component={SinglePropertyContainer} />
         <Route exact path="/search/:nombre" component={PropertiesContainer} />
         <Route exact path="/favorites" component={FavouritesContainer} />
+        {/* <Route exact path="/categorias" component={CategoriesContainer} /> */}
+
         <Route exact path="/" component={PropertiesContainer} />
       </Switch>
     </div>
