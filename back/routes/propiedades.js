@@ -57,7 +57,8 @@ router.post("/edit", (req, res, next) => {
 
 //Route that goes to the DB by searching parameter
 router.get("/search/:propiedades", (req, res, next) => {
-  console.log("EL QUERY CATEGORIES:  ", req.query.categories.split("_"));
+  //The query of categories comes in a string dividing every category with "_" 
+  //so we split the query of every category that comes from the client in an array:
   const categorium = req.query.categories.split("_")
   if (req.query.categoriesBoolean === "true") {
     req.findByCategory = {
@@ -75,7 +76,6 @@ router.get("/search/:propiedades", (req, res, next) => {
 });
 
 router.get("/search/:propiedades", (req, res, next) => {
-  console.log("EL QUERY:  ", req.query);
   if (req.query.filterByPrice === "true") {
     req.findByPrice = {
       where: {

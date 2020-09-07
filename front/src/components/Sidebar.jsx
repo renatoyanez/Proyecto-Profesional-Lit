@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex"
   },
   toolbar: {
-    paddingRight: 24 
+    paddingRight: 24
   },
   toolbarIcon: {
     display: "flex",
@@ -66,7 +66,7 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1,
-    textAlign:"center"
+    textAlign: "center"
   },
   drawerPaper: {
     position: "relative",
@@ -115,7 +115,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default ({ handleChange, handleCatChange, onSearch, onCatSearch, user, onLogout, categories }) => {
+export default (props) => {
   const classes = useStyles();
   // const handleRadioChange = event => {
   //   setHelperText(" ");
@@ -130,62 +130,62 @@ export default ({ handleChange, handleCatChange, onSearch, onCatSearch, user, on
         className={clsx(classes.appBar && classes.appBarShift)}
       >
         <Toolbar className={classes.toolbar}>
-          {user.username ? (
+          {props.user.username ? (
             <>
-            <IconButton color="inherit">
-              <Link to="/login">
-                <Button
-                  variant="contained"
-                  onClick={onLogout}
-                  style={{ backgroundColor: "#bdbdbd" }}
-                >
-                  Logout
-                </Button>
-              </Link>
-            </IconButton>
-             <IconButton color="inherit">
-             <Link to="/favorites">
-               <Button
-                 variant="contained"
-                 style={{ backgroundColor: "#bdbdbd" }}
-                 startIcon={<FavoriteBorderIcon />}
-                 style={{ marginLeft: "4%" }}
-               >
-                 Favoritos
-               </Button>
-            
-             </Link>
-           </IconButton>
-           </>
-          ) : (
-            <div>
               <IconButton color="inherit">
                 <Link to="/login">
                   <Button
-                    type="submit"
-                    fullWidth
                     variant="contained"
+                    onClick={props.onLogout}
                     style={{ backgroundColor: "#bdbdbd" }}
                   >
-                    Login
-                  </Button>
+                    Logout
+                </Button>
                 </Link>
               </IconButton>
               <IconButton color="inherit">
-                <Link to="/register">
+                <Link to="/favorites">
                   <Button
-                    type="submit"
-                    fullWidth
                     variant="contained"
                     style={{ backgroundColor: "#bdbdbd" }}
+                    startIcon={<FavoriteBorderIcon />}
+                    style={{ marginLeft: "4%" }}
                   >
-                    Registrate
-                  </Button>
+                    Favoritos
+               </Button>
+
                 </Link>
               </IconButton>
-            </div>
-          )}
-          {user.username ? (
+            </>
+          ) : (
+              <div>
+                <IconButton color="inherit">
+                  <Link to="/login">
+                    <Button
+                      type="submit"
+                      fullWidth
+                      variant="contained"
+                      style={{ backgroundColor: "#bdbdbd" }}
+                    >
+                      Login
+                  </Button>
+                  </Link>
+                </IconButton>
+                <IconButton color="inherit">
+                  <Link to="/register">
+                    <Button
+                      type="submit"
+                      fullWidth
+                      variant="contained"
+                      style={{ backgroundColor: "#bdbdbd" }}
+                    >
+                      Registrate
+                  </Button>
+                  </Link>
+                </IconButton>
+              </div>
+            )}
+          {props.user.username ? (
             <IconButton color="inherit">
               <Typography
                 component="h3"
@@ -194,11 +194,11 @@ export default ({ handleChange, handleCatChange, onSearch, onCatSearch, user, on
                 noWrap
                 className={classes.title}
               >
-                {`Bienvenido ${user.username}!`}
+                {`Hello ${props.user.username}!`}
               </Typography>
             </IconButton>
           ) : null}
-          {user.admin ? (
+          {props.user.admin ? (
             <IconButton color="inherit">
               <Link to="/create">
                 <Button
@@ -210,7 +210,7 @@ export default ({ handleChange, handleCatChange, onSearch, onCatSearch, user, on
                 >
                   Crear
                 </Button>
-             
+
               </Link>
             </IconButton>
           ) : null}
@@ -224,13 +224,13 @@ export default ({ handleChange, handleCatChange, onSearch, onCatSearch, user, on
         open={open}
       >
         <div className={classes.toolbarIcon}>
-          <HomeWorkIcon  style={{marginLeft:"3%"}}/>
+          <HomeWorkIcon style={{ marginLeft: "3%" }} />
           <Typography
             component="h1"
             variant="h6"
             color="inherit"
             noWrap
-            
+
             className={classes.title}
           >
             <Link to="/">L     I      T</Link>
@@ -238,14 +238,14 @@ export default ({ handleChange, handleCatChange, onSearch, onCatSearch, user, on
         </div>
         <Divider />
         <List>
-          <form onSubmit={onSearch}>
+          <form onSubmit={props.onSearch}>
             <ListItem button>
               <ListItemIcon>
                 <SearchIcon />
               </ListItemIcon>
               <Grid item xs={12}>
                 <TextField
-                  onChange={handleChange}
+                  onChange={props.handleChange}
                   variant="outlined"
                   label="Buscar"
                   name="clearInput"
@@ -259,7 +259,7 @@ export default ({ handleChange, handleCatChange, onSearch, onCatSearch, user, on
               </ListItemIcon>
               <Grid item xs={12}>
                 <TextField
-                  onChange={handleChange}
+                  onChange={props.handleChange}
                   variant="outlined"
                   label="Menor"
                   name="menor"
@@ -268,7 +268,7 @@ export default ({ handleChange, handleCatChange, onSearch, onCatSearch, user, on
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  onChange={handleChange}
+                  onChange={props.handleChange}
                   variant="outlined"
                   label="Mayor"
                   name="mayor"
@@ -276,42 +276,43 @@ export default ({ handleChange, handleCatChange, onSearch, onCatSearch, user, on
                 />
               </Grid>
             </ListItem>
-                  <ListItem button>
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      style={{ backgroundColor: "#bdbdbd" }}
-                      className={classes.button}
-                    >
-                      Busca tu Propiedad
-                    </Button>
-                  </ListItem>
-              {/* </form>
-              <form onSubmit={onCatSearch}> */}
-          <ListItem button>
-            <ListItemIcon>
-              <ApartmentIcon />
-            </ListItemIcon>
-            <ListItemText primary="Categorias" />
-          </ListItem>
-          <ListItem button>
-            <FormControl component="fieldset" className={classes.formControl}>
-               {categories != null ? (categories.length ? ( 
-                 categories.map(category => 
-                  <FormControlLabel
-                  control={<Checkbox onChange={handleCatChange} name={category.name} color="default" />}
-                  label={category.name}
-                  />)) : (<div><p>No hay categorias existentes</p></div>)) : null}
+            <ListItem button>
               <Button
                 type="submit"
                 variant="contained"
                 style={{ backgroundColor: "#bdbdbd" }}
                 className={classes.button}
+              >
+                Busca tu Propiedad
+                    </Button>
+            </ListItem>
+            {/* </form>
+              <form onSubmit={onCatSearch}> */}
+            <ListItem button>
+              <ListItemIcon>
+                <ApartmentIcon />
+              </ListItemIcon>
+              <ListItemText primary="Categorias" />
+            </ListItem>
+            <ListItem button>
+              <FormControl component="fieldset" className={classes.formControl}>
+                {props.categories != null ? (props.categories.length ? (
+                  props.categories.map(category =>
+                    <FormControlLabel
+                      key={category.id}
+                      control={<Checkbox onChange={props.handleCatChange} name={category.name} color="default" />}
+                      label={category.name}
+                    />)) : (<div><p>No hay categorias existentes</p></div>)) : null}
+                <Button
+                  type="submit"
+                  variant="contained"
+                  style={{ backgroundColor: "#bdbdbd" }}
+                  className={classes.button}
                 >
-                Filtra
+                  Filtra
               </Button>
-            </FormControl>
-          </ListItem>
+              </FormControl>
+            </ListItem>
           </form>
         </List>
         <Divider />

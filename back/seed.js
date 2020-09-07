@@ -1,5 +1,7 @@
 const { Propiedades, Categoria, Users } = require("./models/index");
 
+console.log('pase por el seed')
+
 Promise.all([
 Categoria.create({ name: "Departamento" }),
 Categoria.create({ name: "Casa" }),

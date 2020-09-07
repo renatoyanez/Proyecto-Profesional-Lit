@@ -25,6 +25,8 @@ app.use(cookieParser());
 app.use(
   session({
     secret: "cats",
+    resave: true,
+    saveUninitialized: true
   })
 );
 app.use(morgan("tiny"));
@@ -33,7 +35,9 @@ app.use(morgan("tiny"));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(bodyParser.json());
 app.use("/api", Router);
 
@@ -43,10 +47,9 @@ app.get("/*", (req, res) => {
 
 /***** Syncronize db and run the server:   *******/
 db.sync({
-  logging: false,
-  force: false
-})
-  .then(() => {
+    logging: false,
+    force: false
+  }).then(() => {
     app.listen(3000, () => {
       console.log("Server is listening on port 3000!");
     });

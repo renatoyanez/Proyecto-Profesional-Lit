@@ -25,8 +25,6 @@ export const createUser = (username, email, password) => {
 };
 
 export const userLoginCreator = theUser => {
-  console.log("The user: ", theUser);
-
   return dispatch => {
     axios.post("/api/user/login", theUser, history).then(user => {
       dispatch(userLogin(user.data));
@@ -35,14 +33,6 @@ export const userLoginCreator = theUser => {
   };
 };
 
-// export const loadCookieCreator = () => {
-//   return function(dispatch) {
-//     dispatch(loadCookie());
-//     return axios.get("/auth").then(res => {
-//       dispatch(userLogin(res.data));
-//     });
-//   };
-// };
 
 export const logOutCreator = () => {
   return function(dispatch) {
@@ -55,7 +45,6 @@ export const logOutCreator = () => {
 
 export const fetchLoggedUser = () => dispatch => 
   axios.get("/api/user/auth").then(res => {
-    console.log("RES: ", res);
     dispatch(userLogin(res.data));
     return res.data;
   });

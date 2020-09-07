@@ -94,7 +94,9 @@ export default ({ user, favorites, handleDelete }) => {
             </Card>
           ))
         ) : (
-            <> <Typography> ... Todavia no has agregado nada </Typography> </>
+            <><div class="alert alert-secondary" role="alert" style={{width:"45%"}}>
+            No se encontraron resultados con tu busqueda
+         </div> </>
           )) : (null)}
       </GridList>
     </div>
